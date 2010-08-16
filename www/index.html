@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
+	<link rel="stylesheet" href="ui/stylesheets/common.css"/>
+	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ui/stylesheets/ipad.css" />		
+	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="ui/stylesheets/iphone.css" />		
+	<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
+</head>
+<body>
+	<div id="Scribble">
+		<canvas height="200" width="320"></canvas>
+		<ul class="Toolbar">
+			<li><a class="saveButton">Save</a></li>
+			<li><a class="clearButton">Clear</a></li>
+		</ul>
+	</div>
+	<script src="ui/scripts/external/xui-core-1.0.0.js"></script>
+	<script src="ui/scripts/external/xui-more-1.0.0.js"></script>
+	<script src="ui/scripts/scribble.js"></script>
+	<script>
+		var scribble = new Scribble(x$("canvas")[0]);
+		//var scribble2= new Scribble(x$("canvas")[1]);
+		x$(".clearButton").on("click", function() {
+			scribble.clearCanvas();
+		});
+		x$(".saveButton").on("click", function() {
+			var data = scribble.save();
+			x$("#thumb").html("<img src='"+data+"'/>");
+		});
+	</script>
+</body>
+</html>

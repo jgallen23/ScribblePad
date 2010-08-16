@@ -1,0 +1,8 @@
+//
+// Prefix header for all source files of the 'ScribblePad' target in the 'ScribblePad' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <UIKit/UIKit.h>
+#endif
