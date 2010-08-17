@@ -33,14 +33,22 @@ var ScribbleController = Class.extend({
 		console.log("save");
 		var data = this.scribblePad.getData();
 		scribbleData.updateItem(this.currentIndex, data);
+		this.updateBadge();
 	},
 	deleteScribble: function() {
 		console.log(this.currentIndex);
 		scribbleData.deleteItemByIndex(this.currentIndex);
 		this.loadScribbleByIndex(this.currentIndex);
+		this.updateBadge();
 	},
 	viewAllScribbles: function() {
 		this.element.setStyle("display", "none");
 		new ViewAllController(x$("#ViewAll"), this);
+	},
+	updateBadge: function() {
+		if (PhoneGap.available) {
+			var count = scribbleData.get().length;
+			plugins.badge.set(count);
+		}
 	}
 });
