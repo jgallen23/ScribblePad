@@ -3,5 +3,9 @@ body { margin: 0px; -webkit-text-size-adjust:none;}
 canvas { border: 1px solid #ccc; }
 
 
-.Toolbar { height: 48px; background: #336699; margin: 0; padding: 0}
+.Toolbar { height: 45px; background: #336699; margin: 0; padding: 0}
 	.Toolbar li { display: inline; margin: 0; padding: 0 20px;} 
+
+.ImageList { list-style: none; margin: 0; padding: 0}
+	.ImageList li { display: inline; margin: 0; padding: 10px; } 
+		.ImageList li img { height: 100px; border: 1px solid #ccc; } 
