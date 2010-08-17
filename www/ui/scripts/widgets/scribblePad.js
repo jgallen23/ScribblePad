@@ -1,6 +1,7 @@
 var ScribblePad = Class.extend({
 	init: function(canvas) {
 		this.isDrawing = false;
+		this.isDirty = false;
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 		this.drawEndCallback = false;
@@ -51,6 +52,7 @@ var ScribblePad = Class.extend({
 	_onDraw: function(ev) {
 		var xy = this._getXY(ev);
 		if (this.isDrawing) {
+			this.isDirty = true;
 			this.context.beginPath();
 			this.context.moveTo(this.startX, this.startY);
 			this.context.lineTo(xy[0], xy[1])
@@ -62,7 +64,7 @@ var ScribblePad = Class.extend({
 	},
 	_onDrawEnd: function(ev) {
 		this.isDrawing = false;
-		if (this.drawEndCallback) {
+		if (this.isDirty && this.drawEndCallback) {
 			this.drawEndCallback();
 		}
 	},
@@ -76,6 +78,7 @@ var ScribblePad = Class.extend({
 		}
 	},
 	clear: function() {
+		this.isDirty = false;
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	},
 	getData: function() {
