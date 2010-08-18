@@ -2,6 +2,7 @@ var ScribbleController = Class.extend({
 	init: function(element) {	
 		var self = this;
 		this.element = element;
+		this.saveTimeout;
 		this.currentIndex = scribbleData.get().length;
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
 		this.scribblePad.drawEndCallback = function() {
@@ -30,10 +31,15 @@ var ScribbleController = Class.extend({
 		this.currentIndex = scribbleData.get().length;
 	},
 	saveScribble: function() {
-		console.log("save");
-		var data = this.scribblePad.getData();
-		scribbleData.updateItem(this.currentIndex, data);
-		this.updateBadge();
+		var self = this;
+		if (this.saveTimeout)
+			clearTimeout(this.saveTimeout);
+		this.saveTimeout = setTimeout(function() {
+			console.log("save");
+			var data = self.scribblePad.getData();
+			scribbleData.updateItem(self.currentIndex, data);
+			self.updateBadge();
+		}, 1000);
 	},
 	deleteScribble: function() {
 		console.log(this.currentIndex);
