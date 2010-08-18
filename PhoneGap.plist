@@ -7,9 +7,9 @@
 	<key>TopActivityIndicator</key>
 	<string>gray</string>
 	<key>EnableLocation</key>
-	<true/>
+	<false/>
 	<key>EnableAcceleration</key>
-	<true/>
+	<false/>
 	<key>UIControls</key>
 	<dict>
 		<key>TabBarSettings</key>
