@@ -67,11 +67,18 @@ var ScribblePad = Class.extend({
 		this.clear();
 		var self = this;
 		var img = new Image();
+		var photo = new Image();
 		this.scribble = scribble;
+		if (scribble.photoData) {
+			photo.src = scribble.photoData;
+			photo.onload = function() { 
+				self.context.drawImage(photo, 0, 0, self.canvas.width, self.canvas.height);
+			}
+		}
 		if (scribble.imageData) {
 			img.src = scribble.imageData;
 			img.onload = function() { 
-				self.context.drawImage(img, 0, 0);
+				self.context.drawImage(img, 0, 0, self.canvas.width, self.canvas.height);
 			}
 		}
 	},

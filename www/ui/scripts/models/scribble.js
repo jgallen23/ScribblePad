@@ -4,6 +4,7 @@ var Scribble = Model.extend({
 		this.createdOn = new Date();
 		this.modifiedOn = '';
 		this.imageData = '';
+		this.photoData = '';
 	}
 });
 Scribble.data = new ScribbleData();

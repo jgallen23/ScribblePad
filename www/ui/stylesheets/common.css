@@ -15,7 +15,7 @@ canvas { }
 	/*)*/
 
 	}
-	.Toolbar li { float: left; margin: 0; padding: 0 10px; list-style: none;} 
+	.Toolbar li { float: left; margin: 0; padding: 0 6px; list-style: none;} 
 		.Toolbar li a { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; } 
 			.Toolbar li a span { display: none; } 
 		.Toolbar li .viewAll { background-image: url(../images/icons/normal/folder.png); } 
@@ -23,6 +23,7 @@ canvas { }
 		.Toolbar li .delete { background-image: url(../images/icons/normal/delete.png); } 
 		.Toolbar li .previous { background-image: url(../images/icons/normal/arrowleft.png); } 
 		.Toolbar li .next { background-image: url(../images/icons/normal/arrowright.png); } 
+		.Toolbar li .camera { background-image: url(../images/icons/normal/camera.png); } 
 		.Toolbar li.pagination { line-height: 32px; font-size: 16px; font-family: Arial; }
 
 .ImageList { list-style: none; margin: 0; padding: 0}
@@ -39,4 +40,5 @@ canvas { }
 	.Toolbar li .delete { background-image: url(../images/icons/hi-res/delete.png); } 
 	.Toolbar li .previous { background-image: url(../images/icons/hi-res/arrowleft.png); } 
 	.Toolbar li .next { background-image: url(../images/icons/hi-res/arrowright.png); } 
+	.Toolbar li .camera { background-image: url(../images/icons/hi-res/camera.png); } 
 }

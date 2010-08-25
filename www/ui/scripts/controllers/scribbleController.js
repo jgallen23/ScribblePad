@@ -17,9 +17,16 @@ var ScribbleController = Controller.extend({
 			'.jsSaveButton': function() { self.saveScribble(); },
 			'.jsPrevButton': function() { self.prevScribble(); },
 			'.jsNextButton': function() { self.nextScribble(); },
+			'.jsCameraButton': function() { self.takePhoto(); },
 		});
 
+		this.deviceCheck();
 		this.load();
+	},
+	deviceCheck: function() {
+		if (!navigator.device.platform == "iPhone") {
+			$(".jsCameraButton").setStyle("display", "none");
+		}
 	},
 	updatePagination: function() {
 		x$('.jsCurrentIndex')[0].innerHTML = parseInt(this.currentIndex) + 1;
@@ -37,7 +44,6 @@ var ScribbleController = Controller.extend({
 		}
 	},
 	load: function() {
-		debug.log("test");
 		var self = this;
 		this.newScribble();
 
@@ -70,7 +76,6 @@ var ScribbleController = Controller.extend({
 	},
 	newScribble: function() {
 		this.currentScribble = new Scribble();
-		debug.log("test");
 		this.scribbles.push(this.currentScribble);
 		this.currentIndex = this.scribbles.length - 1;
 		this.scribblePad.loadScribble(this.currentScribble);
@@ -102,5 +107,17 @@ var ScribbleController = Controller.extend({
 			var count = this.scribbles.length;
 			plugins.badge.set(count);
 		}
+	},
+	takePhoto: function() {
+		var self = this;
+		var onSuccess = function(imageData) {
+			var data = "data:image/jpeg;base64," + imageData;
+			self.currentScribble.photoData = data;
+			self.scribblePad.loadScribble(self.currentScribble);
+		}
+		var onFail = function(message) {
+			alert(message);
+		}
+		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: 1 });
 	}
 });
