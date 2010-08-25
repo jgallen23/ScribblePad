@@ -5,6 +5,7 @@ var scribbleData = function() {
 		get: function() {
 			if (!_scribbles) {
 				var d = localStorage.getItem(key);
+				debug.log(d);
 				_scribbles = (d)?d.split("||"):[];
 			}
 			return _scribbles;

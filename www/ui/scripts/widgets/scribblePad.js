@@ -10,15 +10,10 @@ var ScribblePad = Class.extend({
 		var self = this;
 
 		//events
-		x$(canvas).on("mousedown", function(ev) { self._onDrawStart(ev); });
-		x$(canvas).on("mousemove", function(ev) { self._onDraw(ev); });
-		x$(canvas).on("mouseup", function(ev) { self._onDrawEnd(ev); });
-		x$(window).on("mouseup", function(ev) { self._onDrawEnd(ev); });
-
-		x$(canvas).on("touchstart", function(ev) { self._onDrawStart(ev); }); 
-		x$(canvas).on("touchmove", function(ev) { self._onDraw(ev); });
-		x$(canvas).on("touchend", function(ev) { self._onDrawEnd(ev); });
-		x$(window).on("touchend", function(ev) { self._onDrawEnd(ev); });
+		x$(canvas).on(INPUT_START_EVENT, function(ev) { self._onDrawStart(ev); });
+		x$(canvas).on(INPUT_MOVE_EVENT, function(ev) { self._onDraw(ev); });
+		x$(canvas).on(INPUT_END_EVENT, function(ev) { self._onDrawEnd(ev); });
+		x$(window).on(INPUT_END_EVENT, function(ev) { self._onDrawEnd(ev); });
 
 	},
 	_getXY: function(ev) {
@@ -35,9 +30,6 @@ var ScribblePad = Class.extend({
 		return [x, y];
 	},
 	_onDrawStart: function(ev) {
-		console.log("start");
-		console.log(ev);
-		/*console.log(ev.touches.length);*/
 		if (ev.touches && ev.touches.length != 1) {
 			cls.clearCanvas();
 		}
@@ -47,7 +39,6 @@ var ScribblePad = Class.extend({
 		/*context.lineWidth = 1;*/
 		this.startX = xy[0];
 		this.startY = xy[1];
-		console.log(this.startX + ", " + this.startY);
 	},
 	_onDraw: function(ev) {
 		var xy = this._getXY(ev);
@@ -64,17 +55,24 @@ var ScribblePad = Class.extend({
 	},
 	_onDrawEnd: function(ev) {
 		this.isDrawing = false;
-		if (this.isDirty && this.drawEndCallback) {
-			this.drawEndCallback();
+		if (this.isDirty) {
+			this.scribble.imageData = this.canvas.toDataURL();
+			this.scribble.modifiedOn = new Date();
+			if (this.drawEndCallback) {
+				this.drawEndCallback();
+			}
 		}
 	},
-	load: function(scribbleData) {
+	loadScribble: function(scribble) {
 		this.clear();
 		var self = this;
 		var img = new Image();
-		img.src = scribbleData;
-		img.onload = function() { 
-			self.context.drawImage(img, 0, 0);
+		this.scribble = scribble;
+		if (scribble.imageData) {
+			img.src = scribble.imageData;
+			img.onload = function() { 
+				self.context.drawImage(img, 0, 0);
+			}
 		}
 	},
 	clear: function() {

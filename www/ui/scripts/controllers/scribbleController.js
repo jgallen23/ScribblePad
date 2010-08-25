@@ -1,51 +1,97 @@
-var ScribbleController = Class.extend({
+var ScribbleController = Controller.extend({
 	init: function(element) {	
 		var self = this;
 		this.element = element;
+		this.scribbles = [];
 		this.saveTimeout;
-		this.currentIndex = scribbleData.get().length;
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
 		this.scribblePad.drawEndCallback = function() {
 			self.saveScribble();
 		}
 
-		x$(".jsNewButton").on("click", function() {	self.newScribble();	});
-
-		x$(".jsViewAllButton").on("click", function() {
-			self.viewAllScribbles();
+		//events
+		this.bindClickEvents({
+			'.jsNewButton': function() { self.newScribble();},
+			'.jsViewAllButton': function() { self.viewAllScribbles(); },
+			'.jsDeleteButton': function() { self.deleteScribble(); },
+			'.jsSaveButton': function() { self.saveScribble(); },
+			'.jsPrevButton': function() { self.prevScribble(); },
+			'.jsNextButton': function() { self.nextScribble(); },
 		});
 
-		x$(".jsDeleteButton").on("click", function() { self.deleteScribble(); });
+		this.load();
+	},
+	updatePagination: function() {
+		x$('.jsCurrentIndex')[0].innerHTML = parseInt(this.currentIndex) + 1;
+		x$('.jsTotal')[0].innerHTML = this.scribbles.length;
+
+		if (this.currentIndex == 0) {
+			x$(".jsPrevButton").setStyle("display", "none");
+		} else {
+			x$(".jsPrevButton").setStyle("display", "block");
+		}
+		if (this.scribbles.length == this.currentIndex + 1) {
+			x$(".jsNextButton").setStyle("display", "none");
+		} else {
+			x$(".jsNextButton").setStyle("display", "block");
+		}
+	},
+	load: function() {
+		debug.log("test");
+		var self = this;
+		this.newScribble();
+
+		Scribble.data.get(function(data) {
+			self.scribbles = data;
+			self.scribbles.push(self.currentScribble);
+			self.currentIndex = self.scribbles.length - 1;
+			self.updatePagination();
+		});
+	},
+	prevScribble: function() { 
+		this.loadScribbleByIndex(this.currentIndex - 1);
+	},
+	nextScribble: function() {
+		if (this.scribbles.length > this.currentIndex) {
+			this.loadScribbleByIndex(this.currentIndex + 1);
+		}
 	
-		x$(".jsSaveButton").on("click", function() {
-			self.saveScribble();
-		});
 	},
 	loadScribbleByIndex: function(index) {
 		this.element.setStyle("display", "block");
-		this.currentIndex = index;
-		this.scribblePad.load(scribbleData.get()[index]);
+		if (index > this.scribbles.length - 1) {
+			this.newScribble();
+		} else {
+			this.currentIndex = index;
+			this.currentScribble = this.scribbles[this.currentIndex];
+			this.scribblePad.loadScribble(this.currentScribble);
+			this.updatePagination();
+		}
 	},
 	newScribble: function() {
-		this.scribblePad.clear();
-		this.currentIndex = scribbleData.get().length;
+		this.currentScribble = new Scribble();
+		debug.log("test");
+		this.scribbles.push(this.currentScribble);
+		this.currentIndex = this.scribbles.length - 1;
+		this.scribblePad.loadScribble(this.currentScribble);
+		this.updatePagination();
 	},
 	saveScribble: function() {
 		var self = this;
 		if (this.saveTimeout)
 			clearTimeout(this.saveTimeout);
 		this.saveTimeout = setTimeout(function() {
-			console.log("save");
-			var data = self.scribblePad.getData();
-			scribbleData.updateItem(self.currentIndex, data);
+			Scribble.data.save(self.currentScribble, function(r) {
+				self.currentScribble.id = r.key;
+			});
 			self.updateBadge();
 		}, 1000);
 	},
 	deleteScribble: function() {
-		console.log(this.currentIndex);
-		scribbleData.deleteItemByIndex(this.currentIndex);
-		this.loadScribbleByIndex(this.currentIndex);
+		Scribble.data.remove(this.currentScribble);
+		this.scribbles.remove(this.currentIndex);
 		this.updateBadge();
+		this.loadScribbleByIndex(this.currentIndex);
 	},
 	viewAllScribbles: function() {
 		this.element.setStyle("display", "none");
@@ -53,7 +99,7 @@ var ScribbleController = Class.extend({
 	},
 	updateBadge: function() {
 		if (PhoneGap.available) {
-			var count = scribbleData.get().length;
+			var count = this.scribbles.length;
 			plugins.badge.set(count);
 		}
 	}

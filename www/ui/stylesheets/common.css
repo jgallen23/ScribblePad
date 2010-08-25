@@ -1,11 +1,42 @@
-body { margin: 0px; -webkit-text-size-adjust:none;}
+body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; }
 
-canvas { border: 1px solid #ccc; }
+canvas { }
 
 
-.Toolbar { height: 45px; background: #336699; margin: 0; padding: 0}
-	.Toolbar li { display: inline; margin: 0; padding: 0 20px;} 
+
+.Toolbar { height: 40px; margin: 0; padding: 0; 
+	/*background-image: -webkit-gradient(*/
+	/*linear,*/
+	/*left bottom,*/
+	/*left top,*/
+	/*color-stop(1, #fff),*/
+	/*color-stop(0.9, #666),*/
+	/*color-stop(0.8, #f0f0f0)*/
+	/*)*/
+
+	}
+	.Toolbar li { float: left; margin: 0; padding: 0 10px; list-style: none;} 
+		.Toolbar li a { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; } 
+			.Toolbar li a span { display: none; } 
+		.Toolbar li .viewAll { background-image: url(../images/icons/normal/folder.png); } 
+		.Toolbar li .new { background-image: url(../images/icons/normal/plus.png); } 
+		.Toolbar li .delete { background-image: url(../images/icons/normal/delete.png); } 
+		.Toolbar li .previous { background-image: url(../images/icons/normal/arrowleft.png); } 
+		.Toolbar li .next { background-image: url(../images/icons/normal/arrowright.png); } 
+		.Toolbar li.pagination { line-height: 32px; font-size: 16px; font-family: Arial; }
 
 .ImageList { list-style: none; margin: 0; padding: 0}
 	.ImageList li { display: inline; margin: 0; padding: 10px; } 
 		.ImageList li img { height: 100px; border: 1px solid #ccc; } 
+
+
+
+
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
+	.Toolbar li a { background-size: 26px 26px; }
+	.Toolbar li .viewAll { background-image: url(../images/icons/hi-res/folder.png); } 
+	.Toolbar li .new { background-image: url(../images/icons/hi-res/plus.png); } 
+	.Toolbar li .delete { background-image: url(../images/icons/hi-res/delete.png); } 
+	.Toolbar li .previous { background-image: url(../images/icons/hi-res/arrowleft.png); } 
+	.Toolbar li .next { background-image: url(../images/icons/hi-res/arrowright.png); } 
+}
