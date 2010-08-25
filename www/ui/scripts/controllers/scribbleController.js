@@ -3,9 +3,8 @@ var ScribbleController = Controller.extend({
 		var self = this;
 		this.element = element;
 		this.scribbles = [];
-		this.saveTimeout;
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
-		this.scribblePad.drawEndCallback = function() {
+		this.scribblePad.saveScribbleCallback = function() {
 			self.saveScribble();
 		}
 
@@ -24,8 +23,8 @@ var ScribbleController = Controller.extend({
 		this.load();
 	},
 	deviceCheck: function() {
-		if (!navigator.device.platform == "iPhone") {
-			$(".jsCameraButton").setStyle("display", "none");
+		if (navigator.device.platform != "iPhone") {
+			x$(".jsCameraButton")[0].parentNode.style.display = "none";
 		}
 	},
 	updatePagination: function() {
@@ -42,6 +41,7 @@ var ScribbleController = Controller.extend({
 		} else {
 			x$(".jsNextButton").setStyle("display", "block");
 		}
+		this.printStatus();
 	},
 	load: function() {
 		var self = this;
@@ -54,18 +54,27 @@ var ScribbleController = Controller.extend({
 			self.updatePagination();
 		});
 	},
+	printStatus: function() {
+		debug.log("CurrentIndex: "+this.currentIndex);
+		debug.log("Total Scribbles: "+this.scribbles.length);
+	},
 	prevScribble: function() { 
 		this.loadScribbleByIndex(this.currentIndex - 1);
+		this.printStatus();
 	},
 	nextScribble: function() {
+		debug.log("next");
 		if (this.scribbles.length > this.currentIndex) {
 			this.loadScribbleByIndex(this.currentIndex + 1);
 		}
 	
+		this.printStatus();
 	},
 	loadScribbleByIndex: function(index) {
 		this.element.setStyle("display", "block");
-		if (index > this.scribbles.length - 1) {
+		if (this.currentIndex == index) {
+			return;
+		} else if (index > this.scribbles.length - 1) {
 			this.newScribble();
 		} else {
 			this.currentIndex = index;
@@ -75,6 +84,7 @@ var ScribbleController = Controller.extend({
 		}
 	},
 	newScribble: function() {
+		this.element.setStyle("display", "block");
 		this.currentScribble = new Scribble();
 		this.scribbles.push(this.currentScribble);
 		this.currentIndex = this.scribbles.length - 1;
@@ -83,14 +93,11 @@ var ScribbleController = Controller.extend({
 	},
 	saveScribble: function() {
 		var self = this;
-		if (this.saveTimeout)
-			clearTimeout(this.saveTimeout);
-		this.saveTimeout = setTimeout(function() {
-			Scribble.data.save(self.currentScribble, function(r) {
-				self.currentScribble.id = r.key;
-			});
-			self.updateBadge();
-		}, 1000);
+		debug.log("save data");
+		Scribble.data.save(this.currentScribble, function(r) {
+			self.currentScribble.id = r.key;
+		});
+		this.updateBadge();
 	},
 	deleteScribble: function() {
 		Scribble.data.remove(this.currentScribble);
@@ -100,7 +107,7 @@ var ScribbleController = Controller.extend({
 	},
 	viewAllScribbles: function() {
 		this.element.setStyle("display", "none");
-		new ViewAllController(x$("#ViewAll"), this);
+		new ViewAllController(x$("#ViewAll"), this.scribbles, this);
 	},
 	updateBadge: function() {
 		if (PhoneGap.available) {
@@ -118,6 +125,7 @@ var ScribbleController = Controller.extend({
 		var onFail = function(message) {
 			alert(message);
 		}
-		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: 1 });
+		var source = (navigator.device.platform == "iPad")?0:1
+		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: source });
 	}
 });

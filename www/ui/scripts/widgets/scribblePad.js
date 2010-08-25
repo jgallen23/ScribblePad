@@ -4,9 +4,10 @@ var ScribblePad = Class.extend({
 		this.isDirty = false;
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
-		this.drawEndCallback = false;
+		this.saveScribbleCallback = false;
 		this.startX = 0;
 		this.startY = 0;
+		this.saveTimeout;
 		var self = this;
 
 		//events
@@ -43,6 +44,8 @@ var ScribblePad = Class.extend({
 	_onDraw: function(ev) {
 		var xy = this._getXY(ev);
 		if (this.isDrawing) {
+			if (this.saveTimeout)
+				clearTimeout(this.saveTimeout);
 			this.isDirty = true;
 			this.context.beginPath();
 			this.context.moveTo(this.startX, this.startY);
@@ -54,13 +57,20 @@ var ScribblePad = Class.extend({
 		this.startY = xy[1];
 	},
 	_onDrawEnd: function(ev) {
+		var self = this;
 		this.isDrawing = false;
+		var delay = (navigator.device.platform == "iPad")?500:300;
 		if (this.isDirty) {
-			this.scribble.imageData = this.canvas.toDataURL();
-			this.scribble.modifiedOn = new Date();
-			if (this.drawEndCallback) {
-				this.drawEndCallback();
-			}
+			if (this.saveTimeout)
+				clearTimeout(this.saveTimeout);
+			this.saveTimeout = setTimeout(function() {
+				debug.log("save");
+				self.scribble.imageData = self.canvas.toDataURL();
+				self.scribble.modifiedOn = new Date();
+				if (self.saveScribbleCallback) {
+					self.saveScribbleCallback();
+				}
+			}, delay);
 		}
 	},
 	loadScribble: function(scribble) {

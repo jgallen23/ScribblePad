@@ -1,16 +1,18 @@
-var ViewAllController = Class.extend({
-	init: function(element, controller) {
+var ViewAllController = Controller.extend({
+	init: function(element, scribbles, parentController) {
 		var self = this;
 		this.element = element
-		this.controller = controller;
-		Scribble.data.get(function(data) {
-			self.scribbles = data;
-			self._render();
-			self.element.find("img").on("click", function() {
-				var id = this.id.split("_")[1];
-				self.element.setStyle("display", "none");
-				controller.loadScribbleByIndex(id);
-			});
+		this.parentController = parentController;
+		this.scribbles = scribbles;
+		this._render();
+		this.element.find("img").on("click", function() {
+			var id = this.id.split("_")[1];
+			self.element.setStyle("display", "none");
+			controller.loadScribbleByIndex(parseInt(id));
+		});
+		this.bindClickEvents({
+		/*"img": function() { self.loadScribble.call(this) },*/
+			".jsNewButton2": function() { self.newScribble(); }
 		});
 	},
 	_render: function() {
@@ -20,5 +22,15 @@ var ViewAllController = Class.extend({
 		}
 		this.element.find("ul.ImageList").html(htmlArr.join(""));	
 		this.element.setStyle("display", "block");
+	},
+	loadScribble: function() {
+		debug.log(this);
+		var id = this.id.split("_")[1];
+		this.element.setStyle("display", "none");
+		this.parentController.loadScribbleByIndex(parseInt(id));
+	},
+	newScribble: function() {
+		this.element.setStyle("display", "none");
+		this.parentController.newScribble();
 	}
 });

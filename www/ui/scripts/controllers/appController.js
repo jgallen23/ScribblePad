@@ -21,7 +21,7 @@ var AppController = Class.extend({
 			var h = window.innerHeight;
 			x$("canvas")[0].setAttribute("width", w);
 			x$("canvas")[0].setAttribute("height", h - toolbarHeight);
-			x$("#ViewAll .container").setStyle("height", h - toolbarHeight);
+			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
 		};
 		x$("body").on("orientationchange", resize);
 		resize();
