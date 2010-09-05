@@ -59,7 +59,7 @@ var ScribblePad = Class.extend({
 	_onDrawEnd: function(ev) {
 		var self = this;
 		this.isDrawing = false;
-		var delay = (navigator.device.platform == "iPad")?500:300;
+		var delay = (browser.isPhoneGap && navigator.device.platform == "iPad")?500:300;
 		if (this.isDirty) {
 			if (this.saveTimeout)
 				clearTimeout(this.saveTimeout);

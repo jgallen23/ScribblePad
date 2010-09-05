@@ -8,9 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "PhoneGapDelegate.h"
+#import "ApplicationStatus.h"
+
 
 @interface ScribblePadAppDelegate : PhoneGapDelegate {
+	ApplicationStatus *_applicationStatus;
 }
+
+@property (nonatomic, retain) ApplicationStatus *applicationStatus;
 
 @end
 

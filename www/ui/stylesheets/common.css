@@ -4,15 +4,14 @@ canvas { }
 
 
 
-.Toolbar { height: 40px; margin: 0; padding: 0; 
-	/*background-image: -webkit-gradient(*/
-	/*linear,*/
-	/*left bottom,*/
-	/*left top,*/
-	/*color-stop(1, #fff),*/
-	/*color-stop(0.9, #666),*/
-	/*color-stop(0.8, #f0f0f0)*/
-	/*)*/
+.Toolbar { height: 45px; margin: 0; padding: 5px 0 0 0; border-top: 1px solid #aaa;
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(1, #fff),
+	color-stop(0, #ccc)
+	)
 
 	}
 	.Toolbar li { float: left; margin: 0; padding: 0 6px; list-style: none;} 

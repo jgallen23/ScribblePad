@@ -11,11 +11,14 @@
 
 @implementation ScribblePadAppDelegate
 
+@synthesize applicationStatus = _applicationStatus;
+
 - (id) init
 {	
 	/** If you need to do any extra app-specific initialization, you can do it here
 	 *  -jm
 	 **/
+	_applicationStatus = [[ApplicationStatus alloc] init];
     return [super init];
 }
 
@@ -40,6 +43,7 @@
  */
 - (void)webViewDidFinishLoad:(UIWebView *)theWebView 
 {
+	self.applicationStatus.webview = theWebView;
 	return [ super webViewDidFinishLoad:theWebView ];
 }
 
@@ -75,6 +79,9 @@
 
 - (void)dealloc
 {
+	[_applicationStatus release];
+	_applicationStatus = nil;
+
 	[ super dealloc ];
 }
 

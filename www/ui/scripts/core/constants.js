@@ -1,4 +1,4 @@
-if (typeof IS_MOBILE != "undefined" && IS_MOBILE) {
+if (browser.isMobile) {
 	INPUT_EVENT = "click";
 	INPUT_START_EVENT = "touchstart";
 	INPUT_MOVE_EVENT = "touchmove";

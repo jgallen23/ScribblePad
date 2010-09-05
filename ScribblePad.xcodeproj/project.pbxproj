@@ -29,6 +29,7 @@
 		305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */; };
 		30E1352710E2C1420031B30D /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E1352610E2C1420031B30D /* PhoneGap.plist */; };
 		7654489B121ADE9F00BDB740 /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654489A121ADE9F00BDB740 /* Badge.m */; };
+		7659D1851226BA2F00986858 /* ApplicationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7659D1841226BA2F00986858 /* ApplicationStatus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		32CA4F630368D1EE00C91783 /* ScribblePad_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScribblePad_Prefix.pch; sourceTree = "<group>"; };
 		76544899121ADE9F00BDB740 /* Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Badge.h; sourceTree = "<group>"; };
 		7654489A121ADE9F00BDB740 /* Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Badge.m; sourceTree = "<group>"; };
+		7659D1831226BA2F00986858 /* ApplicationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStatus.h; sourceTree = "<group>"; };
+		7659D1841226BA2F00986858 /* ApplicationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStatus.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScribblePad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScribblePad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -189,6 +192,8 @@
 			children = (
 				76544899121ADE9F00BDB740 /* Badge.h */,
 				7654489A121ADE9F00BDB740 /* Badge.m */,
+				7659D1831226BA2F00986858 /* ApplicationStatus.h */,
+				7659D1841226BA2F00986858 /* ApplicationStatus.m */,
 			);
 			path = Plugins;
 			sourceTree = SOURCE_ROOT;
@@ -303,6 +308,7 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ScribblePadAppDelegate.m in Sources */,
 				7654489B121ADE9F00BDB740 /* Badge.m in Sources */,
+				7659D1851226BA2F00986858 /* ApplicationStatus.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

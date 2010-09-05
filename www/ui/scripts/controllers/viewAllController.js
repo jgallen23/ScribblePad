@@ -8,7 +8,7 @@ var ViewAllController = Controller.extend({
 		this.element.find("img").on("click", function() {
 			var id = this.id.split("_")[1];
 			self.element.setStyle("display", "none");
-			controller.loadScribbleByIndex(parseInt(id));
+			self.parentController.loadScribbleByIndex(parseInt(id));
 		});
 		this.bindClickEvents({
 		/*"img": function() { self.loadScribble.call(this) },*/

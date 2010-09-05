@@ -1,18 +1,25 @@
 var AppController = Class.extend({
 	init: function() {
-
+		var self = this;
 		this._preventScroll();
 		this._resize();
 
 		this.scribbleController = new ScribbleController(x$("#Scribble"));
-
+		document.addEventListener("applicationActive", function() {
+			self._applicationActivate();
+		}, false);
+	},
+	_applicationActivate: function() {
+		this.scribbleController.newScribble();
 	},
 	_preventScroll: function() {
-		//prevent scroll
-		function preventBehavior(e) { 
-		  e.preventDefault(); 
-		};
-		document.addEventListener("touchmove", preventBehavior, false);
+		if (browser.isMobile) {
+			//prevent scroll
+			function preventBehavior(e) { 
+			  e.preventDefault(); 
+			};
+			document.addEventListener("touchmove", preventBehavior, false);
+		}
 	},
 	_resize: function() {
 		var resize = function() {
@@ -23,7 +30,7 @@ var AppController = Class.extend({
 			x$("canvas")[0].setAttribute("height", h - toolbarHeight);
 			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
 		};
-		x$("body").on("orientationchange", resize);
+		/*x$("body").on("orientationchange", resize);*/
 		resize();
 	},
 	dataTest: function() {
