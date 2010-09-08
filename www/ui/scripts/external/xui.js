@@ -967,7 +967,7 @@ var cache = {};
 });
 
 // patched orientation support - Andriod 1 doesn't have native onorientationchange events
-if (!('onorientationchange' in document.body)) {
+if (true || !('onorientationchange' in document.body)) {
   (function () {
     var w = window.innerWidth, h = window.innerHeight;
     

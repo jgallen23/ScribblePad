@@ -7,7 +7,7 @@ var ViewAllController = Controller.extend({
 		this._render();
 		this.element.find("img").on("click", function() {
 			var id = this.id.split("_")[1];
-			self.element.setStyle("display", "none");
+			self.hide()
 			self.parentController.loadScribbleByIndex(parseInt(id));
 		});
 		this.bindClickEvents({
@@ -21,16 +21,18 @@ var ViewAllController = Controller.extend({
 			htmlArr.push("<li><img id='ViewImage_"+i+"' src='"+this.scribbles[i].imageData+"'/></li>");
 		}
 		this.element.find("ul.ImageList").html(htmlArr.join(""));	
-		this.element.setStyle("display", "block");
+		this.show();
 	},
 	loadScribble: function() {
 		debug.log(this);
 		var id = this.id.split("_")[1];
-		this.element.setStyle("display", "none");
+		this.hide();
 		this.parentController.loadScribbleByIndex(parseInt(id));
 	},
 	newScribble: function() {
-		this.element.setStyle("display", "none");
+		this.hide();
 		this.parentController.newScribble();
+	},
+	hide: function() {
 	}
 });

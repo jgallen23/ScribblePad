@@ -145,5 +145,20 @@ var ScribbleController = Controller.extend({
 		}
 		var source = (browser.isMobile && navigator.device.platform == "iPad")?0:1
 		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: source });
+	},
+	hide: function() {
+		var w = this.element.getStyle("width");
+		this._animate("-"+w);
+	},
+	show: function() {
+		this._animate("0");	
+	},
+	_animate: function(width) {
+		var self = this;
+		var end = function( event ) { 
+			self.removeClass("AnimateSheet");
+			/*self.element[0].removeEventListener("webkitTransitionEnd", end, false);*/
+		}
+		this.element.addClass("AnimateSheet").setStyle("webkitTransform", "translate("+width+", 0)")[0].addEventListener( 'webkitTransitionEnd', end, false );
 	}
 });

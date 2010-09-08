@@ -32,13 +32,13 @@
 	<script src="ui/scripts/widgets/scribblePad.js"></script>
 
 	<script src="ui/scripts/plugins/Badge.js"></script>
-	<script>
+		<style>
 
-	</script>
+		</style>
 	<script type="text/javascript">
 		var appController;
 		var onLoad = function() {
-			if (browser.isMobile) {
+			if (false && browser.isMobile) {
 				document.addEventListener("deviceready",onDeviceReady,false);
 
 			} else {
@@ -51,30 +51,32 @@
 	</script>
 </head>
 <body onload="onLoad()">
-	<div id="Scribble">
-		<canvas></canvas>
-		<ul class="Toolbar">
-			<li><a class="viewAll jsViewAllButton"><span>View All</span></a></li>
-			<!--<li><a class="jsUndoButton">Undo</a></li>-->
-			<!--<li><a class="jsRedoButton">Redo</a></li>-->
-			<!--<li><a class="jsSaveButton">Save</a></li>-->
-			<li><a class="new jsNewButton"><span>New</span></a></li>
-			<li><a class="camera jsCameraButton"><span>Camera</span></a></li>
-			<li><a class="delete jsDeleteButton"><span>Delete</span></a></li>
-			<li><a class="previous jsPrevButton"><span>Previous</span></a></li>
-			<li class="pagination"><span class="jsCurrentIndex"></span> of <span class="jsTotal"></span></li>
-			<li><a class="next jsNextButton"><span>Next</span></a></li>
-		</ul>
-	</div>
-	<div id="ViewAll">
-		<div class="container">
-			<ul class="ImageList"></ul>
+	<div class="Sheets">
+		<div id="ViewAll" class="Sheet">
+			<div class="container">
+				<ul class="ImageList"></ul>
+			</div>
+			<ul class="Toolbar">
+				<li><a class="new jsNewButton2"><span>New</span></a></li>
+			</ul>
 		</div>
-		<ul class="Toolbar">
-			<li><a class="new jsNewButton2"><span>New</span></a></li>
-		</ul>
-	</div>
+		<div id="Scribble" class="Sheet">
+			<canvas></canvas>
+			<ul class="Toolbar">
+				<li><a class="viewAll jsViewAllButton"><span>View All</span></a></li>
+				<!--<li><a class="jsUndoButton">Undo</a></li>-->
+				<!--<li><a class="jsRedoButton">Redo</a></li>-->
+				<!--<li><a class="jsSaveButton">Save</a></li>-->
+				<li><a class="new jsNewButton"><span>New</span></a></li>
+				<li><a class="camera jsCameraButton"><span>Camera</span></a></li>
+				<li><a class="delete jsDeleteButton"><span>Delete</span></a></li>
+				<li><a class="previous jsPrevButton"><span>Previous</span></a></li>
+				<li class="pagination"><span class="jsCurrentIndex"></span> of <span class="jsTotal"></span></li>
+				<li><a class="next jsNextButton"><span>Next</span></a></li>
+			</ul>
+		</div>
 
+	</div>
 
 </body>
 </html>

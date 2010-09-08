@@ -1,21 +1,25 @@
-body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; }
+body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background: #5A5C73; padding: 3px }
 
 canvas { }
 
+.Sheets { position: relative; }
+.Sheet { background: #fff; border-radius: 10px; position: absolute; top: 0; -webkit-box-shadow: 2px 2px 2px #333 }
+.Sheet:first-child { top: 3px; left: 3px }
 
+.AnimateSheet {-webkit-transition:all 0.5s ease-in-out; } 
 
-.Toolbar { height: 45px; margin: 0; padding: 5px 0 0 0; border-top: 1px solid #aaa;
-	background-image: -webkit-gradient(
-	linear,
-	left bottom,
-	left top,
-	color-stop(1, #fff),
-	color-stop(0, #ccc)
+.Toolbar { height: 45px; margin: 0; padding: 5px 0 0 0; border-top: 1px solid #ccc;
+	/*background-image: -webkit-gradient(*/
+	/*linear,*/
+	/*left bottom,*/
+	/*left top,*/
+	/*color-stop(1, #fff),*/
+	/*color-stop(0, #ccc)*/
 	)
 
 	}
-	.Toolbar li { float: left; margin: 0; padding: 0 4px; list-style: none;} 
-		.Toolbar li a { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; } 
+	.Toolbar li { float: left; margin: 0; padding: 0 4px; list-style: none; color: #666;} 
+		.Toolbar li a { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.7; } 
 			.Toolbar li a span { display: none; } 
 		.Toolbar li .viewAll { background-image: url(../images/icons/normal/folder.png); } 
 		.Toolbar li .new { background-image: url(../images/icons/normal/plus.png); } 

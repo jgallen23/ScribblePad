@@ -24,13 +24,17 @@ var AppController = Class.extend({
 	_resize: function() {
 		var resize = function() {
 			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"));
-			var w = window.innerWidth;
-			var h = window.innerHeight;
+			var w = window.innerWidth - 10;
+			var h = window.innerHeight - 10;
+			x$(".Sheet").setStyle("width", w+"px");
+			x$(".Sheet").setStyle("height", h+"px");
 			x$("canvas")[0].setAttribute("width", w);
 			x$("canvas")[0].setAttribute("height", h - toolbarHeight);
 			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
 		};
-		/*x$("body").on("orientationchange", resize);*/
+		if (isMobile) {
+			x$("body").on("orientationchange", resize);
+		}
 		resize();
 	},
 	dataTest: function() {
