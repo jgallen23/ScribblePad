@@ -98,16 +98,29 @@ var ScribbleController = Controller.extend({
 		this.updateBadge();
 	},
 	deleteScribble: function() {
-		if (confirm("Are you sure you want to delete this Scribble?")) {
-			Scribble.data.remove(this.currentScribble);
-			var index = this.currentIndex;
-			this.currentIndex = -2;
-			this.scribbles.remove(index);
-			this.updateBadge();
-			if (index == this.scribbles.length) {
+		var self = this;
+		var del = function() {
+			Scribble.data.remove(self.currentScribble);
+			var index = self.currentIndex;
+			self.currentIndex = -2;
+			self.scribbles.splice(index, 1);
+			self.updateBadge();
+			if (index == self.scribbles.length) {
 				index--;
 			}
-			this.loadScribbleByIndex(index);
+			self.loadScribbleByIndex(index);
+		}
+		if (PhoneGap.available) {
+			var delegate = navigator.notification.confirm("Are you sure you want to delete this Scribble?", "Delete");
+			delegate.onAlertDismissed = function(index, label) {
+				if (index == 0) {
+					del();
+				}
+			}
+		} else {
+			if (confirm("Are you sure you want to delete this Scribble?")) {
+				del();
+			}
 		}
 	},
 	viewAllScribbles: function() {

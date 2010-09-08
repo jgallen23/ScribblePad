@@ -14,7 +14,7 @@ canvas { }
 	)
 
 	}
-	.Toolbar li { float: left; margin: 0; padding: 0 6px; list-style: none;} 
+	.Toolbar li { float: left; margin: 0; padding: 0 4px; list-style: none;} 
 		.Toolbar li a { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; } 
 			.Toolbar li a span { display: none; } 
 		.Toolbar li .viewAll { background-image: url(../images/icons/normal/folder.png); } 
