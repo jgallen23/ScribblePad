@@ -22,18 +22,30 @@ var AppController = Class.extend({
 		}
 	},
 	_resize: function() {
-		var resize = function() {
+		var resize = function(event) {
 			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"));
 			var w = window.innerWidth - 10;
 			var h = window.innerHeight - 10;
+			alert(w)
 			x$(".Sheet").setStyle("width", w+"px");
 			x$(".Sheet").setStyle("height", h+"px");
-			x$("canvas")[0].setAttribute("width", w);
-			x$("canvas")[0].setAttribute("height", h - toolbarHeight);
+
 			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
+			var o = (PhoneGap.available)?event.orientation:window.orientation;
+			debug.log(o);
+			if (o == -90 || o == 90) {
+				x$("body").addClass("Landscape");
+				x$("canvas")[0].setAttribute("width", w - toolbarHeight);
+				x$("canvas")[0].setAttribute("height", h );
+			} else {
+				x$("body").removeClass("Landscape");
+				x$("canvas")[0].setAttribute("width", w);
+				x$("canvas")[0].setAttribute("height", h - toolbarHeight);
+			}
 		};
 		if (browser.isMobile) {
-			x$("body").on("orientationchange", resize);
+			/*x$("body").on("orientationchange", resize);*/
+			document.addEventListener("orientationChanged", resize, false);
 		}
 		resize();
 	},

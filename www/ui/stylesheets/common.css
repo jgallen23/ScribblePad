@@ -35,6 +35,10 @@ canvas { }
 
 
 
+.Landscape {}
+	.Landscape .Toolbar { float: right; height: 100%; width: 45px; } 
+		.Landscape .Toolbar li { float: none; } 
+
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
 	.Toolbar li a { background-size: 26px 26px; }

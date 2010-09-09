@@ -2,6 +2,7 @@ var ScribbleController = Controller.extend({
 	init: function(element) {	
 		this._super(element);
 		var self = this;
+		this.visible = true;
 		this.scribbles = [];
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
 		this.scribblePad.saveScribbleCallback = function() {
@@ -22,7 +23,7 @@ var ScribbleController = Controller.extend({
 		this.load();
 	},
 	deviceCheck: function() {
-		if (!browser.isMobile || navigator.device.platform != "iPhone") {
+		if (!browser.isMobile || (PhoneGap.available && navigator.device.platform != "iPhone")) {
 			x$(".jsCameraButton")[0].parentNode.style.display = "none";
 		}
 	},
@@ -146,17 +147,20 @@ var ScribbleController = Controller.extend({
 		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: source });
 	},
 	hide: function() {
+		this.visible = false;
 		var w = this.element.getStyle("width");
 		this._animate("-"+w);
 	},
 	show: function() {
-		this._animate("0");	
+		if (!this.visible)
+			this._animate("0");	
 	},
 	_animate: function(width) {
 		var self = this;
 		var end = function( event ) { 
+			console.log("end");
 			self.element.removeClass("AnimateSheet");
-			/*self.element[0].removeEventListener("webkitTransitionEnd", end, false);*/
+			self.element[0].removeEventListener("webkitTransitionEnd", end, false);
 		}
 		this.element.addClass("AnimateSheet").setStyle("webkitTransform", "translate("+width+", 0)")[0].addEventListener( 'webkitTransitionEnd', end, false );
 	}
