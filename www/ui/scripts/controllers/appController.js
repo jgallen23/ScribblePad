@@ -32,7 +32,7 @@ var AppController = Class.extend({
 			x$("canvas")[0].setAttribute("height", h - toolbarHeight);
 			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
 		};
-		if (isMobile) {
+		if (browser.isMobile) {
 			x$("body").on("orientationchange", resize);
 		}
 		resize();

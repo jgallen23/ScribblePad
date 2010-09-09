@@ -45,7 +45,6 @@ var ScribbleController = Controller.extend({
 	load: function() {
 		var self = this;
 		this.newScribble();
-
 		Scribble.data.get(function(data) {
 			self.scribbles = data;
 			self.scribbles.push(self.currentScribble);
@@ -111,9 +110,9 @@ var ScribbleController = Controller.extend({
 			self.loadScribbleByIndex(index);
 		}
 		if (PhoneGap.available) {
-			var delegate = navigator.notification.confirm("Are you sure you want to delete this Scribble?", "Delete");
+			var delegate = navigator.notification.alert("Are you sure you want to delete this Scribble?", "Delete","Cancel,OK") 
 			delegate.onAlertDismissed = function(index, label) {
-				if (index == 0) {
+				if (index == 1) {
 					del();
 				}
 			}
@@ -156,7 +155,7 @@ var ScribbleController = Controller.extend({
 	_animate: function(width) {
 		var self = this;
 		var end = function( event ) { 
-			self.removeClass("AnimateSheet");
+			self.element.removeClass("AnimateSheet");
 			/*self.element[0].removeEventListener("webkitTransitionEnd", end, false);*/
 		}
 		this.element.addClass("AnimateSheet").setStyle("webkitTransform", "translate("+width+", 0)")[0].addEventListener( 'webkitTransitionEnd', end, false );
