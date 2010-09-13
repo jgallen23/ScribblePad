@@ -1,9 +1,9 @@
 var AppController = Class.extend({
 	init: function() {
 		var self = this;
+		debug.log(1);
 		this._preventScroll();
 		this._resize();
-
 		this.scribbleController = new ScribbleController(x$("#Scribble"));
 		document.addEventListener("applicationActive", function() {
 			self._applicationActivate();
@@ -23,30 +23,18 @@ var AppController = Class.extend({
 	},
 	_resize: function() {
 		var resize = function(event) {
+			debug.log("resize");
 			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"));
 			var w = window.innerWidth - 10;
 			var h = window.innerHeight - 10;
-			alert(w)
 			x$(".Sheet").setStyle("width", w+"px");
 			x$(".Sheet").setStyle("height", h+"px");
 
 			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
-			var o = (PhoneGap.available)?event.orientation:window.orientation;
-			debug.log(o);
-			if (o == -90 || o == 90) {
-				x$("body").addClass("Landscape");
-				x$("canvas")[0].setAttribute("width", w - toolbarHeight);
-				x$("canvas")[0].setAttribute("height", h );
-			} else {
-				x$("body").removeClass("Landscape");
-				x$("canvas")[0].setAttribute("width", w);
-				x$("canvas")[0].setAttribute("height", h - toolbarHeight);
-			}
+			x$("canvas")[0].setAttribute("width", w);
+			x$("canvas")[0].setAttribute("height", h);
 		};
-		if (browser.isMobile) {
-			/*x$("body").on("orientationchange", resize);*/
-			document.addEventListener("orientationChanged", resize, false);
-		}
+		document.addEventListener("resize", resize, false);
 		resize();
 	},
 	dataTest: function() {

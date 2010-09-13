@@ -3,6 +3,7 @@ var ScribbleController = Controller.extend({
 		this._super(element);
 		var self = this;
 		this.visible = true;
+		this.currentScribble = '';
 		this.scribbles = [];
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
 		this.scribblePad.saveScribbleCallback = function() {
@@ -24,7 +25,7 @@ var ScribbleController = Controller.extend({
 	},
 	deviceCheck: function() {
 		if (!browser.isMobile || (PhoneGap.available && navigator.device.platform != "iPhone")) {
-			x$(".jsCameraButton")[0].parentNode.style.display = "none";
+			x$(".jsCameraButton")[0].style.display = "none";
 		}
 	},
 	updatePagination: function() {
@@ -83,11 +84,14 @@ var ScribbleController = Controller.extend({
 	},
 	newScribble: function() {
 		this.show();
-		this.currentScribble = new Scribble();
-		this.scribbles.push(this.currentScribble);
-		this.currentIndex = this.scribbles.length - 1;
-		this.scribblePad.loadScribble(this.currentScribble);
-		this.updatePagination();
+		if (!this.currentScribble || this.scribblePad.scribbledLoaded || this.scribblePad.isDirty) {
+			debug.log("create");
+			this.currentScribble = new Scribble();
+			this.scribbles.push(this.currentScribble);
+			this.currentIndex = this.scribbles.length - 1;
+			this.scribblePad.loadScribble(this.currentScribble);
+			this.updatePagination();
+		}
 	},
 	saveScribble: function() {
 		var self = this;

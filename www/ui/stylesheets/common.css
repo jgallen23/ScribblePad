@@ -19,15 +19,21 @@ canvas { }
 
 	}
 	.Toolbar li { float: left; margin: 0; padding: 0 4px; list-style: none; color: #666;} 
-		.Toolbar li a { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.7; } 
-			.Toolbar li a span { display: none; } 
-		.Toolbar li .viewAll { background-image: url(../images/icons/normal/folder.png); } 
-		.Toolbar li .new { background-image: url(../images/icons/normal/plus.png); } 
-		.Toolbar li .delete { background-image: url(../images/icons/normal/delete.png); } 
-		.Toolbar li .previous { background-image: url(../images/icons/normal/arrowleft.png); } 
-		.Toolbar li .next { background-image: url(../images/icons/normal/arrowright.png); } 
-		.Toolbar li .camera { background-image: url(../images/icons/normal/camera.png); } 
 		.Toolbar li.pagination { line-height: 32px; font-size: 16px; font-family: Arial; }
+
+/* Buttons */
+.Button { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.6; position: absolute; }
+	.Button span { display: none; } 
+
+
+
+#Scribble .viewAllButton { background-image: url(../images/icons/normal/folder.png);  top: 5px; left: 10px; } 
+#Scribble .cameraButton { background-image: url(../images/icons/normal/camera.png); left: 60px;  top: 5px; }
+#Scribble .deleteButton { background-image: url(../images/icons/normal/delete.png); right: 60px;  top: 5px; } 
+#Scribble .newButton { background-image: url(../images/icons/normal/plus.png); right: 10px;  top: 5px; } 
+#Scribble .previousButton { background-image: url(../images/icons/normal/arrowleft.png); bottom: 10px; left: 10px; } 
+#Scribble .nextButton { background-image: url(../images/icons/normal/arrowright.png); bottom: 10px; right: 10px; } 
+#Scribble .pagination {  width: 100%; text-align: center; bottom: 10px; margin: 0 auto; position: absolute;}
 
 .ImageList { list-style: none; margin: 0; padding: 0}
 	.ImageList li { display: inline; margin: 0; padding: 10px; } 
@@ -41,11 +47,11 @@ canvas { }
 
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
-	.Toolbar li a { background-size: 26px 26px; }
-	.Toolbar li .viewAll { background-image: url(../images/icons/hi-res/folder.png); } 
-	.Toolbar li .new { background-image: url(../images/icons/hi-res/plus.png); } 
-	.Toolbar li .delete { background-image: url(../images/icons/hi-res/delete.png); } 
-	.Toolbar li .previous { background-image: url(../images/icons/hi-res/arrowleft.png); } 
-	.Toolbar li .next { background-image: url(../images/icons/hi-res/arrowright.png); } 
-	.Toolbar li .camera { background-image: url(../images/icons/hi-res/camera.png); } 
+	.Button { background-size: 26px 26px; }
+	#Scribble .viewAllButton { background-image: url(../images/icons/hi-res/folder.png); } 
+	#Scribble .newButton { background-image: url(../images/icons/hi-res/plus.png); } 
+	#Scribble .deleteButton { background-image: url(../images/icons/hi-res/delete.png); } 
+	#Scribble .previousButton { background-image: url(../images/icons/hi-res/arrowleft.png); } 
+	#Scribble .nextButton { background-image: url(../images/icons/hi-res/arrowright.png); } 
+	#Scribble .cameraButton { background-image: url(../images/icons/hi-res/camera.png); } 
 }

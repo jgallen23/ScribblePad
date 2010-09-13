@@ -4,8 +4,8 @@
 <dict>
 	<key>CFBundleIconFiles</key>
 	<array>
-		<string>icon.png</string>
-		<string>icon-72.png</string>
+		<string>App.png</string>
+		<string>App-72.png</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -28,9 +28,9 @@
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
+	<string>App.png</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>com.jga.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>

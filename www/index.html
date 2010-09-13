@@ -32,15 +32,11 @@
 	<script src="ui/scripts/widgets/scribblePad.js"></script>
 
 	<script src="ui/scripts/plugins/Badge.js"></script>
-		<style>
-
-		</style>
 	<script type="text/javascript">
 		var appController;
 		var onLoad = function() {
 			if (browser.isMobile) {
 				document.addEventListener("deviceready",onDeviceReady,false);
-
 			} else {
 				onDeviceReady();
 			}
@@ -62,18 +58,22 @@
 			</ul>
 		</div>
 		<div id="Scribble" class="Sheet">
+			<div class="pagination"><span class="jsCurrentIndex"></span> of <span class="jsTotal"></span></div>
+			<a class="Button viewAllButton jsViewAllButton"><span>View All</span></a>
+			<a class="Button cameraButton jsCameraButton"><span>Camera</span></a>
+			<a class="Button deleteButton jsDeleteButton"><span>Delete</span></a>
+			<a class="Button newButton jsNewButton"><span>New</span></a>
+			<a class="Button previousButton jsPrevButton"><span>Previous</span></a>
+			<a class="Button nextButton jsNextButton"><span>Next</span></a>
+			<!--
 			<ul class="Toolbar">
-				<li><a class="viewAll jsViewAllButton"><span>View All</span></a></li>
-				<!--<li><a class="jsUndoButton">Undo</a></li>-->
-				<!--<li><a class="jsRedoButton">Redo</a></li>-->
-				<!--<li><a class="jsSaveButton">Save</a></li>-->
-				<li><a class="new jsNewButton"><span>New</span></a></li>
-				<li><a class="camera jsCameraButton"><span>Camera</span></a></li>
-				<li><a class="delete jsDeleteButton"><span>Delete</span></a></li>
-				<li><a class="previous jsPrevButton"><span>Previous</span></a></li>
-				<li class="pagination"><span class="jsCurrentIndex"></span> of <span class="jsTotal"></span></li>
-				<li><a class="next jsNextButton"><span>Next</span></a></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
+				<li></li>
 			</ul>
+			--!>
 			<canvas></canvas>
 
 		</div>

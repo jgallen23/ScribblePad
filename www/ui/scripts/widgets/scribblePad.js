@@ -1,6 +1,8 @@
 var ScribblePad = Class.extend({
 	init: function(canvas) {
 		this.isDrawing = false;
+		this._drawMove = false;
+		this.scribbledLoaded = false;
 		this.isDirty = false;
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
@@ -45,6 +47,7 @@ var ScribblePad = Class.extend({
 	_onDraw: function(ev) {
 		var xy = this._getXY(ev);
 		if (this.isDrawing) {
+			this._drawMove = true;
 			if (this.saveTimeout)
 				clearTimeout(this.saveTimeout);
 			this.isDirty = true;
@@ -60,8 +63,8 @@ var ScribblePad = Class.extend({
 	_onDrawEnd: function(ev) {
 		var self = this;
 		this.isDrawing = false;
-		var delay = (browser.isPhoneGap && navigator.device.platform == "iPad")?500:300;
-		if (this.isDirty) {
+		var delay = (PhoneGap.available && navigator.device.platform == "iPad")?500:300;
+		if (this._drawMove && this.isDirty) {
 			if (this.saveTimeout)
 				clearTimeout(this.saveTimeout);
 			this.saveTimeout = setTimeout(function() {
@@ -73,6 +76,7 @@ var ScribblePad = Class.extend({
 				}
 			}, delay);
 		}
+		this._drawMove = false;
 	},
 	loadScribble: function(scribble) {
 		this.clear();
@@ -81,12 +85,14 @@ var ScribblePad = Class.extend({
 		var photo = new Image();
 		this.scribble = scribble;
 		if (scribble.photoData) {
+			this.scribbledLoaded = true;
 			photo.src = scribble.photoData;
 			photo.onload = function() { 
 				self.context.drawImage(photo, 0, 0, self.canvas.width, self.canvas.height);
 			}
 		}
 		if (scribble.imageData) {
+			this.scribbledLoaded = true;
 			img.src = scribble.imageData;
 			img.onload = function() { 
 				self.context.drawImage(img, 0, 0, self.canvas.width, self.canvas.height);
@@ -94,6 +100,7 @@ var ScribblePad = Class.extend({
 		}
 	},
 	clear: function() {
+		this.scribbledLoaded = false;
 		this.isDirty = false;
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
 	},
