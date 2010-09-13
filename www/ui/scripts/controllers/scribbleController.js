@@ -2,7 +2,6 @@ var ScribbleController = Controller.extend({
 	init: function(element) {	
 		this._super(element);
 		var self = this;
-		this.visible = true;
 		this.currentScribble = '';
 		this.scribbles = [];
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
@@ -128,7 +127,6 @@ var ScribbleController = Controller.extend({
 		}
 	},
 	viewAllScribbles: function() {
-		this.hide();
 		new ViewAllController(x$("#ViewAll"), this.scribbles, this);
 	},
 	updateBadge: function() {
@@ -150,22 +148,17 @@ var ScribbleController = Controller.extend({
 		var source = (browser.isMobile && navigator.device.platform == "iPad")?0:1
 		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: source });
 	},
-	hide: function() {
-		this.visible = false;
-		var w = this.element.getStyle("width");
-		this._animate("-"+w);
-	},
-	show: function() {
-		if (!this.visible)
-			this._animate("0");	
-	},
-	_animate: function(width) {
-		var self = this;
-		var end = function( event ) { 
-			console.log("end");
-			self.element.removeClass("AnimateSheet");
-			self.element[0].removeEventListener("webkitTransitionEnd", end, false);
-		}
-		this.element.addClass("AnimateSheet").setStyle("webkitTransform", "translate("+width+", 0)")[0].addEventListener( 'webkitTransitionEnd', end, false );
-	}
+	/*hide: function() {*/
+	/*this.visible = false;*/
+	/*var h = this.element.getStyle("height");*/
+	/*this._animate("-"+h);*/
+/*},*/
+/*show: function() {*/
+/*if (!this.visible)*/
+/*this._animate("0");	*/
+	/*},*/
+	/*_animate: function(height) {*/
+	/*this.element.setStyle("webkitTransform", "translate(0, "+height+")");*/
+	/*this.animateWithClass("AnimateSheet");*/
+	/*}*/
 });

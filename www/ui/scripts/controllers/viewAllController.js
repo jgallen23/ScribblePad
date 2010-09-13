@@ -18,7 +18,9 @@ var ViewAllController = Controller.extend({
 	_render: function() {
 		var htmlArr = [];
 		for (var i = 0; i < this.scribbles.length; i++) {
-			htmlArr.push("<li><img id='ViewImage_"+i+"' src='"+this.scribbles[i].imageData+"'/></li>");
+            if (this.scribbles[i].imageData) {
+                htmlArr.push("<li><img id='ViewImage_"+i+"' src='"+this.scribbles[i].imageData+"'/></li>");
+            }
 		}
 		this.element.find("ul.ImageList").html(htmlArr.join(""));	
 		this.show();
@@ -33,6 +35,20 @@ var ViewAllController = Controller.extend({
 		this.hide();
 		this.parentController.newScribble();
 	},
+	show: function() {
+		var h = parseInt(this.element.getStyle("height")) + 20;
+        this.element.setStyle("top", "-"+h+"px");
+        var self = this;
+		this.animate({
+			'webkitTransform': 'translateY('+h+'px)'
+        });
+	},
 	hide: function() {
+		var self = this;
+		var h = parseInt(this.element.getStyle("height")) + 20;
+		this.animate({
+			'webkitTransform': 'translateY(-'+h+'px)'
+		});
+		
 	}
 });

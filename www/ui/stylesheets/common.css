@@ -3,10 +3,23 @@ body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background:
 canvas { }
 
 .Sheets { position: relative; }
-.Sheet { background: #fff; border-radius: 10px; position: absolute; top: 0; -webkit-box-shadow: 2px 2px 2px #333 }
-.Sheet:first-child { top: 3px; left: 3px }
+.Sheet { background: #fff; border-radius: 10px; position: absolute; top: 0; -webkit-box-shadow: 2px 2px 2px #333; -webkit-transition:-webkit-transform 0.5s ease-in-out; }
+.Sheet:first-child { left: 3px }
+.Sheet:last-child { left: -3px; }
 
-.AnimateSheet {-webkit-transition:all 0.5s ease-in-out; } 
+
+
+/*.Sheet {*/
+/*background-image: -webkit-gradient(*/
+/*linear,*/
+/*left top,*/
+/*right top,*/
+/*color-stop(0, #ddd),*/
+/*color-stop(0.1, #fff),*/
+/*color-stop(0.90, #fff),*/
+/*color-stop(1, #ddd)*/
+/*)*/
+/*}*/
 
 .Toolbar { height: 45px; margin: 0; padding: 5px 0 0 0; border-top: 1px solid #ccc;
 	/*background-image: -webkit-gradient(*/
@@ -15,7 +28,7 @@ canvas { }
 	/*left top,*/
 	/*color-stop(1, #fff),*/
 	/*color-stop(0, #ccc)*/
-	)
+	/*)*/
 
 	}
 	.Toolbar li { float: left; margin: 0; padding: 0 4px; list-style: none; color: #666;} 
@@ -26,20 +39,19 @@ canvas { }
 	.Button span { display: none; } 
 
 
-
 #Scribble .viewAllButton { background-image: url(../images/icons/normal/folder.png);  top: 5px; left: 10px; } 
 #Scribble .cameraButton { background-image: url(../images/icons/normal/camera.png); left: 60px;  top: 5px; }
-#Scribble .deleteButton { background-image: url(../images/icons/normal/delete.png); right: 60px;  top: 5px; } 
+#Scribble .deleteButton { background-image: url(../images/icons/normal/trash.png); right: 60px;  top: 5px; } 
 #Scribble .newButton { background-image: url(../images/icons/normal/plus.png); right: 10px;  top: 5px; } 
 #Scribble .previousButton { background-image: url(../images/icons/normal/arrowleft.png); bottom: 10px; left: 10px; } 
 #Scribble .nextButton { background-image: url(../images/icons/normal/arrowright.png); bottom: 10px; right: 10px; } 
 #Scribble .pagination {  width: 100%; text-align: center; bottom: 10px; margin: 0 auto; position: absolute;}
 
+#ViewAll { display: block; top: -10000px; }
+
 .ImageList { list-style: none; margin: 0; padding: 0}
 	.ImageList li { display: inline; margin: 0; padding: 10px; } 
 		.ImageList li img { height: 100px; border: 1px solid #ccc; } 
-
-
 
 .Landscape {}
 	.Landscape .Toolbar { float: right; height: 100%; width: 45px; } 
@@ -50,7 +62,7 @@ canvas { }
 	.Button { background-size: 26px 26px; }
 	#Scribble .viewAllButton { background-image: url(../images/icons/hi-res/folder.png); } 
 	#Scribble .newButton { background-image: url(../images/icons/hi-res/plus.png); } 
-	#Scribble .deleteButton { background-image: url(../images/icons/hi-res/delete.png); } 
+	#Scribble .deleteButton { background-image: url(../images/icons/hi-res/trash.png); } 
 	#Scribble .previousButton { background-image: url(../images/icons/hi-res/arrowleft.png); } 
 	#Scribble .nextButton { background-image: url(../images/icons/hi-res/arrowright.png); } 
 	#Scribble .cameraButton { background-image: url(../images/icons/hi-res/camera.png); } 

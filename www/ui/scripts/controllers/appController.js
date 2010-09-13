@@ -26,7 +26,7 @@ var AppController = Class.extend({
 			debug.log("resize");
 			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"));
 			var w = window.innerWidth - 10;
-			var h = window.innerHeight - 10;
+			var h = window.innerHeight - 5;
 			x$(".Sheet").setStyle("width", w+"px");
 			x$(".Sheet").setStyle("height", h+"px");
 
