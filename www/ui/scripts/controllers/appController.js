@@ -34,7 +34,7 @@ var AppController = Class.extend({
 			x$("canvas")[0].setAttribute("width", w);
 			x$("canvas")[0].setAttribute("height", h);
 		};
-		document.addEventListener("resize", resize, false);
+		window.addEventListener("resize", resize, false);
 		resize();
 	},
 	dataTest: function() {

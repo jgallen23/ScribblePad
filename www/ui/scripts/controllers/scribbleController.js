@@ -21,6 +21,9 @@ var ScribbleController = Controller.extend({
 		});
 		this.deviceCheck();
 		this.load();
+		setTimeout(function() {
+			self.viewAllScribbles();
+		}, 1000);
 	},
 	deviceCheck: function() {
 		if (!browser.isMobile || (PhoneGap.available && navigator.device.platform != "iPhone")) {
