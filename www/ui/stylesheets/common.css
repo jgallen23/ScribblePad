@@ -3,32 +3,13 @@ body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background:
 canvas { }
 
 .Sheets { position: relative; }
-.Sheet { background: #fff; border-radius: 10px; position: absolute; top: 0; -webkit-box-shadow: 2px 2px 2px #333; -webkit-transition:-webkit-transform 0.5s ease-in-out; }
+.Sheet { background: #fff; -webkit-border-radius: 10px; position: absolute; top: 0; -webkit-box-shadow: 2px 2px 2px #333; -webkit-transition:-webkit-transform 0.5s ease-in-out; }
 .Sheet:first-child { left: 3px }
 .Sheet:last-child { left: -3px; }
 
 
 
-/*.Sheet {*/
-/*background-image: -webkit-gradient(*/
-/*linear,*/
-/*left top,*/
-/*right top,*/
-/*color-stop(0, #ddd),*/
-/*color-stop(0.1, #fff),*/
-/*color-stop(0.90, #fff),*/
-/*color-stop(1, #ddd)*/
-/*)*/
-/*}*/
-
 .Toolbar { height: 45px; margin: 0; padding: 5px 0 0 0; border-top: 1px solid #ccc;
-	/*background-image: -webkit-gradient(*/
-	/*linear,*/
-	/*left bottom,*/
-	/*left top,*/
-	/*color-stop(1, #fff),*/
-	/*color-stop(0, #ccc)*/
-	/*)*/
 
 	}
 	.Toolbar li { float: left; margin: 0; padding: 0 4px; list-style: none; color: #666;} 
