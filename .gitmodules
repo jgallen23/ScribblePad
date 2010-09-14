@@ -1,0 +1,3 @@
+[submodule "www/ui/external/AppUI"]
+	path = www/ui/external/AppUI
+	url = git://github.com/jgallen23/AppUI.git
