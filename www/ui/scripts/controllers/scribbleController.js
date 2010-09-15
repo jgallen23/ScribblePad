@@ -5,10 +5,22 @@ var ScribbleController = Controller.extend({
 		this.currentScribble = '';
 		this.scribbles = [];
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
-		this.scribblePad.saveScribbleCallback = function() {
-			self.saveScribble();
-		}
-
+		this._buttonFadeTimeout;
+		this.scribblePad.bind({
+			"saveScribble": function() {
+				self.saveScribble();
+			},
+			"drawStart": function() {
+				if (self._buttonFadeTimeout)
+					clearTimeout(self._buttonFadeTimeout);
+				x$(".Button").setStyle("opacity", 0);
+			},
+			"drawEnd": function() {
+				self._buttonFadeTimeout = setTimeout(function() {
+					x$(".Button").setStyle("opacity", 0.6);
+				}, 500);
+			}
+		});
 		//events
 		this.bindClickEvents({
 			'.jsNewButton': self.newScribble,

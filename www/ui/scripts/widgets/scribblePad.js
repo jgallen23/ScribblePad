@@ -72,6 +72,7 @@ var ScribblePad = View.extend({
 				debug.log("save");
 				self.scribble.imageData = self.canvas.toDataURL();
 				self.scribble.modifiedOn = new Date();
+				self.trigger("saveScribble");
 				if (self.saveScribbleCallback) {
 					self.saveScribbleCallback();
 				}

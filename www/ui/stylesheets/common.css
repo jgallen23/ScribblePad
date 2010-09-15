@@ -16,7 +16,7 @@ canvas { }
 		.Toolbar li.pagination { line-height: 32px; font-size: 16px; font-family: Arial; }
 
 /* Buttons */
-.Button { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.6; }
+.Button { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.6; -webkit-transition: opacity 1.0s ease-in-out; }
 	.Button span { display: none; } 
 
 #Scribble .Button { position: absolute; }
