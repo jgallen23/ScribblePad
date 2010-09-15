@@ -21,9 +21,6 @@ var ScribbleController = Controller.extend({
 		});
 		this.deviceCheck();
 		this.load();
-		setTimeout(function() {
-			self.viewAllScribbles();
-		}, 1000);
 	},
 	deviceCheck: function() {
 		if (!browser.isMobile || (PhoneGap.available && navigator.device.platform != "iPhone")) {
@@ -31,9 +28,7 @@ var ScribbleController = Controller.extend({
 		}
 	},
 	updatePagination: function() {
-		x$('.jsCurrentIndex')[0].innerHTML = parseInt(this.currentIndex) + 1;
-		x$('.jsTotal')[0].innerHTML = this.scribbles.length;
-
+		debug.log("update pag");
 		if (this.currentIndex == 0) {
 			x$(".jsPrevButton").setStyle("display", "none");
 		} else {
@@ -44,6 +39,9 @@ var ScribbleController = Controller.extend({
 		} else {
 			x$(".jsNextButton").setStyle("display", "block");
 		}
+
+		x$('.jsCurrentIndex')[0].innerHTML = "<span>"+(parseInt(this.currentIndex) + 1)+"</span>";
+		x$('.jsTotal')[0].innerHTML = "<span>"+this.scribbles.length+"</span>";
 		this.printStatus();
 	},
 	load: function() {
@@ -53,7 +51,10 @@ var ScribbleController = Controller.extend({
 			self.scribbles = data;
 			self.scribbles.push(self.currentScribble);
 			self.currentIndex = self.scribbles.length - 1;
-			self.updatePagination();
+			setTimeout(function() {
+				self.updatePagination();
+			}, 200);
+			self.updateBadge();
 		});
 	},
 	printStatus: function() {
@@ -133,9 +134,16 @@ var ScribbleController = Controller.extend({
 		new ViewAllController(x$("#ViewAll"), this.scribbles, this);
 	},
 	updateBadge: function() {
+		var self = this;
 		if (PhoneGap.available) {
-			var count = this.scribbles.length;
-			plugins.badge.set(count);
+			plugins.preferences.boolForKey("show_badge", function(key, value) {
+				if (value) {
+					var count = self.scribbles.length;
+					plugins.badge.set(count);
+				} else {
+					plugins.badge.set('');
+				}
+			});
 		}
 	},
 	takePhoto: function() {
@@ -150,7 +158,7 @@ var ScribbleController = Controller.extend({
 		}
 		var source = (browser.isMobile && navigator.device.platform == "iPad")?0:1
 		navigator.camera.getPicture(onSuccess, onFail, { quality: 10, sourceType: source });
-	},
+	}
 	/*hide: function() {*/
 	/*this.visible = false;*/
 	/*var h = this.element.getStyle("height");*/

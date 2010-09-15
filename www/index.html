@@ -17,14 +17,18 @@
 	<script src="ui/scripts/controllers/appController.js"></script>
 	<script src="ui/scripts/controllers/scribbleController.js"></script>
 	<script src="ui/scripts/controllers/viewAllController.js"></script>
+	<script src="ui/scripts/controllers/iAdController.js"></script>
 
 	<script src="ui/scripts/widgets/scribblePad.js"></script>
 
 	<script src="ui/scripts/plugins/Badge.js"></script>
+	<script src="ui/scripts/plugins/preferences.js"></script>
+	<script src="ui/scripts/plugins/SAiOSAdPlugin.js"></script>
 	<script type="text/javascript">
 		var appController;
 		var onLoad = function() {
 			if (browser.isMobile) {
+				browser.isPhoneGap = true;
 				document.addEventListener("deviceready",onDeviceReady,false);
 			} else {
 				onDeviceReady();
@@ -39,7 +43,7 @@
 	<div class="Sheets">
 		<div class="Sheet"></div>
 		<div id="Scribble" class="Sheet">
-			<div class="pagination"><span class="jsCurrentIndex"></span> of <span class="jsTotal"></span></div>
+			<div class="pagination"><span class="jsCurrentIndex"></span> of <span id="jsTotal" class="jsTotal"></span></div>
 			<a class="Button ViewAllButton jsViewAllButton"><span>View All</span></a>
 			<a class="Button CameraButton jsCameraButton"><span>Camera</span></a>
 			<a class="Button DeleteButton jsDeleteButton"><span>Delete</span></a>

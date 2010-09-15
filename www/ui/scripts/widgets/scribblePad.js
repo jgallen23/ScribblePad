@@ -1,4 +1,4 @@
-var ScribblePad = Class.extend({
+var ScribblePad = View.extend({
 	init: function(canvas) {
 		this.isDrawing = false;
 		this._drawMove = false;
@@ -43,6 +43,7 @@ var ScribblePad = Class.extend({
 		/*context.lineWidth = 1;*/
 		this.startX = xy[0];
 		this.startY = xy[1];
+		this.trigger("drawStart");
 	},
 	_onDraw: function(ev) {
 		var xy = this._getXY(ev);
@@ -63,7 +64,7 @@ var ScribblePad = Class.extend({
 	_onDrawEnd: function(ev) {
 		var self = this;
 		this.isDrawing = false;
-		var delay = (PhoneGap.available && navigator.device.platform == "iPad")?500:300;
+		var delay = (PhoneGap.available && navigator.device.platform.indexOf("iPad") != -1)?700:300;
 		if (this._drawMove && this.isDirty) {
 			if (this.saveTimeout)
 				clearTimeout(this.saveTimeout);
@@ -77,6 +78,7 @@ var ScribblePad = Class.extend({
 			}, delay);
 		}
 		this._drawMove = false;
+		this.trigger("drawEnd");
 	},
 	loadScribble: function(scribble) {
 		this.clear();

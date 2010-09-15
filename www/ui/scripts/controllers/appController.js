@@ -1,12 +1,18 @@
 var AppController = Class.extend({
 	init: function() {
 		var self = this;
-		debug.log(1);
 		this._preventScroll();
 		this._resize();
 		this.scribbleController = new ScribbleController(x$("#Scribble"));
+		if (browser.isPhoneGap) {
+			this.iAdController = new iAdController();
+		}
 		document.addEventListener("applicationActive", function() {
-			self._applicationActivate();
+			window.plugins.preferences.boolForKey("new_scribble", function(key, value) {
+				if (value) {
+					self._applicationActivate();
+				}
+			});
 		}, false);
 	},
 	_applicationActivate: function() {
