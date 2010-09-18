@@ -20,12 +20,12 @@ canvas { }
 	.Button span { display: none; } 
 
 #Scribble .Button { position: absolute; }
-#Scribble .ViewAllButton { top: 5px; left: 10px; } 
-#Scribble .CameraButton { left: 60px;  top: 5px; }
-#Scribble .DeleteButton { right: 60px;  top: 5px; } 
-#Scribble .NewButton { right: 10px;  top: 5px; } 
-#Scribble .PreviousButton { bottom: 10px; left: 10px; } 
-#Scribble .NextButton { bottom: 10px; right: 10px; } 
+#Scribble .ViewAllButton { bottom: 5px; left: 45px; } 
+#Scribble .CameraButton { left: 85px; bottom: 5px; }
+#Scribble .DeleteButton { right: 85px; bottom: 5px; } 
+#Scribble .NewButton { right: 45px;  bottom: 5px; } 
+#Scribble .PreviousButton { bottom: 5px; left: 5px; } 
+#Scribble .NextButton { bottom: 5px; right: 5px; } 
 #Scribble .pagination {  width: 100%; text-align: center; bottom: 10px; margin: 0 auto; position: absolute;}
 
 

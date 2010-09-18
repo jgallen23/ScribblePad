@@ -37,8 +37,8 @@ var AppController = Class.extend({
 			x$(".Sheet").setStyle("height", h+"px");
 
 			x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
-			x$("canvas")[0].setAttribute("width", w);
-			x$("canvas")[0].setAttribute("height", h);
+			/*x$("canvas")[0].setAttribute("width", w);*/
+			/*x$("canvas")[0].setAttribute("height", h);*/
 		};
 		window.addEventListener("resize", resize, false);
 		resize();

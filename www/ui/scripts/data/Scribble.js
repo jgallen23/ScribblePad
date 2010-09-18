@@ -11,6 +11,8 @@ var ScribbleData = LawnchairData.extend({
 				s.createdOn = r[i].createdOn;
 				s.imageData = r[i].imageData;
 				s.photoData = r[i].photoData;
+				s.height = r[i].height;
+				s.width = r[i].width;
 				s.id = r[i].key;
 				scribbles.push(s);
 			}
@@ -23,7 +25,9 @@ var ScribbleData = LawnchairData.extend({
 		var obj = { 'createdOn': scribble.createdOn,
 					'modifiedOn': scribble.modifiedOn,
 					'imageData': scribble.imageData,
-					'photoData': scribble.photoData
+					'photoData': scribble.photoData,
+					'height': scribble.height || 0,
+					'width': scribble.width || 0
 				}
 		if (scribble.id != '')
 			obj.key = scribble.id

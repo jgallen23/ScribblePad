@@ -10,7 +10,7 @@ var ScribbleController = Controller.extend({
 			"saveScribble": function() {
 				self.saveScribble();
 			},
-			"drawStart": function() {
+			"drawStart2": function() {
 				if (self._buttonFadeTimeout)
 					clearTimeout(self._buttonFadeTimeout);
 				x$(".Button").setStyle("opacity", 0);
@@ -18,7 +18,7 @@ var ScribbleController = Controller.extend({
 			"drawEnd": function() {
 				self._buttonFadeTimeout = setTimeout(function() {
 					x$(".Button").setStyle("opacity", 0.6);
-				}, 500);
+				}, 1500);
 			}
 		});
 		//events

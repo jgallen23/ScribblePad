@@ -28,6 +28,7 @@
 		30E1352710E2C1420031B30D /* PhoneGap.plist in Resources */ = {isa = PBXBuildFile; fileRef = 30E1352610E2C1420031B30D /* PhoneGap.plist */; };
 		7654489B121ADE9F00BDB740 /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654489A121ADE9F00BDB740 /* Badge.m */; };
 		7659D1851226BA2F00986858 /* ApplicationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7659D1841226BA2F00986858 /* ApplicationStatus.m */; };
+		C937DE3912452EFD00EBD77A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C937DE3812452EFD00EBD77A /* Default@2x.png */; };
 		C937F5EF123D61DB00EB91D6 /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = C937F5ED123D61DB00EB91D6 /* App.png */; };
 		C937F5F0123D61DB00EB91D6 /* App@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C937F5EE123D61DB00EB91D6 /* App@2x.png */; };
 		C937F604123D648B00EB91D6 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C937F603123D648B00EB91D6 /* Default.png */; };
@@ -83,6 +84,7 @@
 		7659D1831226BA2F00986858 /* ApplicationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStatus.h; sourceTree = "<group>"; };
 		7659D1841226BA2F00986858 /* ApplicationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStatus.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScribblePad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScribblePad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C937DE3812452EFD00EBD77A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Icons/Default@2x.png"; sourceTree = "<group>"; };
 		C937F5ED123D61DB00EB91D6 /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App.png; path = Icons/App.png; sourceTree = "<group>"; };
 		C937F5EE123D61DB00EB91D6 /* App@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "App@2x.png"; path = "Icons/App@2x.png"; sourceTree = "<group>"; };
 		C937F603123D648B00EB91D6 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Icons/Default.png; sourceTree = "<group>"; };
@@ -149,7 +151,6 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
-				F95AB2A6124096B500C332DC /* iAd.framework */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -167,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				C937F603123D648B00EB91D6 /* Default.png */,
+				C937DE3812452EFD00EBD77A /* Default@2x.png */,
 				C937F5ED123D61DB00EB91D6 /* App.png */,
 				C937F60D123D666F00EB91D6 /* App-72.png */,
 				C937F5EE123D61DB00EB91D6 /* App@2x.png */,
@@ -181,6 +183,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F95AB2A6124096B500C332DC /* iAd.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -290,6 +293,7 @@
 				C937F604123D648B00EB91D6 /* Default.png in Resources */,
 				C937F60E123D666F00EB91D6 /* App-72.png in Resources */,
 				F95AB1D812407B1B00C332DC /* Settings.bundle in Resources */,
+				C937DE3912452EFD00EBD77A /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,7 +396,7 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "$(PHONEGAPLIB)/Classes";
 			};
 			name = Debug;

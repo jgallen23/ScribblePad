@@ -18,6 +18,16 @@ var ScribblePad = View.extend({
 		x$(canvas).on(INPUT_END_EVENT, function(ev) { self._onDrawEnd(ev); });
 		x$(window).on(INPUT_END_EVENT, function(ev) { self._onDrawEnd(ev); });
 
+		window.addEventListener("resize", function() { self._resize(); });
+		self._resize();
+	},
+	_resize: function() {
+		var w = window.innerWidth - 10;
+		var h = window.innerHeight - 5;
+		x$("canvas")[0].setAttribute("width", w);
+		x$("canvas")[0].setAttribute("height", h);
+		if (this.scribble)
+			this.loadScribble(this.scribble);
 	},
 	_getXY: function(ev) {
 		var x,y;
@@ -72,6 +82,8 @@ var ScribblePad = View.extend({
 				debug.log("save");
 				self.scribble.imageData = self.canvas.toDataURL();
 				self.scribble.modifiedOn = new Date();
+				self.scribble.height = self.canvas.height;
+				self.scribble.width = self.canvas.width;
 				self.trigger("saveScribble");
 				if (self.saveScribbleCallback) {
 					self.saveScribbleCallback();
@@ -91,14 +103,14 @@ var ScribblePad = View.extend({
 			this.scribbledLoaded = true;
 			photo.src = scribble.photoData;
 			photo.onload = function() { 
-				self.context.drawImage(photo, 0, 0, self.canvas.width, self.canvas.height);
+				self.context.drawImage(photo, 0, 0, scribble.width, scribble.height);
 			}
 		}
 		if (scribble.imageData) {
 			this.scribbledLoaded = true;
 			img.src = scribble.imageData;
 			img.onload = function() { 
-				self.context.drawImage(img, 0, 0, self.canvas.width, self.canvas.height);
+				self.context.drawImage(img, 0, 0, scribble.width, scribble.height);
 			}
 		}
 	},

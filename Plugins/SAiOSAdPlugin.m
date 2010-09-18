@@ -93,6 +93,8 @@
 	CGRect adViewFrame = self.adView.frame;
 	CGRect webViewFrame = [super webView].frame;
 	CGFloat statusBarHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+
+	NSLog(@"%@", NSStringFromCGRect(self.webView.frame));
 	
 	if (show)
 	{
@@ -105,7 +107,8 @@
 			webViewFrame.origin.y += adViewFrame.size.height;
 			webViewFrame.size.height -= (adViewFrame.size.height + statusBarHeight);
 		}
-
+		adViewFrame.origin.x = 0;
+		self.adView.frame = adViewFrame;
 		[UIView beginAnimations:@"blah" context:NULL];
 		[UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
 
