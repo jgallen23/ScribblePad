@@ -42,7 +42,7 @@ var ScribbleController = Controller.extend({
 	updatePagination: function() {
 		var index = this.currentIndex;
 		console.log(this.scribblePad.scribble);
-		var count = (this.scribblePad.scribble.id)?this.scribbles.length:this.scribbles.length+1;
+		var count = (this.scribblePad.scribble.key)?this.scribbles.length:this.scribbles.length+1;
 		debug.log("update pag");
 		if (index == 0) {
 			x$(".jsPrevButton").setStyle("display", "none");
@@ -61,7 +61,7 @@ var ScribbleController = Controller.extend({
 		this.updateNewButton();
 	},
 	updateNewButton: function() {
-		if (this.scribblePad.scribble.id) {
+		if (this.scribblePad.scribble.key) {
 			x$(".jsNewButton").setStyle("visibility", "visible");
 		} else {
 			x$(".jsNewButton").setStyle("visibility", "hidden");
@@ -70,7 +70,7 @@ var ScribbleController = Controller.extend({
 	load: function() {
 		var self = this;
 		this.newScribble();
-		Scribble.data.get(function(data) {
+		Scribble.data.find(function(data) {
 			console.log(data);
 			self.scribbles = data;
 			/*self.scribbles.push(self.currentScribble);*/
@@ -120,12 +120,12 @@ var ScribbleController = Controller.extend({
 	saveScribble: function(scribble) {
 		var self = this;
 		debug.log("save data");
-		debug.log(scribble.id);
+		debug.log(scribble.key);
 		debug.log("scribble loaded: "+this.scribblePad.scribbleLoaded);
-		if (!scribble.id)
+		if (!scribble.key)
 			this.scribbles.push(scribble);
 		Scribble.data.save(scribble, function(r) {
-			scribble.id = r.key;
+			scribble.key = r.key;
 			self.updateNewButton();
 		});
 
@@ -139,7 +139,7 @@ var ScribbleController = Controller.extend({
 			self.scribbles.splice(index, 1);
 			self.updateBadge();
 
-			if (self.scribblePad.scribble.id) {
+			if (self.scribblePad.scribble.key) {
 				Scribble.data.remove(self.scribblePad.scribble);
 			}
 			if (index == self.scribbles.length) {
