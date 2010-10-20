@@ -4,6 +4,7 @@ var ScribblePad = View.extend({
 		this._drawMove = false;
 		this.scribbledLoaded = false;
 		this.isDirty = false;
+		this.needsResize = false;
 		this.canvas = canvas;
 		this.context = canvas.getContext('2d');
 		this.saveScribbleCallback = false;
@@ -22,12 +23,17 @@ var ScribblePad = View.extend({
 		self._resize();
 	},
 	_resize: function() {
-		var w = window.innerWidth - 10;
-		var h = window.innerHeight - 5;
-		x$("canvas")[0].setAttribute("width", w);
-		x$("canvas")[0].setAttribute("height", h);
-		if (this.scribble)
-			this.loadScribble(this.scribble);
+		if (!this.isDrawing) {
+			console.log("resize pad");
+			var w = window.innerWidth - 10;
+			var h = window.innerHeight - 5;
+			x$("canvas")[0].setAttribute("width", w);
+			x$("canvas")[0].setAttribute("height", h);
+			if (this.scribble)
+				this.loadScribble(this.scribble);
+		} else {
+			this.needsResize = true;
+		}
 	},
 	_getXY: function(ev) {
 		var x,y;
@@ -84,10 +90,11 @@ var ScribblePad = View.extend({
 				self.scribble.modifiedOn = new Date();
 				self.scribble.height = self.canvas.height;
 				self.scribble.width = self.canvas.width;
-				self.trigger("saveScribble");
+				self.trigger("saveScribble", [self.scribble]);
 				if (self.saveScribbleCallback) {
 					self.saveScribbleCallback();
 				}
+				if (self.needsResize) self._resize();
 			}, delay);
 		}
 		this._drawMove = false;
@@ -103,7 +110,7 @@ var ScribblePad = View.extend({
 			this.scribbledLoaded = true;
 			photo.src = scribble.photoData;
 			photo.onload = function() { 
-				self.context.drawImage(photo, 0, 0, scribble.width, scribble.height);
+				self.context.drawImage(photo, 0, 0, self.canvas.width, self.canvas.height);
 			}
 		}
 		if (scribble.imageData) {
@@ -118,6 +125,7 @@ var ScribblePad = View.extend({
 		this.scribbledLoaded = false;
 		this.isDirty = false;
 		this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+		this.scribble = new Scribble();
 	},
 	getData: function() {
 		var data = this.canvas.toDataURL();

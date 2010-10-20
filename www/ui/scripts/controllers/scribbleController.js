@@ -2,20 +2,20 @@ var ScribbleController = Controller.extend({
 	init: function(element) {	
 		this._super(element);
 		var self = this;
-		this.currentScribble = '';
+		this.currentIndex = 0;
 		this.scribbles = [];
 		this.scribblePad = new ScribblePad(this.element.find("canvas")[0]);
 		this._buttonFadeTimeout;
 		this.scribblePad.bind({
-			"saveScribble": function() {
-				self.saveScribble();
+			"saveScribble": function(scribble) {
+				self.saveScribble(scribble);
 			},
 			"drawStart2": function() {
 				if (self._buttonFadeTimeout)
 					clearTimeout(self._buttonFadeTimeout);
 				x$(".Button").setStyle("opacity", 0);
 			},
-			"drawEnd": function() {
+			"drawEnd2": function() {
 				self._buttonFadeTimeout = setTimeout(function() {
 					x$(".Button").setStyle("opacity", 0.6);
 				}, 1500);
@@ -40,29 +40,41 @@ var ScribbleController = Controller.extend({
 		}
 	},
 	updatePagination: function() {
+		var index = this.currentIndex;
+		console.log(this.scribblePad.scribble);
+		var count = (this.scribblePad.scribble.id)?this.scribbles.length:this.scribbles.length+1;
 		debug.log("update pag");
-		if (this.currentIndex == 0) {
+		if (index == 0) {
 			x$(".jsPrevButton").setStyle("display", "none");
 		} else {
 			x$(".jsPrevButton").setStyle("display", "block");
 		}
-		if (this.scribbles.length == this.currentIndex + 1) {
+		if (count == index + 1) {
 			x$(".jsNextButton").setStyle("display", "none");
 		} else {
 			x$(".jsNextButton").setStyle("display", "block");
 		}
 
-		x$('.jsCurrentIndex')[0].innerHTML = "<span>"+(parseInt(this.currentIndex) + 1)+"</span>";
-		x$('.jsTotal')[0].innerHTML = "<span>"+this.scribbles.length+"</span>";
+		x$('.jsCurrentIndex')[0].innerHTML = "<span>"+(parseInt(index) + 1)+"</span>";
+		x$('.jsTotal')[0].innerHTML = "<span>"+count+"</span>";
 		this.printStatus();
+		this.updateNewButton();
+	},
+	updateNewButton: function() {
+		if (this.scribblePad.scribble.id) {
+			x$(".jsNewButton").setStyle("visibility", "visible");
+		} else {
+			x$(".jsNewButton").setStyle("visibility", "hidden");
+		}
 	},
 	load: function() {
 		var self = this;
 		this.newScribble();
 		Scribble.data.get(function(data) {
+			console.log(data);
 			self.scribbles = data;
-			self.scribbles.push(self.currentScribble);
-			self.currentIndex = self.scribbles.length - 1;
+			/*self.scribbles.push(self.currentScribble);*/
+			self.currentIndex = self.scribbles.length;
 			setTimeout(function() {
 				self.updatePagination();
 			}, 200);
@@ -92,38 +104,44 @@ var ScribbleController = Controller.extend({
 			this.newScribble();
 		} else {
 			this.currentIndex = index;
-			this.currentScribble = this.scribbles[this.currentIndex];
-			this.scribblePad.loadScribble(this.currentScribble);
+			this.scribblePad.loadScribble(this.scribbles[this.currentIndex]);
 			this.updatePagination();
 		}
 	},
 	newScribble: function() {
 		this.show();
-		if (!this.currentScribble || this.scribblePad.scribbledLoaded || this.scribblePad.isDirty) {
+		if (!this.scribblePad.scribble || this.scribblePad.scribbledLoaded || this.scribblePad.isDirty) {
 			debug.log("create");
-			this.currentScribble = new Scribble();
-			this.scribbles.push(this.currentScribble);
-			this.currentIndex = this.scribbles.length - 1;
-			this.scribblePad.loadScribble(this.currentScribble);
+			this.currentIndex = this.scribbles.length;
+			this.scribblePad.clear();
 			this.updatePagination();
 		}
 	},
-	saveScribble: function() {
+	saveScribble: function(scribble) {
 		var self = this;
 		debug.log("save data");
-		Scribble.data.save(this.currentScribble, function(r) {
-			self.currentScribble.id = r.key;
+		debug.log(scribble.id);
+		debug.log("scribble loaded: "+this.scribblePad.scribbleLoaded);
+		if (!scribble.id)
+			this.scribbles.push(scribble);
+		Scribble.data.save(scribble, function(r) {
+			scribble.id = r.key;
+			self.updateNewButton();
 		});
+
 		this.updateBadge();
 	},
 	deleteScribble: function() {
 		var self = this;
 		var del = function() {
-			Scribble.data.remove(self.currentScribble);
 			var index = self.currentIndex;
 			self.currentIndex = -2;
 			self.scribbles.splice(index, 1);
 			self.updateBadge();
+
+			if (self.scribblePad.scribble.id) {
+				Scribble.data.remove(self.scribblePad.scribble);
+			}
 			if (index == self.scribbles.length) {
 				index--;
 			}
@@ -147,10 +165,14 @@ var ScribbleController = Controller.extend({
 	},
 	updateBadge: function() {
 		var self = this;
+		console.log("Badge: "+self.scribbles.length);
 		if (PhoneGap.available) {
 			plugins.preferences.boolForKey("show_badge", function(key, value) {
+				debug.log("update badge: "+value);
 				if (value) {
 					var count = self.scribbles.length;
+					/*if (!self.scribbles[count-1].isDirty) {*/
+					/*}*/
 					plugins.badge.set(count);
 				} else {
 					plugins.badge.set('');

@@ -9,10 +9,7 @@ var iAdController = Class.extend({
 		document.addEventListener("iAdBannerViewDidFailToReceiveAdWithErrorEvent", function() { self._iAdBannerViewDidFailToReceiveAdWithErrorEventHandler(); }, false);
 		
 		var adAtBottom = true; 
-		setTimeout(function() {
-			window.plugins.iAdPlugin.prepare(adAtBottom); // by default, ad is at Top
-		}, 1000);
-
+		window.plugins.iAdPlugin.prepare(adAtBottom); // by default, ad is at Top
 	},
 	_orientationChanged: function(e) {
 		plugins.iAdPlugin.showAd(false);

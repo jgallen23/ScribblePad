@@ -31,14 +31,17 @@ var ViewAllController = Controller.extend({
 	_render: function() {
 		var self = this;
 		var htmlArr = [];
-		var count = (this.totalPages == (this.currentPage + 1))?this.scribbles.length:this.itemsPerPage;
-		for (var i = (this.currentPage * this.itemsPerPage); i < count; i++) {
+		var start = (this.currentPage * this.itemsPerPage);
+		var count = (this.totalPages == (this.currentPage + 1))?this.scribbles.length:this.itemsPerPage+start;
+		for (var i = start; i < count; i++) {
             if (this.scribbles[i].imageData) {
-                htmlArr.push("<li><img id='ViewImage_"+i+"' src='"+this.scribbles[i].imageData+"'/></li>");
-            }
+                htmlArr.push("<li id='ViewImage_"+i+"'><img src='"+this.scribbles[i].imageData+"'/></li>");
+			} else {
+				htmlArr.push("<li id='ViewImage_"+i+"'><img src='ui/images/pixel.png'/></li>");
+			}
 		}
 		this.element.find("ul.ImageList").html(htmlArr.join(""));	
-		this.element.find("img").on("click", function() {
+		this.element.find("li").on("click", function() {
 			var id = this.id.split("_")[1];
 			self.hide()
 			self.parentController.loadScribbleByIndex(parseInt(id));
@@ -73,14 +76,14 @@ var ViewAllController = Controller.extend({
 	},
 	updatePagination: function() {
 		if (this.currentPage == 0) {
-			x$(".jsPrevButton2").setStyle("display", "none");
+			x$(".jsPrevButton2").setStyle("visibility", "hidden");
 		} else {
-			x$(".jsPrevButton2").setStyle("display", "block");
+			x$(".jsPrevButton2").setStyle("visibility", "visible");
 		}
 		if (this.scribbles.length <= ((this.currentPage + 1) * this.itemsPerPage)) {
-			x$(".jsNextButton2").setStyle("display", "none");
+			x$(".jsNextButton2").setStyle("visibility", "hidden");
 		} else {
-			x$(".jsNextButton2").setStyle("display", "block");
+			x$(".jsNextButton2").setStyle("visibility", "visible");
 		}
 	},
 	next: function() {
