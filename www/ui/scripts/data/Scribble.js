@@ -1,20 +1,32 @@
-var ScribbleData = LawnchairData.extend({
+var ScribbleData = Class.extend({
 	init: function() {
-		this._super('scribbles');
+		this.provider = new Lawnchair('scribbles');
 	},
 	find: function(cb) {
-		var scribbles = [];
-		this._super(function(r) {
-			for (var i = 0; i < r.length; i++) {
-				var s = new Scribble(r[i]);
+		this.provider.all(function(data) {
+			var scribbles = [];
+			data.each(function(obj) {
+				var s = new Scribble(obj);
 				scribbles.push(s);
-			}
+			});
 			cb(scribbles);
 		});
 	},
-	findById: function(id, cb) {
-	},
 	save: function(scribble, cb) {
-		this.data.save(scribble._data, cb);
+		var data = scribble._data;
+		var update = true;
+		if (!scribble.key) {
+			update = false;
+			delete data.key;
+		}
+		this.provider.save(data, function(data) {
+			if (!update) {
+				scribble.key = data.key;
+			}
+			cb(scribble);
+		});
+	},
+	remove: function(scribble, cb) {
+		this.provider.remove(scribble.key, cb);
 	}
 });
