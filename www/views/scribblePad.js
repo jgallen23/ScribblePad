@@ -101,6 +101,7 @@ var ScribblePad = View.extend({
 		this.trigger("drawEnd");
 	},
 	loadScribble: function(scribble) {
+		console.log(scribble);
 		this.clear();
 		var self = this;
 		var img = new Image();
@@ -108,17 +109,17 @@ var ScribblePad = View.extend({
 		this.scribble = scribble;
 		if (scribble.photoData) {
 			this.scribbledLoaded = true;
-			photo.src = scribble.photoData;
 			photo.onload = function() { 
 				self.context.drawImage(photo, 0, 0, self.canvas.width, self.canvas.height);
 			}
+			photo.src = scribble.photoData;
 		}
 		if (scribble.imageData) {
 			this.scribbledLoaded = true;
-			img.src = scribble.imageData;
 			img.onload = function() { 
 				self.context.drawImage(img, 0, 0, scribble.width, scribble.height);
 			}
+			img.src = scribble.imageData;
 		}
 	},
 	clear: function() {

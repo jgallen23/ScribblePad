@@ -1,36 +1,32 @@
-var ScribbleData = LawnchairData.extend({
+var ScribbleData = Class.extend({
 	init: function() {
-		this._super('scribbles');
+		this.provider = new Lawnchair('scribbles');
 	},
-	get: function(cb) {
-		var scribbles = [];
-		this._super(function(r) {
-			for (var i = 0; i < r.length; i++) {
-				var s = new Scribble();
-				s.modifiedOn = r[i].modifiedOn;
-				s.createdOn = r[i].createdOn;
-				s.imageData = r[i].imageData;
-				s.photoData = r[i].photoData;
-				s.height = r[i].height;
-				s.width = r[i].width;
-				s.id = r[i].key;
+	find: function(cb) {
+		this.provider.all(function(data) {
+			var scribbles = [];
+			data.each(function(obj) {
+				var s = new Scribble(obj);
 				scribbles.push(s);
-			}
+			});
 			cb(scribbles);
 		});
 	},
-	getById: function(id, cb) {
-	},
 	save: function(scribble, cb) {
-		var obj = { 'createdOn': scribble.createdOn,
-					'modifiedOn': scribble.modifiedOn,
-					'imageData': scribble.imageData,
-					'photoData': scribble.photoData,
-					'height': scribble.height || 0,
-					'width': scribble.width || 0
-				}
-		if (scribble.id != '')
-			obj.key = scribble.id
-		this.data.save(obj, cb);
+		var data = scribble._data;
+		var update = true;
+		if (!scribble.key) {
+			update = false;
+			delete data.key;
+		}
+		this.provider.save(data, function(data) {
+			if (!update) {
+				scribble.key = data.key;
+			}
+			cb(scribble);
+		});
+	},
+	remove: function(scribble, cb) {
+		this.provider.remove(scribble.key, cb);
 	}
 });
