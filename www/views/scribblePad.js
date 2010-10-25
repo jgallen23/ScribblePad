@@ -55,8 +55,8 @@ var ScribblePad = View.extend({
 		ev.preventDefault();
 		var xy = this._getXY(ev);
 		this.isDrawing = true;
-		this.context.strokeStyle = "#666";
-		/*context.lineWidth = 1;*/
+		this.context.strokeStyle = "#000";
+		this.context.lineWidth = 1;
 		this.startX = xy[0];
 		this.startY = xy[1];
 		this.trigger("drawStart");
