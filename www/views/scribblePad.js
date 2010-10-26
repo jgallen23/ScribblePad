@@ -24,6 +24,7 @@ var ScribblePad = View.extend({
 	},
 	_resize: function() {
 		if (!this.isDrawing) {
+			this.needsResize = false;
 			console.log("resize pad");
 			var w = window.innerWidth - 10;
 			var h = window.innerHeight - 5;
