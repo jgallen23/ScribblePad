@@ -41,7 +41,7 @@ var ViewAllController = Controller.extend({
 			}
 		}
 		this.element.find("ul.ImageList").html(htmlArr.join(""));	
-		this.element.find("li").on("click", function() {
+		this.element.find("ul.ImageList li").on("click", function() {
 			var id = this.id.split("_")[1];
 			self.hide()
 			self.parentController.loadScribbleByIndex(parseInt(id));
