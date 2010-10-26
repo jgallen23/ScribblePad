@@ -136,8 +136,8 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				7604BE571275D80500DBF3C1 /* PhoneGapLib.xcodeproj */,
 				301BF56E109A69640062928A /* www */,
+				7604BE571275D80500DBF3C1 /* PhoneGapLib.xcodeproj */,
 				080E96DDFE201D6D7F000001 /* Classes */,
 				307C750510C5A3420062BCA9 /* Plugins */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
