@@ -95,6 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7604BE621275D81600DBF3C1 /* libPhoneGapLib.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
@@ -109,7 +110,6 @@
 				301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				F95AB2A7124096B500C332DC /* iAd.framework in Frameworks */,
-				7604BE621275D81600DBF3C1 /* libPhoneGapLib.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,8 +380,8 @@
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
-				TARGETED_DEVICE_FAMILY = 1;
-				USER_HEADER_SEARCH_PATHS = "$(PHONEGAPLIB)/Classes";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "../ext/phonegap-iphone/PhoneGapLib/Classes";
 			};
 			name = Debug;
 		};
@@ -393,14 +393,15 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-Obj-C",
 				);
 				PREBINDING = NO;
 				SDKROOT = iphoneos4.0;
-				USER_HEADER_SEARCH_PATHS = "$(PHONEGAPLIB)/Classes";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				USER_HEADER_SEARCH_PATHS = "../ext/phonegap-iphone/PhoneGapLib/Classes";
 			};
 			name = Release;
 		};
@@ -412,7 +413,7 @@
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-Obj-C",
@@ -421,7 +422,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "095E260B-2370-435F-A264-97981504AA4C";
 				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				USER_HEADER_SEARCH_PATHS = "$(PHONEGAPLIB)/Classes";
+				USER_HEADER_SEARCH_PATHS = "../ext/phonegap-iphone/PhoneGapLib/Classes";
 			};
 			name = Distribution;
 		};
