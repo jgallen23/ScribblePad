@@ -28,6 +28,8 @@
 		7604BE621275D81600DBF3C1 /* libPhoneGapLib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7604BE5F1275D80500DBF3C1 /* libPhoneGapLib.a */; };
 		7654489B121ADE9F00BDB740 /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 7654489A121ADE9F00BDB740 /* Badge.m */; };
 		7659D1851226BA2F00986858 /* ApplicationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 7659D1841226BA2F00986858 /* ApplicationStatus.m */; };
+		76E5C9391277208F003E2141 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C9371277208F003E2141 /* Default-Landscape.png */; };
+		76E5C94A127720E9003E2141 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 76E5C949127720E9003E2141 /* Default-Portrait.png */; };
 		C937DE3912452EFD00EBD77A /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C937DE3812452EFD00EBD77A /* Default@2x.png */; };
 		C937F5EF123D61DB00EB91D6 /* App.png in Resources */ = {isa = PBXBuildFile; fileRef = C937F5ED123D61DB00EB91D6 /* App.png */; };
 		C937F5F0123D61DB00EB91D6 /* App@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C937F5EE123D61DB00EB91D6 /* App@2x.png */; };
@@ -76,6 +78,8 @@
 		7654489A121ADE9F00BDB740 /* Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Badge.m; sourceTree = "<group>"; };
 		7659D1831226BA2F00986858 /* ApplicationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStatus.h; sourceTree = "<group>"; };
 		7659D1841226BA2F00986858 /* ApplicationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStatus.m; sourceTree = "<group>"; };
+		76E5C9371277208F003E2141 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Icons/Default-Landscape.png"; sourceTree = "<group>"; };
+		76E5C949127720E9003E2141 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait.png"; path = "Icons/Default-Portrait.png"; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* ScribblePad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ScribblePad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C937DE3812452EFD00EBD77A /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "Icons/Default@2x.png"; sourceTree = "<group>"; };
 		C937F5ED123D61DB00EB91D6 /* App.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = App.png; path = Icons/App.png; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 			children = (
 				C937F603123D648B00EB91D6 /* Default.png */,
 				C937DE3812452EFD00EBD77A /* Default@2x.png */,
+				76E5C949127720E9003E2141 /* Default-Portrait.png */,
+				76E5C9371277208F003E2141 /* Default-Landscape.png */,
 				C937F5ED123D61DB00EB91D6 /* App.png */,
 				C937F60D123D666F00EB91D6 /* App-72.png */,
 				C937F5EE123D61DB00EB91D6 /* App@2x.png */,
@@ -286,6 +292,8 @@
 				C937F60E123D666F00EB91D6 /* App-72.png in Resources */,
 				F95AB1D812407B1B00C332DC /* Settings.bundle in Resources */,
 				C937DE3912452EFD00EBD77A /* Default@2x.png in Resources */,
+				76E5C9391277208F003E2141 /* Default-Landscape.png in Resources */,
+				76E5C94A127720E9003E2141 /* Default-Portrait.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
