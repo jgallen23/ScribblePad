@@ -1,4 +1,4 @@
-var Scribble = Model.extend({
+var Scribble = ui.Model.extend({
 	init: function(initial) {
 		this._data = {
 			key: '',

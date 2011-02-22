@@ -1,6 +1,6 @@
-var ScribbleData = Class.extend({
+var ScribbleData = ui.Class.extend({
 	init: function() {
-		this.provider = new Lawnchair('scribbles');
+		this.provider = new Lawnchair({ table: 'scribbles', adaptor: 'webkit' });
 	},
 	find: function(cb) {
 		this.provider.all(function(data) {

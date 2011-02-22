@@ -1,10 +1,10 @@
-var AppController = Class.extend({
+var AppController = ui.Class.extend({
 	init: function() {
 		var self = this;
 		this._preventScroll();
 		this._resize();
 		this.scribbleController = new ScribbleController(x$("#Scribble"));
-		if (browser.isPhoneGap) {
+		if (ui.browser.isPhoneGap) {
 			this.iAdController = new iAdController();
 		}
 		document.addEventListener("applicationActive", function() {
@@ -19,7 +19,7 @@ var AppController = Class.extend({
 		this.scribbleController.newScribble();
 	},
 	_preventScroll: function() {
-		if (browser.isMobile) {
+		if (ui.browser.isMobile) {
 			//prevent scroll
 			function preventBehavior(e) { 
 			  e.preventDefault(); 
@@ -29,7 +29,7 @@ var AppController = Class.extend({
 	},
 	_resize: function() {
 		var resize = function(event) {
-			debug.log("resize");
+			console.log("resize");
 			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"));
 			var w = window.innerWidth - 10;
 			var h = window.innerHeight - 5;

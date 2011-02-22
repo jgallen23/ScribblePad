@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Recurring</title>
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name = "viewport" content = "width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0">
+
+		{% for file in css_files %}
+		<link rel="stylesheet" type="text/css" href="{{ css_path }}/{{ file }}"/>
+		{% endfor %}
+		{% if remote %}
+		<script src="http://{{ remote }}:8081/target/target-script.js"></script>
+		{% endif %}
+	</head>
+	<body class="{% if debug %} Debug{% else %} Release{% endif %}">
+		<div id="PageContainer">
+
+			<div class="Sheets">
+				<div class="Sheet"></div>
+				<div id="Scribble" class="Sheet">
+					<div class="pagination"><span class="jsCurrentIndex"></span> of <span id="jsTotal" class="jsTotal"></span></div>
+					<a class="Button ViewAllButton jsViewAllButton"><span>View All</span></a>
+					<a class="Button CameraButton jsCameraButton"><span>Camera</span></a>
+					<a class="Button DeleteButton jsDeleteButton"><span>Delete</span></a>
+					<a class="Button NewButton jsNewButton"><span>New</span></a>
+					<a class="Button PreviousButton jsPrevButton"><span>Previous</span></a>
+					<a class="Button NextButton jsNextButton"><span>Next</span></a>
+					<!--
+					<ul class="Toolbar">
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+						<li></li>
+					</ul>
+					--!>
+					<canvas></canvas>
+
+				</div>
+				<div id="ViewAll" class="Sheet">
+					<div class="container">
+						<ul class="ImageList"></ul>
+					</div>
+					<ul class="Toolbar">
+						<li><a class="Button NewButton jsNewButton2"><span>New</span></a></li>
+						<li class="right"><a class="Button NextButton jsNextButton2"><span>Next</span></a></li>
+						<li class="right"><a class="Button PreviousButton jsPrevButton2"><span>Previous</span></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		{% if phonegap %}
+			<script src="phonegap.js"></script>
+			{% for file in phonegap_plugin_files %}
+			<script src="{{ js_path }}/{{ file }}"></script>
+			{% endfor %}
+		{% endif %}
+		{% for file in appui_files %}
+		<script src="{{ appui_path }}/{{ file }}"></script>
+		{% endfor %}
+		{% for file in js_files %}
+		<script src="{{ js_path }}/{{ file }}"></script>
+		{% endfor %}
+		<script>
+			ui.ready(function() {
+				ui.mobile.disableScrollingPermanently();
+                appController = new AppController();
+                /*
+				persistence.store.websql.config(persistence, 'Recurring', 'RecurringDb', 5 * 1024 * 1024);
+				persistence.schemaSync(function(tx) {
+					new TaskListController('TaskList');
+				});
+                */ 
+			});
+			ui.resize(function(width, height) {
+                return;
+				var container = document.getElementById("PageContainer");
+				container.style.width = width+"px";
+				container.style.height = height+"px";
+				ui.find(".Page div[role='content']", function(elem) {
+					elem.style.height = (height - 42)+"px";
+				});
+			});
+		</script>
+	</body>
+</html>

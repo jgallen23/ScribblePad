@@ -1,4 +1,4 @@
-var iAdController = Class.extend({
+var iAdController = ui.Class.extend({
 	init: function() {
 		var self = this;
 

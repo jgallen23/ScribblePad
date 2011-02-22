@@ -1,4 +1,4 @@
-var ScribbleController = Controller.extend({
+var ScribbleController = ui.Controller.extend({
 	init: function(element) {	
 		this._super(element);
 		var self = this;

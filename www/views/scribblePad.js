@@ -1,4 +1,4 @@
-var ScribblePad = View.extend({
+var ScribblePad = ui.View.extend({
 	init: function(canvas) {
 		this.isDrawing = false;
 		this._drawMove = false;

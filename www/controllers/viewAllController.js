@@ -1,4 +1,4 @@
-var ViewAllController = Controller.extend({
+var ViewAllController = ui.Controller.extend({
 	init: function(element, scribbles, parentController) {
 		var self = this;
 		this.element = element
