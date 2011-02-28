@@ -49,11 +49,11 @@
 			remoteGlobalIDString = D2AAC07E0554694100DB518D;
 			remoteInfo = PhoneGapLib;
 		};
-		C92C5E74131B63A900A12180 /* PBXContainerItemProxy */ = {
+		764FA90E131BFBA70073B8F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7604BE571275D80500DBF3C1 /* PhoneGapLib.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = D2AAC07D0554694100DB518D /* PhoneGapLib */;
+			remoteGlobalIDString = D2AAC07D0554694100DB518D;
 			remoteInfo = PhoneGapLib;
 		};
 /* End PBXContainerItemProxy section */
@@ -247,7 +247,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				C92C5E75131B63A900A12180 /* PBXTargetDependency */,
+				764FA90F131BFBA70073B8F0 /* PBXTargetDependency */,
 			);
 			name = ScribblePad;
 			productName = ScribblePad;
@@ -342,7 +342,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "make -C \"${PHONEGAPLIB}\"\necho cp ${PHONEGAPLIB}/javascripts/phonegap.js ${PROJECT_DIR}/www/phonegap.js\ncp \"${PHONEGAPLIB}/javascripts/phonegap.js\" \"${PROJECT_DIR}/www/phonegap.js\"";
+			shellScript = "make -C \"../ext/phonegap-iphone/PhoneGapLib/\"\necho cp ../ext/phonegap-iphone/PhoneGapLib//javascripts/phonegap.js ${PROJECT_DIR}/www/phonegap.js\ncp \"../ext/phonegap-iphone/PhoneGapLib//javascripts/phonegap.0.9.4.min.js\" \"${PROJECT_DIR}/www/phonegap.js\"";
 		};
 		C92C5E77131B63BF00A12180 /* Build Index */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -377,10 +377,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		C92C5E75131B63A900A12180 /* PBXTargetDependency */ = {
+		764FA90F131BFBA70073B8F0 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PhoneGapLib;
-			targetProxy = C92C5E74131B63A900A12180 /* PBXContainerItemProxy */;
+			targetProxy = 764FA90E131BFBA70073B8F0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

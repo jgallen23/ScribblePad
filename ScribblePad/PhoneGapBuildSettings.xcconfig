@@ -1,0 +1,8 @@
+//
+//  PhoneGap.xcconfig
+//  Recurring
+//
+
+// Override this to use your project specific PHONEGAPLIB
+//PHONEGAPLIB = $(PHONEGAPLIB)
+PHONEGAPLIB = ../ext/phonegap-iphone/PhoneGapLib/
