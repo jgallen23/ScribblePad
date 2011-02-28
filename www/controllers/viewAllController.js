@@ -1,7 +1,7 @@
 var ViewAllController = ui.Controller.extend({
 	init: function(element, scribbles, parentController) {
 		var self = this;
-		this.element = element
+		this._super(element);
 		this.currentPage = 0;
 		this.itemsPerPage = 0;
 		this.parentController = parentController;
@@ -9,21 +9,22 @@ var ViewAllController = ui.Controller.extend({
 		this._updateContainerLimits();
 		this._render();
 		window.addEventListener("resize", function() { self._updateContainerLimits(); });
-
+		/*
 		this.bindClickEvents({
-		/*"img": function() { self.loadScribble.call(this) },*/
 			".jsNewButton2": self.newScribble,
 			".jsNextButton2": self.next,
 			".jsPrevButton2": self.prev
 		});
+		*/
 		this.show();
 	},
 	_updateContainerLimits: function() { 
-		var container = this.element.find(".container");
-		var h = parseInt(container.getStyle("height"));
-		var w = parseInt(container.getStyle("width"));
+		var container = this.view.find(".container");
+		var h = parseInt(container.clientHeight, 10);
+		var w = parseInt(container.clientWidth, 10);
 		var itemsH = Math.floor(h/120);
 		var itemsW = Math.floor(w/120);
+		debugger;
 		this.itemsPerPage = itemsH*itemsW;
 		this.totalPages = Math.ceil(this.scribbles.length/this.itemsPerPage);
 		this._render();
@@ -40,11 +41,12 @@ var ViewAllController = ui.Controller.extend({
 				htmlArr.push("<li id='ViewImage_"+i+"'><img src='ui/images/pixel.png'/></li>");
 			}
 		}
-		this.element.find("ul.ImageList").html(htmlArr.join(""));	
-		this.element.find("ul.ImageList li").on("click", function() {
+		this.view.find("ul.ImageList").innerHTML = htmlArr.join("");	
+		
+		this.view.find("ul.ImageList li").addEventListener("click", function() {
 			var id = this.id.split("_")[1];
-			self.hide()
-			self.parentController.loadScribbleByIndex(parseInt(id));
+			self.hide();
+			self.parentController.loadScribbleByIndex(parseInt(id, 10));
 		});
 		this.updatePagination();
 	},
@@ -52,19 +54,17 @@ var ViewAllController = ui.Controller.extend({
 		debug.log(this);
 		var id = this.id.split("_")[1];
 		this.hide();
-		this.parentController.loadScribbleByIndex(parseInt(id));
+		this.parentController.loadScribbleByIndex(parseInt(id, 10));
 	},
 	newScribble: function() {
 		this.hide();
 		this.parentController.newScribble();
 	},
 	show: function() {
-		var h = parseInt(this.element.getStyle("height")) + 20;
-        this.element.setStyle("top", "-"+h+"px");
-        var self = this;
-		this.animate({
-			'webkitTransform': 'translateY('+h+'px)'
-        });
+		debugger;
+		var h = parseInt(this.view.element.clientHeight, 10) + 20;
+        this.view.element.style.top = "-"+h+"px";
+		this.view.animate("translateY(-"+h+"px");
 	},
 	hide: function() {
 		var self = this;
@@ -76,14 +76,14 @@ var ViewAllController = ui.Controller.extend({
 	},
 	updatePagination: function() {
 		if (this.currentPage == 0) {
-			x$(".jsPrevButton2").setStyle("visibility", "hidden");
+			this.view.find(".jsPrevButton2").style.visibility = "hidden";
 		} else {
-			x$(".jsPrevButton2").setStyle("visibility", "visible");
+			this.view.find(".jsPrevButton2").style.visibility = "visible";
 		}
 		if (this.scribbles.length <= ((this.currentPage + 1) * this.itemsPerPage)) {
-			x$(".jsNextButton2").setStyle("visibility", "hidden");
+			this.view.find(".jsNextButton2").style.visibility = "hidden";
 		} else {
-			x$(".jsNextButton2").setStyle("visibility", "visible");
+			this.view.find(".jsNextButton2").style.visibility = "visible";
 		}
 	},
 	next: function() {

@@ -37,7 +37,7 @@ var ScribbleController = ui.Controller.extend({
 		this.load();
 	},
 	deviceCheck: function() {
-		if (!ui.browser.isMobile || (PhoneGap.available && navigator.device.platform != "iPhone")) {
+		if (!ui.browser.isPhoneGap || navigator.device.platform != "iPhone") {
 			this.view.find(".jsCameraButton").style.display = "none";
 		}
 	},
@@ -137,7 +137,10 @@ var ScribbleController = ui.Controller.extend({
 	},
 	deleteScribble: function() {
 		var self = this;
-		var del = function() {
+		var del = function(i) {
+			console.log(i);
+			if (i != 1)
+				return;
 			var index = self.currentIndex;
 			self.currentIndex = -2;
 			self.scribbles.splice(index, 1);
@@ -151,16 +154,12 @@ var ScribbleController = ui.Controller.extend({
 			}
 			self.loadScribbleByIndex(index);
 		};
+		var msg = "Are you sure you want to delete this Scribble?";
 		if (ui.browser.isPhoneGap) {
-			var delegate = navigator.notification.alert("Are you sure you want to delete this Scribble?", "Delete","Cancel,OK");
-			delegate.onAlertDismissed = function(index, label) {
-				if (index == 1) {
-					del();
-				}
-			};
+			navigator.notification.confirm(msg, del);
 		} else {
-			if (confirm("Are you sure you want to delete this Scribble?")) {
-				del();
+			if (confirm(msg)) {
+				del(1);
 			}
 		}
 	},
