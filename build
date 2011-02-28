@@ -1,7 +1,8 @@
 #!/bin/sh
 git submodule update --init --recursive
 pushd ext/appui
-sh build app.mobile.lawnchair
+sh build app.mobile
+sh build app.lawnchair
 popd
 cp ext/appui/lib/* www/ui/compressed/
 #cp ext/phonegap-plugins/iPhone/LocalNotification/LocalNotification.js www/ui/scripts/phonegap/

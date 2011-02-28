@@ -5,7 +5,7 @@ var ScribbleData = ui.Class.extend({
 	find: function(cb) {
 		this.provider.all(function(data) {
 			var scribbles = [];
-			data.each(function(obj) {
+			data.forEach(function(obj) {
 				var s = new Scribble(obj);
 				scribbles.push(s);
 			});

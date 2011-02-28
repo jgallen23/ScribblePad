@@ -15,39 +15,10 @@
 	</head>
 	<body class="{% if debug %} Debug{% else %} Release{% endif %}">
 		<div id="PageContainer">
-
 			<div class="Sheets">
 				<div class="Sheet"></div>
-				<div id="Scribble" class="Sheet">
-					<div class="pagination"><span class="jsCurrentIndex"></span> of <span id="jsTotal" class="jsTotal"></span></div>
-					<a class="Button ViewAllButton jsViewAllButton"><span>View All</span></a>
-					<a class="Button CameraButton jsCameraButton"><span>Camera</span></a>
-					<a class="Button DeleteButton jsDeleteButton"><span>Delete</span></a>
-					<a class="Button NewButton jsNewButton"><span>New</span></a>
-					<a class="Button PreviousButton jsPrevButton"><span>Previous</span></a>
-					<a class="Button NextButton jsNextButton"><span>Next</span></a>
-					<!--
-					<ul class="Toolbar">
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-						<li></li>
-					</ul>
-					--!>
-					<canvas></canvas>
-
-				</div>
-				<div id="ViewAll" class="Sheet">
-					<div class="container">
-						<ul class="ImageList"></ul>
-					</div>
-					<ul class="Toolbar">
-						<li><a class="Button NewButton jsNewButton2"><span>New</span></a></li>
-						<li class="right"><a class="Button NextButton jsNextButton2"><span>Next</span></a></li>
-						<li class="right"><a class="Button PreviousButton jsPrevButton2"><span>Previous</span></a></li>
-					</ul>
-				</div>
+				{% include "scribble.html" %}
+				{% include "view_all.html" %}
 			</div>
 		</div>
 		{% if phonegap %}
@@ -65,7 +36,8 @@
 		<script>
 			ui.ready(function() {
 				ui.mobile.disableScrollingPermanently();
-                appController = new AppController();
+                //appController = new AppController();
+				var controller = new ScribbleController('Scribble');
                 /*
 				persistence.store.websql.config(persistence, 'Recurring', 'RecurringDb', 5 * 1024 * 1024);
 				persistence.schemaSync(function(tx) {
@@ -74,12 +46,22 @@
                 */ 
 			});
 			ui.resize(function(width, height) {
-                return;
+				/*
+				console.log("resize");
+				var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"), 10);
+				var w = window.innerWidth - 10;
+				var h = window.innerHeight - 5;
+				x$(".Sheet").setStyle("width", w+"px");
+				x$(".Sheet").setStyle("height", h+"px");
+
+				x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
+				*/
 				var container = document.getElementById("PageContainer");
 				container.style.width = width+"px";
 				container.style.height = height+"px";
-				ui.find(".Page div[role='content']", function(elem) {
-					elem.style.height = (height - 42)+"px";
+				ui.find(".Page [role='content']", function(elem) {
+					elem.style.height = (height - 10)+"px";
+					elem.style.width = (width - 10)+"px";
 				});
 			});
 		</script>

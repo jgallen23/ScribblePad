@@ -2,6 +2,13 @@ body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background:
 * { -webkit-user-select: none;} 
 
 
+/* NEW */
+
+#PageContainer { overflow: hidden; position: relative; }
+.Page { position: absolute; top: 0; width: 100%; } 
+
+/* END NEW */
+
 canvas { }
 
 .Sheets { position: relative; }

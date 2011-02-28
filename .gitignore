@@ -1,6 +1,11 @@
 .DS_Store
+www/ui/compressed/*.js
+www/ui/compressed/*.css
 ScribblePad/build
 *.mode1v3
 *.mode2v3
 *.pbxuser
 *.perspectivev3
+www/index.html
+www/phonegap.js
+ScribblePad/stderr.log

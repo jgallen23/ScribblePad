@@ -2,9 +2,7 @@ output_dir: 'www/ui/compressed'
 js:
   phonegap_plugins:
     files:
-      #- 'ext/phonegap-plugins/iPhone/Badge/Badge.js'
-      #- 'ext/phonegap-plugins/iPhone/DatePicker/DatePicker.js'
-      #- 'ext/phonegap-plugins/iPhone/LocalNotification/LocalNotification.js'
+      - 'ext/phonegap-plugins/iPhone/Badge/Badge.js'
   global:
     files:
       #- 'www/ui/scripts/weinre.js'

@@ -21,7 +21,7 @@ var AppController = ui.Class.extend({
 	_preventScroll: function() {
 		if (ui.browser.isMobile) {
 			//prevent scroll
-			function preventBehavior(e) { 
+			var preventBehavior = function(e) { 
 			  e.preventDefault(); 
 			};
 			document.addEventListener("touchmove", preventBehavior, false);
@@ -30,7 +30,7 @@ var AppController = ui.Class.extend({
 	_resize: function() {
 		var resize = function(event) {
 			console.log("resize");
-			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"));
+			var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"), 10);
 			var w = window.innerWidth - 10;
 			var h = window.innerHeight - 5;
 			x$(".Sheet").setStyle("width", w+"px");
