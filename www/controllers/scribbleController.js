@@ -4,7 +4,18 @@ var ScribbleController = ui.Controller.extend({
 		var self = this;
 		this.currentIndex = 0;
 		this.scribbles = [];
-		//this.scribblePad = new ScribblePad(this.view.find("canvas"));
+		this.loadedScribble = null;
+		var container = this.view.find("#draw");
+		this.scribblePad = new ScribbleView(container);
+		this.scribblePad.bind("drawEnd", function() {
+			if (!self.loadedScribble) {
+				self.loadedScribble = new Scribble();
+			}
+			self.loadedScribble.path = this.strokes;
+			self.loadedScribble.photoData = this.photo;
+			self.loadedScribble.imageData = this.strokeImage;
+			self.saveScribble(self.loadedScribble);
+		});
 		this._buttonFadeTimeout = null;
         /*
 		this.scribblePad.bind({
@@ -19,24 +30,9 @@ var ScribbleController = ui.Controller.extend({
 			},
 			"drawEnd2": function() {
                 
-				self._buttonFadeTimeout = setTimeout(function() {
-                    self.view.find(".Button").style.opaicty = 0.6;
-				}, 1500);
 			}
 		});
-        */
-		//events
-        /*
-		this.bindClickEvents({
-			'.jsNewButton': self.newScribble,
-			'.jsViewAllButton': self.viewAllScribbles,
-			'.jsDeleteButton': self.deleteScribble,
-			'.jsSaveButton': self.saveScribble,
-			'.jsPrevButton': self.prevScribble,
-			'.jsNextButton': self.nextScribble,
-			'.jsCameraButton': self.takePhoto
-		});
-        */
+		*/
 		this.deviceCheck();
 		this.load();
 	},
@@ -46,11 +42,8 @@ var ScribbleController = ui.Controller.extend({
 		}
 	},
 	updatePagination: function() {
-        return; //TODO: remove
 		var index = this.currentIndex;
-		console.log(this.scribblePad.scribble);
-		var count = (this.scribblePad.scribble.key)?this.scribbles.length:this.scribbles.length+1;
-		debug.log("update pag");
+		var count = (this.loadedScribble)?this.scribbles.length:this.scribbles.length+1;
 		if (index === 0) {
             this.view.find(".jsPrevButton").style.display = "none";
 		} else {
@@ -68,7 +61,7 @@ var ScribbleController = ui.Controller.extend({
 		this.updateNewButton();
 	},
 	updateNewButton: function() {
-		if (this.scribblePad.scribble.key) {
+		if (this.loadedScribble) {
 			this.view.find(".jsNewButton").style.visibility = "visible";
 		} else {
 			this.view.find(".jsNewButton").style.visibility = "hidden";
@@ -89,8 +82,8 @@ var ScribbleController = ui.Controller.extend({
 		});
 	},
 	printStatus: function() {
-		debug.log("CurrentIndex: "+this.currentIndex);
-		debug.log("Total Scribbles: "+this.scribbles.length);
+		console.log("CurrentIndex: "+this.currentIndex);
+		console.log("Total Scribbles: "+this.scribbles.length);
 	},
 	prevScribble: function() { 
 		this.loadScribbleByIndex(this.currentIndex - 1);
@@ -111,28 +104,30 @@ var ScribbleController = ui.Controller.extend({
 			this.newScribble();
 		} else {
 			this.currentIndex = index;
-			this.scribblePad.loadScribble(this.scribbles[this.currentIndex]);
+			var s = this.scribbles[this.currentIndex];
+			this.loadedScribble = s;
+			this.scribblePad.load(s.path, null, s.imageData, s.photoData);
 			this.updatePagination();
 		}
 	},
 	newScribble: function() {
 		this.show();
-        return;
-        //TODO add back in
-		if (!this.scribblePad.scribble || this.scribblePad.scribbledLoaded || this.scribblePad.isDirty) {
-			debug.log("create");
+		this.scribblePad.clear();
+		if (this.loadedScribble || this.scribblePad.isDirty) {
+			console.log("create");
 			this.currentIndex = this.scribbles.length;
-			this.scribblePad.clear();
+			this.loadedScribble = null;
 			this.updatePagination();
 		}
 	},
 	saveScribble: function(scribble) {
 		var self = this;
-		debug.log("save data");
-		debug.log(scribble.key);
-		debug.log("scribble loaded: "+this.scribblePad.scribbleLoaded);
-		if (!scribble.key)
+		console.log("save data");
+		console.log(scribble.key);
+		console.log("scribble loaded: "+this.loadedScribble);
+		if (!scribble.key) {
 			this.scribbles.push(scribble);
+		}
 		Scribble.data.save(scribble, function(r) {
 			scribble.key = r.key;
 			self.updateNewButton();
@@ -148,8 +143,8 @@ var ScribbleController = ui.Controller.extend({
 			self.scribbles.splice(index, 1);
 			self.updateBadge();
 
-			if (self.scribblePad.scribble.key) {
-				Scribble.data.remove(self.scribblePad.scribble);
+			if (self.loadedScribble) {
+				Scribble.data.remove(self.loadedScribble);
 			}
 			if (index == self.scribbles.length) {
 				index--;
@@ -177,7 +172,7 @@ var ScribbleController = ui.Controller.extend({
 		console.log("Badge: "+self.scribbles.length);
 		if (ui.browser.isPhoneGap) {
 			plugins.preferences.boolForKey("show_badge", function(key, value) {
-				debug.log("update badge: "+value);
+				console.log("update badge: "+value);
 				if (value) {
 					var count = self.scribbles.length;
 					/*if (!self.scribbles[count-1].isDirty) {*/

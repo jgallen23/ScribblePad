@@ -11,7 +11,7 @@ js:
       #- 'www/ui/scripts/date.js'
       - 'www/dataproviders/scribble.js'
       - 'www/models/scribble.js'
-      - 'www/views/scribblePad.js'
+      - 'www/views/scribble.js'
       - 'www/controllers/appController.js'
       - 'www/controllers/scribbleController.js'
       - 'www/controllers/viewAllController.js'

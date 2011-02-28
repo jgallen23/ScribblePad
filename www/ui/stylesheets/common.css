@@ -3,7 +3,7 @@ body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background:
 
 
 /* NEW */
-
+button { -webkit-appearance: none; border: 0; background: 0; }
 #PageContainer { overflow: hidden; position: relative; }
 .Page { position: absolute; top: 0; width: 100%; } 
 

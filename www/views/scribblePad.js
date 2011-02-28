@@ -10,7 +10,7 @@ var ScribblePad = ui.View.extend({
 		this.saveScribbleCallback = false;
 		this.startX = 0;
 		this.startY = 0;
-		this.saveTimeout;
+		this.saveTimeout = null;
 		var self = this;
 
 		//events

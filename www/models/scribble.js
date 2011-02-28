@@ -6,6 +6,7 @@ var Scribble = ui.Model.extend({
 			modifiedOn: '',
 			imageData: '',
 			photoData: '',
+            path: [],
 			height: 0,
 			width: 0
 

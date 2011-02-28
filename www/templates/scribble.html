@@ -1,11 +1,11 @@
 <div id="Scribble" class="Page Sheet">
     <div class="pagination"><span class="jsCurrentIndex"></span> of <span id="jsTotal" class="jsTotal"></span></div>
-    <a class="Button ViewAllButton jsViewAllButton"><span>View All</span></a>
-    <a class="Button CameraButton jsCameraButton"><span>Camera</span></a>
-    <a class="Button DeleteButton jsDeleteButton"><span>Delete</span></a>
-    <a class="Button NewButton jsNewButton"><span>New</span></a>
-    <a class="Button PreviousButton jsPrevButton"><span>Previous</span></a>
-    <a class="Button NextButton jsNextButton"><span>Next</span></a>
+    <button data-action="viewAllScribbles" class="Button ViewAllButton jsViewAllButton"><span>View All</span></button>
+    <button data-action="takePhoto" class="Button CameraButton jsCameraButton"><span>Camera</span></button>
+    <button data-action="deleteScribble" class="Button DeleteButton jsDeleteButton"><span>Delete</span></button>
+    <button data-action="newScribble" class="Button NewButton jsNewButton"><span>New</span></button>
+    <button data-action="prevScribble" class="Button PreviousButton jsPrevButton"><span>Previous</span></button>
+    <button data-action="nextScribble" class="Button NextButton jsNextButton"><span>Next</span></button>
     <!--
     <ul class="Toolbar">
         <li></li>
@@ -15,6 +15,8 @@
         <li></li>
     </ul>
     --!>
-    <canvas role="content"></canvas>
+	<div id="draw" role="content">
+		<canvas></canvas>
+	</div>
 
 </div>
