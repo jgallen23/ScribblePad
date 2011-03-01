@@ -189,6 +189,8 @@ var ScribbleView = ui.View.extend({
 		this._scale = null;
 		this.offset = null;
 		this.strokes = [];
+        this.photo = null;
+        this.strokeImage = null;
 		console.log("clear");
 		this.canvas.width = this.element.clientWidth;
 		this.canvas.height = this.element.clientHeight;

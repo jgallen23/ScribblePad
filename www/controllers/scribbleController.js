@@ -10,6 +10,9 @@ var ScribbleController = ui.Controller.extend({
 			console.log("active");
 			self.newScribble();
 		});
+		ui.resize(function(width, height) {
+			self.resize(width, height);
+		});
 		this.scribblePad = new ScribbleView(container);
 		this.scribblePad.bind("drawEnd", function() {
 			if (!self.loadedScribble) {
@@ -39,6 +42,14 @@ var ScribbleController = ui.Controller.extend({
 		*/
 		this.deviceCheck();
 		this.load();
+	},
+	resize: function(width, height) {
+		if (this.loadedScribble) {
+			var i = this.currentIndex;
+			this.currentIndex = -1;
+			this.scribblePad.clear();
+			this.loadScribbleByIndex(i);
+		}
 	},
 	deviceCheck: function() {
 		if (!ui.browser.isPhoneGap || navigator.device.platform != "iPhone") {
