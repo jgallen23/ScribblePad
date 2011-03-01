@@ -13,7 +13,7 @@ js:
       - 'www/dataproviders/scribble.js'
       - 'www/models/scribble.js'
       - 'www/views/scribble.js'
-      - 'www/controllers/appController.js'
+      #- 'www/controllers/appController.js'
       - 'www/controllers/scribbleController.js'
       - 'www/controllers/viewAllController.js'
       - 'www/controllers/iAdController.js'

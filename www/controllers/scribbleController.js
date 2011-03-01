@@ -6,6 +6,10 @@ var ScribbleController = ui.Controller.extend({
 		this.scribbles = [];
 		this.loadedScribble = null;
 		var container = this.view.find("#draw");
+		document.addEventListener("applicationActive", function() {
+			console.log("active");
+			self.newScribble();
+		});
 		this.scribblePad = new ScribbleView(container);
 		this.scribblePad.bind("drawEnd", function() {
 			if (!self.loadedScribble) {
