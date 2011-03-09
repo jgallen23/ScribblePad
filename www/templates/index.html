@@ -46,20 +46,16 @@
                 */ 
 			});
 			ui.resize(function(width, height) {
-				/*
-				console.log("resize");
-				var toolbarHeight = parseInt(x$(".Toolbar").getStyle("height"), 10);
-				var w = window.innerWidth - 10;
-				var h = window.innerHeight - 5;
-				x$(".Sheet").setStyle("width", w+"px");
-				x$(".Sheet").setStyle("height", h+"px");
-
-				x$("#ViewAll .container").setStyle("height", (h - toolbarHeight)+"px");
-				*/
 				var container = document.getElementById("PageContainer");
 				container.style.width = width+"px";
 				container.style.height = height+"px";
 				ui.find(".Page [role='content']", function(elem) {
+					var header = elem.parentNode.querySelector("header");
+					var footer = elem.parentNode.querySelector("footer");
+					if (header)
+						height -= header.clientHeight;	
+					if (footer)
+						height -= footer.clientHeight;
 					elem.style.height = (height - 5)+"px";
 					elem.style.width = (width - 10)+"px";
 				});

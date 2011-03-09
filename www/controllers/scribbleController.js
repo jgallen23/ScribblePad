@@ -179,7 +179,7 @@ var ScribbleController = ui.Controller.extend({
 		}
 	},
 	viewAllScribbles: function() {
-		new ViewAllController("ViewAll", this.scribbles, this);
+		var viewAll = new ViewAllController("ViewAll", this.scribbles, this);
 	},
 	updateBadge: function() {
 		var self = this;

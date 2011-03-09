@@ -6,6 +6,8 @@ var ViewAllController = ui.Controller.extend({
 		this.itemsPerPage = 0;
 		this.parentController = parentController;
 		this.scribbles = scribbles;
+		var container = this.view.find(".container");
+		container.parentNode.style.top = "-"+container.clientHeight+"px";
 		this._updateContainerLimits();
 		this._render();
 		window.addEventListener("resize", function() { self._updateContainerLimits(); });
@@ -24,7 +26,6 @@ var ViewAllController = ui.Controller.extend({
 		var w = parseInt(container.clientWidth, 10);
 		var itemsH = Math.floor(h/120);
 		var itemsW = Math.floor(w/120);
-		debugger;
 		this.itemsPerPage = itemsH*itemsW;
 		this.totalPages = Math.ceil(this.scribbles.length/this.itemsPerPage);
 		this._render();
@@ -36,22 +37,20 @@ var ViewAllController = ui.Controller.extend({
 		var count = (this.totalPages == (this.currentPage + 1))?this.scribbles.length:this.itemsPerPage+start;
 		for (var i = start; i < count; i++) {
             if (this.scribbles[i].imageData) {
-                htmlArr.push("<li id='ViewImage_"+i+"'><img src='"+this.scribbles[i].imageData+"'/></li>");
+                htmlArr.push("<li><img id='ViewImage_"+i+"' data-action='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
 			} else {
-				htmlArr.push("<li id='ViewImage_"+i+"'><img src='ui/images/pixel.png'/></li>");
+				htmlArr.push("<li><img id='ViewImage_"+i+"' data-action='viewScribble' src='ui/images/pixel.png'/></li>");
 			}
 		}
 		this.view.find("ul.ImageList").innerHTML = htmlArr.join("");	
-		
-		this.view.find("ul.ImageList li").addEventListener("click", function() {
-			var id = this.id.split("_")[1];
-			self.hide();
-			self.parentController.loadScribbleByIndex(parseInt(id, 10));
-		});
 		this.updatePagination();
 	},
+	viewScribble: function(e) {
+		var id = e.target.getAttribute("id").split("_")[1];
+		this.hide();
+		this.parentController.loadScribbleByIndex(parseInt(id, 10));
+	},
 	loadScribble: function() {
-		debug.log(this);
 		var id = this.id.split("_")[1];
 		this.hide();
 		this.parentController.loadScribbleByIndex(parseInt(id, 10));
@@ -61,17 +60,14 @@ var ViewAllController = ui.Controller.extend({
 		this.parentController.newScribble();
 	},
 	show: function() {
-		debugger;
-		var h = parseInt(this.view.element.clientHeight, 10) + 20;
-        this.view.element.style.top = "-"+h+"px";
-		this.view.animate("translateY(-"+h+"px");
+		/*var h = parseInt(this.view.element.clientHeight, 10) + 20;*/
+		/*this.view.element.style.top = "-"+h+"px";*/
+		var h = this.view.find(".container").clientHeight;
+		this.view.animate("translateY("+h+"px)");
 	},
 	hide: function() {
-		var self = this;
-		var h = parseInt(this.element.getStyle("height")) + 20;
-		this.animate({
-			'webkitTransform': 'translateY(-'+h+'px)'
-		});
+		var h = this.view.find(".container").clientHeight;
+		this.view.animate("translateY(-"+h+"px)");
 		
 	},
 	updatePagination: function() {
