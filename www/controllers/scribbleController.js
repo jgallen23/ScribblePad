@@ -94,6 +94,8 @@ var ScribbleController = ui.Controller.extend({
 				self.updatePagination();
 			}, 200);
 			self.updateBadge();
+			//tmp
+			/*self.viewAllScribbles();*/
 		});
 	},
 	printStatus: function() {

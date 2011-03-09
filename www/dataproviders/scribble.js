@@ -23,7 +23,7 @@ var ScribbleData = ui.Class.extend({
 			if (!update) {
 				scribble.key = data.key;
 			}
-			cb(scribble);
+			if (cb) cb(scribble);
 		});
 	},
 	remove: function(scribble, cb) {

@@ -127,8 +127,8 @@ var ScribbleView = ui.View.extend({
 		}, 30);
 	},
 	redraw: function() {
-		var self = this;
 		this.canvas.width = this.canvas.width;
+		var self = this;
 		
 		if (this.photo) {
 			var photo = new Image();
@@ -168,7 +168,7 @@ var ScribbleView = ui.View.extend({
 		}
 	},
 	load: function(json, origin, image, photo) {
-		this.clear();
+		/*this.clear();*/
 		this.origin = origin || [0, 0];
 		this.strokes = json;
 		this.strokeImage = image;
@@ -189,11 +189,11 @@ var ScribbleView = ui.View.extend({
 		this._scale = null;
 		this.offset = null;
 		this.strokes = [];
+		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
         this.photo = null;
         this.strokeImage = null;
 		console.log("clear");
 		this.canvas.width = this.element.clientWidth;
 		this.canvas.height = this.element.clientHeight;
-		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
 	}
 });

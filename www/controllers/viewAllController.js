@@ -35,15 +35,35 @@ var ViewAllController = ui.Controller.extend({
 		var htmlArr = [];
 		var start = (this.currentPage * this.itemsPerPage);
 		var count = (this.totalPages == (this.currentPage + 1))?this.scribbles.length:this.itemsPerPage+start;
+		var imgHeight = 100;
+		var imgWidth = 100;
+		var sizeStyle = "style='width:"+imgWidth+"px; height:"+imgHeight+"px'";
+		var pathScribbles = [];
 		for (var i = start; i < count; i++) {
+			console.log(this.scribbles[i]);
             if (this.scribbles[i].imageData) {
-                htmlArr.push("<li><img id='ViewImage_"+i+"' data-action='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
+                htmlArr.push("<li><img "+sizeStyle+" id='ViewImage_"+i+"' data-action='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
 			} else {
-				htmlArr.push("<li><img id='ViewImage_"+i+"' data-action='viewScribble' src='ui/images/pixel.png'/></li>");
+				htmlArr.push("<li "+sizeStyle+" ><canvas id='ViewImage_"+i+"' data-action='viewScribble'></canvas></li>");
+				pathScribbles.push(i);
 			}
 		}
 		this.view.find("ul.ImageList").innerHTML = htmlArr.join("");	
+		this.drawScribbles(pathScribbles);
 		this.updatePagination();
+	},
+	drawScribbles: function(indexes) {
+		var self = this;
+		indexes.forEach(function(item, i) {
+			var task = self.scribbles[item];
+			var elem = document.getElementById("ViewImage_"+item).parentNode;
+			var s = new ScribbleView(elem, true);
+
+			var taskScaleX = 100/task.width;
+			var taskScaleY = 100/task.height;
+			s.scale(taskScaleX, taskScaleY);
+			s.load(task.path);
+		});
 	},
 	viewScribble: function(e) {
 		var id = e.target.getAttribute("id").split("_")[1];
