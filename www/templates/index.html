@@ -15,11 +15,8 @@
 	</head>
 	<body class="{% if debug %} Debug{% else %} Release{% endif %}">
 		<div id="PageContainer">
-			<div class="Sheets">
-				<div class="Sheet"></div>
 				{% include "scribble.html" %}
 				{% include "view_all.html" %}
-			</div>
 		</div>
 		{% if phonegap %}
 			<script src="phonegap.js"></script>
@@ -57,7 +54,7 @@
 					if (footer)
 						height -= footer.clientHeight;
 					elem.style.height = (height - 5)+"px";
-					elem.style.width = (width - 10)+"px";
+					elem.style.width = (width - 6)+"px";
 				});
 			});
 		</script>
