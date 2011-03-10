@@ -24,9 +24,15 @@ var ViewAllController = ui.Controller.extend({
 		var container = this.view.find(".container");
 		var h = parseInt(container.clientHeight, 10);
 		var w = parseInt(container.clientWidth, 10);
-		var itemsH = Math.floor(h/120);
-		var itemsW = Math.floor(w/120);
-		this.itemsPerPage = itemsH*itemsW;
+		var paddingX = 60;
+		var paddingY = 30;
+		var itemsWide = 2;
+		var itemsHigh = 2;
+
+		this.itemWidth = Math.floor((w-(itemsWide*paddingX))/itemsWide);
+		this.itemHeight = Math.floor((h-(itemsHigh*paddingY))/itemsHigh);
+
+		this.itemsPerPage = itemsWide*itemsHigh;
 		this.totalPages = Math.ceil(this.scribbles.length/this.itemsPerPage);
 		this._render();
 	},
@@ -35,9 +41,7 @@ var ViewAllController = ui.Controller.extend({
 		var htmlArr = [];
 		var start = (this.currentPage * this.itemsPerPage);
 		var count = (this.totalPages == (this.currentPage + 1))?this.scribbles.length:this.itemsPerPage+start;
-		var imgHeight = 100;
-		var imgWidth = 100;
-		var sizeStyle = "style='width:"+imgWidth+"px; height:"+imgHeight+"px'";
+		var sizeStyle = "style='width:"+this.itemWidth+"px; height:"+this.itemHeight+"px'";
 		var pathScribbles = [];
 		for (var i = start; i < count; i++) {
 			console.log(this.scribbles[i]);
@@ -59,9 +63,16 @@ var ViewAllController = ui.Controller.extend({
 			var elem = document.getElementById("ViewImage_"+item).parentNode;
 			var s = new ScribbleView(elem, true);
 
-			var taskScaleX = 100/task.width;
-			var taskScaleY = 100/task.height;
-			s.scale(taskScaleX, taskScaleY);
+			var scale = 1;
+			if (self.itemWidth > self.itemHeight) {
+				scale = self.itemWidth / task.width;
+			} else {
+				scale = self.itemHeight / task.height;
+			}
+			if (scale > 1) scale = 1;
+			console.log(scale);		
+
+			s.scale(scale, scale);
 			s.load(task.path);
 		});
 	},

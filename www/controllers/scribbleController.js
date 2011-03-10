@@ -123,6 +123,7 @@ var ScribbleController = ui.Controller.extend({
 			this.currentIndex = index;
 			var s = this.scribbles[this.currentIndex];
 			this.loadedScribble = s;
+			this.scribblePad.clear();
 			this.scribblePad.load(s.path, null, s.imageData, s.photoData);
 			this.updatePagination();
 		}
