@@ -26,8 +26,8 @@ var ViewAllController = ui.Controller.extend({
 		var w = parseInt(container.clientWidth, 10);
 		var paddingX = 60;
 		var paddingY = 30;
-		var itemsWide = 2;
-		var itemsHigh = 2;
+		var itemsWide = (w > 900)?3:2;
+		var itemsHigh = (h > 600)?3:2;
 
 		this.itemWidth = Math.floor((w-(itemsWide*paddingX))/itemsWide);
 		this.itemHeight = Math.floor((h-(itemsHigh*paddingY))/itemsHigh);

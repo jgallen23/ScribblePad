@@ -23,7 +23,7 @@ canvas { }
 		.Toolbar li.pagination { line-height: 32px; font-size: 16px; font-family: Arial; }
 
 /* Buttons */
-.Button { height: 32px; width: 32px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.5; }
+.Button { height: 40px; width: 40px; display: block; background-repeat: no-repeat; background-position: center center; opacity: 0.5; }
 	.Button:active { opacity: 1 }
 	.Button2:active { -webkit-box-shadow: 1px 1px 1px #333;-webkit-border-radius: 10px;  } 
 	.Button span { display: none; } 

@@ -52,6 +52,7 @@ var ScribbleController = ui.Controller.extend({
 		}
 	},
 	deviceCheck: function() {
+		return;
 		if (!ui.browser.isPhoneGap || navigator.device.platform != "iPhone") {
 			this.view.find(".jsCameraButton").style.display = "none";
 		}
