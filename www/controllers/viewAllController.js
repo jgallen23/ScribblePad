@@ -69,11 +69,11 @@ var ViewAllController = ui.Controller.extend({
 			} else {
 				scale = self.itemHeight / task.height;
 			}
-			if (scale > 1) scale = 1;
-			console.log(scale);		
+			scale = (scale > 1)?1:(Math.round(scale*1000)/1000);
 
+			s.clear();
 			s.scale(scale, scale);
-			s.load(task.path);
+			s.load(task.path, task.bounds[0]);
 		});
 	},
 	viewScribble: function(e) {

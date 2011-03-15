@@ -7,19 +7,20 @@ var Scribble = ui.Model.extend({
 			imageData: '',
 			photoData: '',
             path: [],
+			bounds: [],
 			height: 0,
 			width: 0
 		};
 		this._super(initial);
-		if (this.path && this.height === 0) {
-			this._updateDimensions();
+		if (this.path && this.height <= 0) {
+			this._updateDimensions(this.path);
 		}
 	},
 	_propertySet: function(prop, value, oldValue) {
 		this._data.modifiedOn = new Date().getTime();
 		this._super(prop, value);
 		if (prop == "path") {
-			this._updateDimensions();
+			this._updateDimensions(value);
 		}
 	},
 	_getBounds: function(path) {
@@ -39,9 +40,11 @@ var Scribble = ui.Model.extend({
 		var bounds = [[minX, minY], [maxX, maxY]];
 		return bounds;
 	},
-	_updateDimensions: function() {
+	_updateDimensions: function(path) {
 		console.log("update dim");
-		var b = this._getBounds(this._data.path);
+		var b = this._getBounds(path);
+		this._data.bounds = b;
+		console.log("bounds", b);
 		this._data.height = b[1][1] - b[0][1];
 		this._data.width = b[1][0] - b[0][0];
 		//this.save();
