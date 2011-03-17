@@ -24,8 +24,8 @@ var ViewAllController = ui.Controller.extend({
 		var container = this.view.find(".container");
 		var h = parseInt(container.clientHeight, 10);
 		var w = parseInt(container.clientWidth, 10);
-		var paddingX = 60;
-		var paddingY = 30;
+		var paddingX = (w > 900)?60:20;
+		var paddingY = (h > 600)?30:20;
 		var itemsWide = (w > 900)?3:2;
 		var itemsHigh = (h > 600)?3:2;
 
@@ -44,7 +44,6 @@ var ViewAllController = ui.Controller.extend({
 		var sizeStyle = "style='width:"+this.itemWidth+"px; height:"+this.itemHeight+"px'";
 		var pathScribbles = [];
 		for (var i = start; i < count; i++) {
-			console.log(this.scribbles[i]);
             if (this.scribbles[i].imageData) {
                 htmlArr.push("<li><img "+sizeStyle+" id='ViewImage_"+i+"' data-action='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
 			} else {
@@ -64,15 +63,16 @@ var ViewAllController = ui.Controller.extend({
 			var s = new ScribbleView(elem, true);
 
 			var scale = 1;
-			if (self.itemWidth > self.itemHeight) {
-				scale = self.itemWidth / task.width;
-			} else {
-				scale = self.itemHeight / task.height;
-			}
-			scale = (scale > 1)?1:(Math.round(scale*1000)/1000);
+			/*if (self.itemWidth > self.itemHeight) {*/
+				scaleX = self.itemWidth / task.width;
+				scaleY = self.itemHeight / task.height;
+				/*} else {*/
+				/*}*/
+				/*scale = (scale > 1)?1:(Math.round(scale*1000)/1000);*/
+				/*console.log(scale);*/
 
 			s.clear();
-			s.scale(scale, scale);
+			s.scale(scaleX, scaleY);
 			s.load(task.path, task.bounds[0]);
 		});
 	},

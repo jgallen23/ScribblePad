@@ -142,8 +142,6 @@ var ScribbleController = ui.Controller.extend({
 	saveScribble: function(scribble) {
 		var self = this;
 		console.log("save data");
-		console.log(scribble.key);
-		console.log("scribble loaded: "+this.loadedScribble);
 		if (!scribble.key) {
 			this.scribbles.push(scribble);
 		}
@@ -157,7 +155,6 @@ var ScribbleController = ui.Controller.extend({
 	deleteScribble: function() {
 		var self = this;
 		var del = function(i) {
-			console.log(i);
 			if (i != 1)
 				return;
 			var index = self.currentIndex;

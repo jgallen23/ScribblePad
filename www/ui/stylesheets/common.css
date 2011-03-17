@@ -53,6 +53,11 @@ canvas { }
 		.ImageList li img { } 
 			.ImageList li:active { border: 1px solid #000; } 
 
+/* iPhone */
+@media only screen and (max-width: 480px) {
+	.ImageList { padding: 5px; }
+	.ImageList li { margin: 5px; }
+}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-device-pixel-ratio: 2) {
 	.Button { background-size: 26px 26px; }
