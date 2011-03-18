@@ -100,8 +100,10 @@ var ViewAllController = ui.Controller.extend({
 	},
 	hide: function() {
 		var h = this.view.find(".container").clientHeight;
-		this.view.animate("translateY(-"+h+"px)");
-		
+		var self = this;
+		this.view.animate("translateY(-"+h+"px)", 0.5, function() {
+			self.destroy();
+		});
 	},
 	updatePagination: function() {
 		if (this.currentPage == 0) {
