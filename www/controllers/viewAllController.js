@@ -65,7 +65,9 @@ var ViewAllController = ui.Controller.extend({
 			var scale = 1;
 			/*if (self.itemWidth > self.itemHeight) {*/
 				scaleX = self.itemWidth / task.width;
+				scaleX = (scaleX > 1)?1:scaleX;
 				scaleY = self.itemHeight / task.height;
+				scaleY = (scaleY > 1)?1:scaleY;
 				/*} else {*/
 				/*}*/
 				/*scale = (scale > 1)?1:(Math.round(scale*1000)/1000);*/
