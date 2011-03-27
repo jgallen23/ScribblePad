@@ -45,7 +45,8 @@ var ScribbleView = ui.View.extend({
 		var getPoint = function(ev) {
 			var x,y;
 			if (self.offset === null) {
-                var margin = (window.innerWidth <= 480)?0:15;
+				/*var margin = (window.innerWidth <= 480)?0:15;*/
+				var margin = 0;
 				self.offset = [self.element.offsetLeft + margin, self.element.offsetTop + margin];
 			}
 			if (ev.touches) {
@@ -192,7 +193,6 @@ var ScribbleView = ui.View.extend({
 		this.context.clearRect(0, 0, this.element.clientWidth, this.element.clientHeight);
         this.photo = null;
         this.strokeImage = null;
-		console.log("clear");
 		this.canvas.width = this.element.clientWidth;
 		this.canvas.height = this.element.clientHeight;
 	}

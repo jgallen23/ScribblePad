@@ -11,6 +11,8 @@ var ViewAllController = ui.Controller.extend({
 		this._updateContainerLimits();
 		this._render();
 		window.addEventListener("resize", function() { self._updateContainerLimits(); });
+		/*ui.resize(function() { self._updateContainerLimits(); });*/
+		/*ui.orientationChanged(function() { self._updateContainerLimits(); });*/
 		/*
 		this.bindClickEvents({
 			".jsNewButton2": self.newScribble,
@@ -24,6 +26,8 @@ var ViewAllController = ui.Controller.extend({
 		var container = this.view.find(".container");
 		var h = parseInt(container.clientHeight, 10);
 		var w = parseInt(container.clientWidth, 10);
+		console.log("container limits");
+		console.log(w);
 		var paddingX = (w > 900)?60:20;
 		var paddingY = (h > 600)?30:20;
 		var itemsWide = (w > 900)?3:2;
@@ -93,15 +97,16 @@ var ViewAllController = ui.Controller.extend({
 		this.parentController.newScribble();
 	},
 	show: function() {
-		/*var h = parseInt(this.view.element.clientHeight, 10) + 20;*/
 		/*this.view.element.style.top = "-"+h+"px";*/
 		var h = this.view.find(".container").clientHeight;
+		/*self.view.element.style.top = "-10000px";*/
 		this.view.animate("translateY("+h+"px)");
 	},
 	hide: function() {
 		var h = this.view.find(".container").clientHeight;
 		var self = this;
 		this.view.animate("translateY(-"+h+"px)", 0.5, function() {
+			self.view.element.style.top = "-10000px";
 			self.destroy();
 		});
 	},

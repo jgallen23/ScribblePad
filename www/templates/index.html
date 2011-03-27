@@ -14,10 +14,8 @@
 		{% endif %}
 	</head>
 	<body class="{% if debug %} Debug{% else %} Release{% endif %}">
-		<div id="PageContainer">
-				{% include "scribble.html" %}
-				{% include "view_all.html" %}
-		</div>
+		{% include "scribble.html" %}
+		{% include "view_all.html" %}
 		{% if phonegap %}
 			<script src="phonegap.js"></script>
 			{% for file in phonegap_plugin_files %}
@@ -41,8 +39,12 @@
 					new TaskListController('TaskList');
 				});
                 */ 
+				//ui.mobile.startWeinre("localhost:8080");
 			});
 			ui.resize(function(width, height) {
+				return;
+				console.log("resize");
+				console.log(width);
 				var container = document.getElementById("PageContainer");
 				container.style.width = width+"px";
 				container.style.height = height+"px";

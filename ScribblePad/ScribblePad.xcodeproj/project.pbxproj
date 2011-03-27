@@ -37,8 +37,6 @@
 		C937F60E123D666F00EB91D6 /* App-72.png in Resources */ = {isa = PBXBuildFile; fileRef = C937F60D123D666F00EB91D6 /* App-72.png */; };
 		F95AB1D812407B1B00C332DC /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F95AB1D712407B1B00C332DC /* Settings.bundle */; };
 		F95AB1E212407CBD00C332DC /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = F95AB1E112407CBD00C332DC /* Preferences.m */; };
-		F95AB2A01240946D00C332DC /* SAiOSAdPlugin.m in Sources */ = {isa = PBXBuildFile; fileRef = F95AB29F1240946D00C332DC /* SAiOSAdPlugin.m */; };
-		F95AB2A7124096B500C332DC /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95AB2A6124096B500C332DC /* iAd.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,9 +94,6 @@
 		F95AB1D712407B1B00C332DC /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		F95AB1E012407CBD00C332DC /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Preferences.h; sourceTree = "<group>"; };
 		F95AB1E112407CBD00C332DC /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Preferences.m; sourceTree = "<group>"; };
-		F95AB29E1240946D00C332DC /* SAiOSAdPlugin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAiOSAdPlugin.h; sourceTree = "<group>"; };
-		F95AB29F1240946D00C332DC /* SAiOSAdPlugin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SAiOSAdPlugin.m; sourceTree = "<group>"; };
-		F95AB2A6124096B500C332DC /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +115,6 @@
 				301BF5C3109A6A2B0062928A /* QuartzCore.framework in Frameworks */,
 				301BF5C5109A6A2B0062928A /* SystemConfiguration.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
-				F95AB2A7124096B500C332DC /* iAd.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -189,7 +183,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F95AB2A6124096B500C332DC /* iAd.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
@@ -214,8 +207,6 @@
 				768F6560131D4DDE006619E3 /* ApplicationStatus.m */,
 				768F6562131D4DE9006619E3 /* Badge.h */,
 				768F6563131D4DE9006619E3 /* Badge.m */,
-				F95AB29E1240946D00C332DC /* SAiOSAdPlugin.h */,
-				F95AB29F1240946D00C332DC /* SAiOSAdPlugin.m */,
 				F95AB1E012407CBD00C332DC /* Preferences.h */,
 				F95AB1E112407CBD00C332DC /* Preferences.m */,
 			);
@@ -368,7 +359,6 @@
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* ScribblePadAppDelegate.m in Sources */,
 				F95AB1E212407CBD00C332DC /* Preferences.m in Sources */,
-				F95AB2A01240946D00C332DC /* SAiOSAdPlugin.m in Sources */,
 				768F6561131D4DDE006619E3 /* ApplicationStatus.m in Sources */,
 				768F6564131D4DE9006619E3 /* Badge.m in Sources */,
 			);

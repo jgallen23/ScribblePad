@@ -1,3 +1,4 @@
+html, body { height: 100%; }
 body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background: #5A5C73; padding: 3px }
 * { -webkit-user-select: none;} 
 
@@ -5,8 +6,8 @@ body { margin: 0px; -webkit-text-size-adjust:none; overflow: hidden; background:
 /* NEW */
 button { -webkit-appearance: none; border: 0; background: 0; }
 #PageContainer { overflow: hidden; position: relative; }
-.Page { position: absolute; top: 0; } 
-
+.Page { width: 100%; height: 100%; display: -webkit-box; -webkit-box-orient: vertical; -webkit-box-align: stretch} 
+.Page [role='content'] { -webkit-box-flex: 1 } 
 /* END NEW */
 
 canvas { }
@@ -45,7 +46,7 @@ canvas { }
 .PreviousButton { background-image: url(../images/icons/normal/arrowleft.png); } 
 .NextButton { background-image: url(../images/icons/normal/arrowright.png); } 
 
-#ViewAll { display: block; top: -10000px; }
+#ViewAll { top: -10000px; }
 	#ViewAll .Toolbar li.right { float: right; }
 
 .ImageList { list-style: none; margin: 0; padding: 10px}

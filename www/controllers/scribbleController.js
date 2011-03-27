@@ -43,6 +43,10 @@ var ScribbleController = ui.Controller.extend({
 		this.deviceCheck();
 		this.load();
 	},
+	show: function() {
+		this._super();
+		this.view.element.style.display = "-webkit-box";
+	},
 	resize: function(width, height) {
 		if (this.loadedScribble) {
 			var i = this.currentIndex;
@@ -87,7 +91,6 @@ var ScribbleController = ui.Controller.extend({
 		var self = this;
 		this.newScribble();
 		Scribble.data.find(function(data) {
-			console.log(data);
 			self.scribbles = data;
 			/*self.scribbles.push(self.currentScribble);*/
 			self.currentIndex = self.scribbles.length;
