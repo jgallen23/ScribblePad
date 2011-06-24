@@ -14,14 +14,14 @@
 	</head>
 	<body>
         <div id="Scribble" class="Page Sheet">
-            <div class="pagination"><span class="jsCurrentIndex"></span> of <span id="jsTotal" class="jsTotal"></span></div>
-            <button data-action="viewAllScribbles" class="Button ViewAllButton jsViewAllButton"><span>View All</span></button>
+            <div class="pagination"><span data-element="currentIndexNode"></span> of <span data-element="totalNode"></span></div>
+            <button data-action="viewAllScribbles" data-element="viewAllButton" class="Button ViewAllButton"><span>View All</span></button>
             <!--<button data-action="takePhoto" class="Button CameraButton jsCameraButton"><span>Camera</span></button>-->
-            <button data-action="deleteScribble" class="Button DeleteButton jsDeleteButton"><span>Delete</span></button>
-            <button data-action="newScribble" class="Button NewButton jsNewButton"><span>New</span></button>
-            <button data-action="prevScribble" class="Button PreviousButton jsPrevButton"><span>Previous</span></button>
-            <button data-action="nextScribble" class="Button NextButton jsNextButton"><span>Next</span></button>
-            <div id="draw" role="content">
+            <button data-action="deleteScribble" data-element="deleteButton" class="Button DeleteButton"><span>Delete</span></button>
+            <button data-action="newScribble" data-element="newButton" class="Button NewButton"><span>New</span></button>
+            <button data-action="prevScribble" data-element="prevButton" class="Button PreviousButton"><span>Previous</span></button>
+            <button data-action="nextScribble" data-element="nextButton" class="Button NextButton"><span>Next</span></button>
+            <div id="draw" data-element="scribblePadContainer" role="content">
                 <canvas></canvas>
             </div>
         </div>
@@ -41,29 +41,29 @@
 			<script src="phonegap.js"></script>
             <script src="ext/phonegap-plugins/iPhone/Badge/Badge.js"></script> 
             <script src="plugins/preferences.js"></script> 
+            <script>window.isPhoneGap = true;</script>
+        <% } else {%>
+            <script>window.isPhoneGap = false;</script>
         <% } %>
-        <script src="ui/compressed/app.mobile.js"></script> 
-        <script src="ui/compressed/app.lawnchair.js"></script> 
+        <script src="scripts/zepto.js"></script> 
+        <script src="scripts/fidel.js"></script> 
+        <script src="scripts/lawnchair-0.6.0.js"></script> 
+        <script src="scripts/webkit-sqlite.js"></script> 
 
-        <script src="dataproviders/scribble.js"></script> 
-        <script src="models/scribble.js"></script> 
-        <script src="views/scribble.js"></script> 
+        <script src="dataproviders/scribble.js"></script>
+        <!--<script src="models/scribble.js"></script> -->
+        <script src="scripts/scribble.js"></script>
         <script src="controllers/scribbleController.js"></script> 
-        <script src="controllers/viewAllController.js"></script> 
-        <script src="controllers/iAdController.js"></script>
+        <!--<script src="controllers/viewAllController.js"></script> -->
 		<script>
-			ui.ready(function() {
-				//ui.mobile.disableScrollingPermanently();
-                //appController = new AppController();
-				var controller = new ScribbleController('Scribble');
-                /*
-				persistence.store.websql.config(persistence, 'Recurring', 'RecurringDb', 5 * 1024 * 1024);
-				persistence.schemaSync(function(tx) {
-					new TaskListController('TaskList');
-				});
-                */ 
-				//ui.mobile.startWeinre("localhost:8080");
-			});
+            var ready = function() {
+                window.scribbleData = new ScribbleData();
+                window.controller = new ScribbleController({ el: $("#Scribble") });
+			};
+            if (isPhoneGap)
+                document.addEventListener("deviceready", ready);
+            else
+                ready()
 		</script>
 	</body>
 </html>

@@ -9,3 +9,4 @@ ScribblePad/build
 www/index.html
 www/phonegap.js
 ScribblePad/stderr.log
+node_modules
