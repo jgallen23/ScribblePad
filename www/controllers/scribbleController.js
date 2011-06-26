@@ -84,7 +84,7 @@ var ScribbleController = Fidel.extend({
       }, 200);
       self.updateBadge();
       //tmp
-      /*self.viewAllScribbles();*/
+      //self.viewAllScribbles();
     });
   },
   printStatus: function() {
@@ -168,7 +168,7 @@ var ScribbleController = Fidel.extend({
     }
   },
   viewAllScribbles: function() {
-    var viewAll = new ViewAllController("ViewAll", this.scribbles, this);
+    var viewAll = new ViewAllController({ el: $("#ViewAll"), scribbles: this.scribbles, parentController: this });
   },
   updateBadge: function() {
     var self = this;

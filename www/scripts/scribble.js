@@ -1,1 +1,1 @@
-/Users/jga/code/scribble.js/scribble.js
+/Users/jga/code/scribble.js/src/scribble.js

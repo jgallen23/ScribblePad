@@ -26,14 +26,14 @@
             </div>
         </div>
         <div id="ViewAll" class="Sheet Page">
-            <div class="container" role="content">
+            <div class="container" role="content" data-element="container">
                 <ul class="ImageList"></ul>
             </div>
             <footer>
                 <ul class="Toolbar">
                     <li><button class="Button NewButton" data-action="newScribble"></button></li>
-                    <li class="right"><button data-action="next" class="Button NextButton jsNextButton2"></li>
-                    <li class="right"><button data-action="prev" class="Button PreviousButton jsPrevButton2"></li>
+                    <li class="right"><button data-action="next" data-element="nextButton" class="Button NextButton"></li>
+                    <li class="right"><button data-action="prev" data-element="prevButton" class="Button PreviousButton"></li>
                 </ul>
             </footer>
         </div>
@@ -48,13 +48,12 @@
         <script src="scripts/zepto.js"></script> 
         <script src="scripts/fidel.js"></script> 
         <script src="scripts/lawnchair-0.6.0.js"></script> 
-        <script src="scripts/webkit-sqlite.js"></script> 
 
         <script src="dataproviders/scribble.js"></script>
         <!--<script src="models/scribble.js"></script> -->
         <script src="scripts/scribble.js"></script>
         <script src="controllers/scribbleController.js"></script> 
-        <!--<script src="controllers/viewAllController.js"></script> -->
+        <script src="controllers/viewAllController.js"></script>
 		<script>
             var ready = function() {
                 window.scribbleData = new ScribbleData();

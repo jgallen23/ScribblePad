@@ -1,5 +1,7 @@
 var ScribbleData = function() {
-  this.provider = new Lawnchair({ table: 'scribbles', adaptor: 'webkit' }, function() {
+  var self = this;
+  new Lawnchair({ table: 'scribbles' }, function(lc) {
+    self.provider = lc;
   });
 };
 ScribbleData.prototype.find = function(cb) {
