@@ -7,7 +7,7 @@ button{-webkit-appearance:none;border:0;background:0}
 .Page [role='content']{-webkit-box-flex:1}
 canvas,.Sheets{position:relative}
 .Sheet{background:url("../images/toolbar.png");position:absolute;top:0;-webkit-transition:-webkit-transform .5s ease-in-out;}
-.Sheet .content{background:url("../images/paper.png");margin-bottom:10px;-webkit-box-shadow:0 0 10px #000}
+.Sheet .content{background:url("../images/paper.png");margin-bottom:10px;-webkit-box-shadow:0 0 100px #000}
 .Toolbar{height:30px;margin:0;padding:5px 0 0 0;}
 .Toolbar li{float:left;margin:0;padding:0 4px;list-style:none;color:#363636}
 .Toolbar .pagination{color:#fff;line-height:16px;font-size:14px;font-family:Verdana}
