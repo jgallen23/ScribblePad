@@ -7,8 +7,12 @@ var ScribbleController = Fidel.extend({
     this.scribbles = [];
     this.loadedScribble = null;
     document.addEventListener("resume", function() {
-      console.log("active");
-      self.newScribble();
+      if (isPhoneGap) {
+        plugins.preferences.boolForKey("new_scribble", function(key, value) {
+          if (value)
+            self.newScribble();
+        });
+      }
     });
 
     window.addEventListener("resize", this.proxy(this.resize));
@@ -32,7 +36,6 @@ var ScribbleController = Fidel.extend({
   resize: function() {
     var width = window.innerWidth;
     var height = window.innerHeight;
-    console.log("resize", width, height);
     if (this.loadedScribble) {
       var i = this.currentIndex;
       this.currentIndex = -1;
@@ -62,7 +65,6 @@ var ScribbleController = Fidel.extend({
 
     this.currentIndexNode.html("<span>"+(parseInt(index, 10) + 1)+"</span>");
     this.totalNode.html("<span>"+count+"</span>");
-    this.printStatus();
     this.updateNewButton();
   },
   updateNewButton: function() {
@@ -76,7 +78,6 @@ var ScribbleController = Fidel.extend({
     var self = this;
     this.newScribble();
     scribbleData.find(function(data) {
-      console.log(data);
       self.scribbles = data;
       /*self.scribbles.push(self.currentScribble);*/
       self.currentIndex = self.scribbles.length;
@@ -88,20 +89,14 @@ var ScribbleController = Fidel.extend({
       //self.viewAllScribbles();
     });
   },
-  printStatus: function() {
-    console.log("CurrentIndex: "+this.currentIndex);
-    console.log("Total Scribbles: "+this.scribbles.length);
-  },
   prevScribble: function() { 
     this.loadScribbleByIndex(this.currentIndex - 1);
-    this.printStatus();
   },
   nextScribble: function() {
     if (this.scribbles.length > this.currentIndex) {
       this.loadScribbleByIndex(this.currentIndex + 1);
     }
   
-    this.printStatus();
   },
   loadScribbleByIndex: function(index) {
     this.show();
@@ -122,7 +117,6 @@ var ScribbleController = Fidel.extend({
     this.show();
     this.scribblePad.clear();
     if (this.loadedScribble || this.scribblePad.isDirty) {
-      console.log("create");
       this.currentIndex = this.scribbles.length;
       this.loadedScribble = null;
       this.updatePagination();
@@ -130,7 +124,6 @@ var ScribbleController = Fidel.extend({
   },
   saveScribble: function(scribble) {
     var self = this;
-    console.log("save data");
     if (!scribble.key) {
       this.scribbles.push(scribble);
     }
@@ -179,11 +172,9 @@ var ScribbleController = Fidel.extend({
         console.log("update badge: "+value);
         if (value) {
           var count = self.scribbles.length;
-          /*if (!self.scribbles[count-1].isDirty) {*/
-          /*}*/
           plugins.badge.set(count);
         } else {
-          plugins.badge.set('');
+          plugins.badge.clear();
         }
       });
     }

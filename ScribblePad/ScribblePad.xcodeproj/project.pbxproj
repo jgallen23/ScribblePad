@@ -35,6 +35,8 @@
 		C901CF6313B81C8200E319E0 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C901CF6213B81C8200E319E0 /* Default.png */; };
 		C901CF6513B81C9600E319E0 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C901CF6413B81C9600E319E0 /* Default-Landscape~ipad.png */; };
 		C901CF6713B81CA100E319E0 /* Default-Portrait~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = C901CF6613B81CA100E319E0 /* Default-Portrait~ipad.png */; };
+		C901CF6A13B82C0000E319E0 /* Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = C901CF6913B82C0000E319E0 /* Badge.m */; };
+		C901CF6D13B82C2700E319E0 /* Preferences.m in Sources */ = {isa = PBXBuildFile; fileRef = C901CF6C13B82C2700E319E0 /* Preferences.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,10 @@
 		C901CF6213B81C8200E319E0 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
 		C901CF6413B81C9600E319E0 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "../Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		C901CF6613B81CA100E319E0 /* Default-Portrait~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Portrait~ipad.png"; path = "../Default-Portrait~ipad.png"; sourceTree = "<group>"; };
+		C901CF6813B82C0000E319E0 /* Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Badge.h; sourceTree = "<group>"; };
+		C901CF6913B82C0000E319E0 /* Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Badge.m; sourceTree = "<group>"; };
+		C901CF6B13B82C2700E319E0 /* Preferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Preferences.h; path = Plugins/Preferences.h; sourceTree = "<group>"; };
+		C901CF6C13B82C2700E319E0 /* Preferences.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Preferences.m; path = Plugins/Preferences.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +201,10 @@
 		C901CB7C13B817A100E319E0 /* Plugins */ = {
 			isa = PBXGroup;
 			children = (
+				C901CF6B13B82C2700E319E0 /* Preferences.h */,
+				C901CF6C13B82C2700E319E0 /* Preferences.m */,
+				C901CF6813B82C0000E319E0 /* Badge.h */,
+				C901CF6913B82C0000E319E0 /* Badge.m */,
 				C901CB7D13B817A100E319E0 /* README */,
 			);
 			name = Plugins;
@@ -293,6 +303,8 @@
 			files = (
 				C901CB6213B817A100E319E0 /* main.m in Sources */,
 				C901CB7B13B817A100E319E0 /* AppDelegate.m in Sources */,
+				C901CF6A13B82C0000E319E0 /* Badge.m in Sources */,
+				C901CF6D13B82C2700E319E0 /* Preferences.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

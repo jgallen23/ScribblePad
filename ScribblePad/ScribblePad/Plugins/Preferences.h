@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PhoneGapCommand.h"
+#import <PhoneGap/PGPlugin.h>
 
-@interface Preferences : PhoneGapCommand {
+@interface Preferences : PGPlugin {
 
 }
 
