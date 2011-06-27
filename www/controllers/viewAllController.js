@@ -1,15 +1,13 @@
 var ViewAllController = Fidel.extend({
   actionEvent: inputEventName, 
   events: {
-    'viewScribble': inputEventName + ' [data-action="viewScribble"]'
+    //'viewScribble': inputEventName + ' '
   },
   init: function() {
     var self = this;
     this.currentPage = 0;
     this.itemsPerPage = 0;
     this.el.css("top","-"+this.el.height()+"px");
-    this._updateContainerLimits();
-    this._render();
     window.addEventListener("resize", function() { self._updateContainerLimits(); });
     /*ui.resize(function() { self._updateContainerLimits(); });*/
     /*ui.orientationChanged(function() { self._updateContainerLimits(); });*/
@@ -21,6 +19,8 @@ var ViewAllController = Fidel.extend({
     });
     */
     this.show();
+    setTimeout(this.proxy(this._updateContainerLimits), 30);
+    //this._render();
   },
   _updateContainerLimits: function() { 
     var h = parseInt(this.container.height(), 10);
@@ -46,21 +46,21 @@ var ViewAllController = Fidel.extend({
     var pathScribbles = [];
     for (var i = start; i < count; i++) {
       if (this.scribbles[i].imageData) {
-        htmlArr.push("<li><img "+sizeStyle+" id='ViewImage_"+i+"' data-action='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
+        htmlArr.push("<li data-id='"+i+"'><img "+sizeStyle+" src='"+this.scribbles[i].imageData+"'/></li>");
       } else {
-        htmlArr.push("<li "+sizeStyle+" ><canvas id='ViewImage_"+i+"' data-action='viewScribble'></canvas></li>");
+        htmlArr.push("<li data-id='"+i+"' "+sizeStyle+" ><canvas></canvas></li>");
         pathScribbles.push(i);
       }
     }
     this.find("ul.ImageList").html(htmlArr.join(""));
-    this.drawScribbles(pathScribbles);
+    var items = this.find("ul.ImageList li").bind(inputEventName, this.proxy(this.viewScribble));
+    this.drawScribbles(items);
     this.updatePagination();
   },
   drawScribbles: function(indexes) {
     var self = this;
-    indexes.forEach(function(item, i) {
-      var task = self.scribbles[item];
-      var elem = document.getElementById("ViewImage_"+item).parentNode;
+    indexes.forEach(function(elem, i) {
+      var task = self.scribbles[i];
       var s = new Scribble({ el: $(elem), readonly: true });
 
       var scale = 1;
@@ -80,7 +80,7 @@ var ViewAllController = Fidel.extend({
     });
   },
   viewScribble: function(e) {
-    var id = e.target.getAttribute("id").split("_")[1];
+    var id = e.target.parentNode.getAttribute("data-id");
     this.hide();
     this.parentController.loadScribbleByIndex(parseInt(id, 10));
   },
@@ -98,7 +98,8 @@ var ViewAllController = Fidel.extend({
     var h = this.el.height();
     /*self.view.element.style.top = "-10000px";*/
     //this.view.animate("translateY("+h+"px)");
-    this.el.anim({ translateY: h+"px" }, 1, 500);
+    this.el.anim({ translateY: h+"px" }, 1, 250);
+    //this.el.css("top", "0px");
   },
   hide: function() {
     var h = this.el.height();
