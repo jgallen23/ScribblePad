@@ -6,7 +6,7 @@ var ScribbleController = Fidel.extend({
     this.currentIndex = 0;
     this.scribbles = [];
     this.loadedScribble = null;
-    document.addEventListener("applicationActive", function() {
+    document.addEventListener("resume", function() {
       console.log("active");
       self.newScribble();
     });
