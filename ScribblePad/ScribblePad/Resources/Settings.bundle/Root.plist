@@ -26,7 +26,7 @@
 			<key>Key</key>
 			<string>new_scribble</string>
 			<key>Title</key>
-			<string>New Scribble on Load</string>
+			<string>New Scribble on Open</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
