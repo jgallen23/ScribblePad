@@ -1,5 +1,8 @@
 var ViewAllController = Fidel.extend({
-
+  actionEvent: inputEventName, 
+  events: {
+    'viewScribble': inputEventName + ' [data-action="viewScribble"]'
+  },
   init: function() {
     var self = this;
     this.currentPage = 0;
@@ -45,14 +48,13 @@ var ViewAllController = Fidel.extend({
     var pathScribbles = [];
     for (var i = start; i < count; i++) {
       if (this.scribbles[i].imageData) {
-        htmlArr.push("<li><img "+sizeStyle+" id='ViewImage_"+i+"' data-click='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
+        htmlArr.push("<li><img "+sizeStyle+" id='ViewImage_"+i+"' data-action='viewScribble' src='"+this.scribbles[i].imageData+"'/></li>");
       } else {
-        htmlArr.push("<li "+sizeStyle+" ><canvas id='ViewImage_"+i+"' data-click='viewScribble'></canvas></li>");
+        htmlArr.push("<li "+sizeStyle+" ><canvas id='ViewImage_"+i+"' data-action='viewScribble'></canvas></li>");
         pathScribbles.push(i);
       }
     }
     this.find("ul.ImageList").html(htmlArr.join(""));
-    this.el.delegate('li [data-click="viewScribble"]', 'click', this.proxy(this.viewScribble));
     this.drawScribbles(pathScribbles);
     this.updatePagination();
   },

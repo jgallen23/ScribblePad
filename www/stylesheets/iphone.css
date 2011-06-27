@@ -1,8 +1,1 @@
-
-.Button { background-size: 23px; }
-
-/* IPHONE4 */
-@media only screen and
-    (-webkit-min-device-pixel-ratio: 2) {
-
-}
+.Button{background-size:23px}

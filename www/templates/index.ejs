@@ -10,23 +10,30 @@
 		<link rel="stylesheet" type="text/css" href="stylesheets/common.css"/>
 		<link rel="stylesheet" type="text/css" href="stylesheets/iphone.css"/>
         <script src="scripts/live.js"></script>
-
+        <script>
+            window.isMobile = ("createTouch" in document);
+            window.inputEventName = (isMobile)?'touchend':'click';
+        </script>
 	</head>
 	<body>
         <div id="Scribble" class="Page Sheet">
-            <div class="pagination"><span data-element="currentIndexNode"></span> of <span data-element="totalNode"></span></div>
-            <button data-action="viewAllScribbles" data-element="viewAllButton" class="Button ViewAllButton"><span>View All</span></button>
-            <!--<button data-action="takePhoto" class="Button CameraButton jsCameraButton"><span>Camera</span></button>-->
-            <button data-action="deleteScribble" data-element="deleteButton" class="Button DeleteButton"><span>Delete</span></button>
-            <button data-action="newScribble" data-element="newButton" class="Button NewButton"><span>New</span></button>
-            <button data-action="prevScribble" data-element="prevButton" class="Button PreviousButton"><span>Previous</span></button>
-            <button data-action="nextScribble" data-element="nextButton" class="Button NextButton"><span>Next</span></button>
-            <div id="draw" data-element="scribblePadContainer" role="content">
+            <div id="draw" class="content" data-element="scribblePadContainer" role="content">
                 <canvas></canvas>
             </div>
+            <footer>
+                <ul class="Toolbar">
+                    <li><div class="pagination"><span data-element="currentIndexNode"></span> of <span data-element="totalNode"></span></div></li>
+                    <li><button data-action="viewAllScribbles" data-element="viewAllButton" class="Button ViewAllButton"><span>View All</span></button></li>
+                    <!--<button data-action="takePhoto" class="Button CameraButton jsCameraButton"><span>Camera</span></button>-->
+                    <li><button data-action="deleteScribble" data-element="deleteButton" class="Button DeleteButton"><span>Delete</span></button></li>
+                    <li><button data-action="newScribble" data-element="newButton" class="Button NewButton"><span>New</span></button></li>
+                    <li><button data-action="prevScribble" data-element="prevButton" class="Button PreviousButton"><span>Previous</span></button></li>
+                    <li><button data-action="nextScribble" data-element="nextButton" class="Button NextButton"><span>Next</span></button></li>
+                </ul>
+            </footer>
         </div>
         <div id="ViewAll" class="Sheet Page">
-            <div class="container" role="content" data-element="container">
+            <div class="content container" role="content" data-element="container">
                 <ul class="ImageList"></ul>
             </div>
             <footer>
@@ -56,6 +63,7 @@
         <script src="controllers/viewAllController.js"></script>
 		<script>
             var ready = function() {
+                document.addEventListener("touchmove", function(e) { e.preventDefault(); }, false);
                 window.scribbleData = new ScribbleData();
                 window.controller = new ScribbleController({ el: $("#Scribble") });
 			};
