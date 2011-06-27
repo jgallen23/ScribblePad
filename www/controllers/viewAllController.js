@@ -25,8 +25,6 @@ var ViewAllController = Fidel.extend({
   _updateContainerLimits: function() { 
     var h = parseInt(this.container.height(), 10);
     var w = parseInt(this.container.width(), 10);
-    console.log("container limits");
-    console.log(w);
     var paddingX = (w > 900)?60:20;
     var paddingY = (h > 600)?30:20;
     var itemsWide = (w > 900)?3:2;
