@@ -1,5 +1,5 @@
 var ScribbleController = Fidel.extend({
-  actionEvent: (isMobile)?'touchend':'click',
+  actionEvent: inputEventName,
   init: function() {  
     var self = this;
 

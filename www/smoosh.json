@@ -1,0 +1,31 @@
+{
+  "VERSION": "0.0.1",
+  "JSHINT_OPTS": { "boss": true, "forin": true, "browser": true },
+  "JAVASCRIPT": {
+    "DIST_DIR": "dist",
+    "phonegap": [
+      "phonegap.0.9.5.1.min.js",
+      "plugins/badge.js",
+      "plugins/preferences.js"
+    ],
+    "core": [
+      "scripts/zepto.js",
+      "scripts/fidel.js",
+      "scripts/lawnchair-0.6.0.js",
+      "scripts/webkit-sqlite.js"
+    ],
+    "app": [
+      "scripts/scribble.js",
+      "dataproviders/scribble.js",
+      "controllers/scribbleController.js",
+      "controllers/viewAllController.js"
+    ]
+  },
+  "CSS": {
+    "DIST_DIR": "dist",
+    "common": [
+      "stylesheets/common.css", 
+      "stylesheets/iphone.css"
+    ]
+  }
+}
