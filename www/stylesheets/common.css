@@ -6,14 +6,14 @@ button{-webkit-appearance:none;border:0;background:0}
 .Page{width:100%;height:100%;display:-webkit-box;-webkit-box-orient:vertical;-webkit-box-align:stretch;overflow:hidden}
 .Page [role='content']{-webkit-box-flex:1}
 canvas,.Sheets{position:relative}
-.Sheet{background:url("../images/toolbar.png");position:absolute;top:0;-webkit-transition:-webkit-transform .5s ease-in-out;}
-.Sheet .content{background:url("../images/paper.png");margin-bottom:10px}
+.Sheet{position:absolute;top:0;-webkit-transition:-webkit-transform .5s ease-in-out;}
+.Sheet .content{background:url("../images/paper.png")}
 #ViewAll.Sheet .content{margin-bottom:0}
-.Toolbar{height:30px;margin:0;padding:5px 0 0 0;}
+.Toolbar{background:url("../images/toolbar.png");height:40px;margin:0;padding:5px 0 0 0;border-top:1px solid #000;}
 .Toolbar li{float:left;margin:0;padding:0 4px;list-style:none;color:#363636}
-.Toolbar .pagination{color:#fff;line-height:16px;font-size:14px;font-family:Verdana}
+.Toolbar .pagination{color:#fff;line-height:40px;font-size:14px;font-family:Verdana}
 .Button{height:40px;width:40px;display:block;background-repeat:no-repeat;background-position:center center}
-.Button:active{opacity:1}
+.Button:active{background-color:rgba(0,0,0,0.4);-webkit-border-radius:10px}
 .Button2:active{-webkit-box-shadow:1px 1px 1px #333;-webkit-border-radius:10px}
 .Button span{display:none}
 #Scribble .Button{position:absolute}
@@ -31,6 +31,8 @@ canvas,.Sheets{position:relative}
 .PreviousButton{background-image:url("../images/icons/normal/arrowleft.png")}
 .NextButton{background-image:url("../images/icons/normal/arrowright.png")}
 #ViewAll{top:-10000px;}
+#ViewAll .Toolbar{padding-top:0;}
+#ViewAll .Toolbar li{padding-bottom:5px}
 #ViewAll .Toolbar li.right{float:right}
 .ImageList{list-style:none;margin:0;padding:10px;}
 .ImageList li{display:block;float:left;margin:5px 20px;height:100px;overflow:hidden;border:1px solid #ccc}

@@ -1,6 +1,6 @@
 var ScribbleData = function() {
   var self = this;
-  this.provider = new Lawnchair({ table: 'scribbles', adapter: Lawnchair.adapters[1] }, function(lc) {
+  this.provider = new Lawnchair({ name: 'scribbles', adapter: Lawnchair.adapters[1] }, function(lc) {
     self.provider = lc;
   });
 };

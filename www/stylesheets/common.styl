@@ -36,23 +36,22 @@ canvas
   position: relative
 
 .Sheet
-  background url(../images/toolbar.png)
   position: absolute
   top: 0
   -webkit-transition: -webkit-transform 0.5s ease-in-out
 
   .content
     background url(../images/paper.png)
-    margin-bottom 10px
-    //-webkit-box-shadow 0 0 100px #000 
 
 #ViewAll.Sheet .content
   margin-bottom 0
 
 .Toolbar
-  height: 30px
+  background url(../images/toolbar.png)
+  height: 40px
   margin: 0
   padding: 5px 0 0 0
+  border-top 1px solid #000
 
   li
     float: left
@@ -63,7 +62,7 @@ canvas
 
   .pagination
     color: #fff
-    line-height: 16px
+    line-height: 40px
     font-size: 14px
     font-family: Verdana
 
@@ -75,7 +74,8 @@ canvas
   background-position: center center
 
 .Button:active
-  opacity: 1
+  background-color: rgba(0,0,0,.4);
+  -webkit-border-radius: 10px;
 
 .Button2:active
   -webkit-box-shadow: 1px 1px 1px #333
@@ -138,6 +138,12 @@ canvas
 
 #ViewAll
   top: -10000px
+
+  .Toolbar 
+    padding-top 0
+
+    li
+      padding-bottom 5px
 
   .Toolbar li.right
     float: right
