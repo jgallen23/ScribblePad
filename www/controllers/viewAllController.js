@@ -19,7 +19,7 @@ var ViewAllController = Fidel.extend({
     });
     */
     this.show();
-    setTimeout(this.proxy(this._updateContainerLimits), 30);
+    this._updateContainerLimits();
     //this._render();
   },
   _updateContainerLimits: function() { 
@@ -128,5 +128,29 @@ var ViewAllController = Fidel.extend({
   prev: function() {
     this.currentPage--;
     this._render();
+  },
+  deleteScribbles: function() {
+    var self = this;
+    var del = function(x) {
+      if (x != 1)
+        return;
+
+      var s = (self.currentPage * self.itemsPerPage);
+      var e = (self.totalPages == (self.currentPage+1))?self.scribbles.length:self.itemsPerPage;
+      for (var i = s, c = e; i < c; i++) {
+        var item = self.scribbles[i];
+        console.log(item);
+        scribbleData.remove(item);
+        //self.scribbles.splice(index, 1);
+      }
+    };
+    var msg = "Are you sure you want to delete these Scribbles?";
+    if (isPhoneGap) {
+      navigator.notification.confirm(msg, del);
+    } else {
+      if (confirm(msg)) {
+        del(1);
+      }
+    }
   }
 });
