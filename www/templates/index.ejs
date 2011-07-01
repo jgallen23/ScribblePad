@@ -57,20 +57,6 @@
 		<script>
             var ready = function() {
                 document.addEventListener("touchmove", function(e) { e.preventDefault(); }, false);
-				/*
-				$('[data-action="viewAllScribbles"]').tap(function() {
-					alert("test");
-				});
-				$('[data-action="deleteScribble"]').bind("touchend", function() {
-					alert("test");
-				});
-				$('[data-action="prevScribble"]').bind("touchstart", function() {
-					alert("test");
-				});
-				*/
-				var elem = $('[data-action="prevScribble"]')[0];
-				console.log(elem);
-				//new TouchClick(elem);
                 window.scribbleData = new ScribbleData();
                 window.controller = new ScribbleController({ el: $("#Scribble") });
 			};
