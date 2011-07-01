@@ -11,6 +11,7 @@
       this._scale = null;
       this.canvas = this.find("canvas")[0]; 
       this.context = this.canvas.getContext('2d');
+      this._drawEndTimeout = null;
 
       this.clear();
 
@@ -88,7 +89,11 @@
           self._points = [];
           drawIndex = 0;
           done = false;
-          self.trigger("end");
+          clearTimeout(self._drawEndTimeout);
+          self._drawEndTimeout = setTimeout(function() {
+            console.log("end");
+            self.trigger("end");
+          }, 600);
         }
       }, 30);
     },
