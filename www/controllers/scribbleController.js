@@ -86,7 +86,7 @@ var ScribbleController = Fidel.extend({
       }, 200);
       self.updateBadge();
       //tmp
-      //self.viewAllScribbles();
+      self.viewAllScribbles();
     });
   },
   prevScribble: function() { 
