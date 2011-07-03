@@ -28,7 +28,7 @@ var ScribbleController = Fidel.extend({
     });
 
     this.deviceCheck();
-    this.load();
+    //this.load();
   },
   show: function() {
       this.el.css("display", "-webkit-box");
@@ -74,20 +74,16 @@ var ScribbleController = Fidel.extend({
       this.newButton.css("visibility", "hidden");
     }
   },
-  load: function() {
+  load: function(scribbles) {
     var self = this;
     this.newScribble();
-    scribbleData.find(function(data) {
-      self.scribbles = data;
+    self.scribbles = scribbles;
       /*self.scribbles.push(self.currentScribble);*/
-      self.currentIndex = self.scribbles.length;
-      setTimeout(function() {
-        self.updatePagination();
-      }, 200);
-      self.updateBadge();
-      //tmp
-      //self.viewAllScribbles();
-    });
+    self.currentIndex = self.scribbles.length;
+    setTimeout(function() {
+      self.updatePagination();
+    }, 200);
+    self.updateBadge();
   },
   prevScribble: function() { 
     this.loadScribbleByIndex(this.currentIndex - 1);
@@ -162,7 +158,7 @@ var ScribbleController = Fidel.extend({
     }
   },
   viewAllScribbles: function() {
-    var viewAll = new ViewAllController({ el: $("#ViewAll"), scribbles: this.scribbles, parentController: this });
+    this.trigger("viewAll");
   },
   updateBadge: function() {
     var self = this;

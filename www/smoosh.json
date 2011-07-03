@@ -18,7 +18,8 @@
       "scripts/scribble.js",
       "dataproviders/scribble.js",
       "controllers/scribbleController.js",
-      "controllers/viewAllController.js"
+      "controllers/viewAllController.js",
+      "controllers/app.js"
     ]
   },
   "CSS": {

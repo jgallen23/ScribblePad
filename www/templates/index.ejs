@@ -54,16 +54,5 @@
         <% } %>
         <%- smoosher.js("core") %>
         <%- smoosher.js("app") %>
-		<script>
-            var ready = function() {
-                document.addEventListener("touchmove", function(e) { e.preventDefault(); }, false);
-                window.scribbleData = new ScribbleData();
-                window.controller = new ScribbleController({ el: $("#Scribble") });
-			};
-            if (isPhoneGap)
-                document.addEventListener("deviceready", ready);
-            else
-                ready()
-		</script>
 	</body>
 </html>
