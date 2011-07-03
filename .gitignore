@@ -11,3 +11,4 @@ www/phonegap.js
 ScribblePad/stderr.log
 node_modules
 jga.xcuserdatad
+www/dist
