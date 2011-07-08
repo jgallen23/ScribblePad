@@ -8,14 +8,14 @@
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>icon.png</string>
 	<key>CFBundleIconFiles</key>
 	<array>
 		<string>App@2x.png</string>
 		<string>App@2x.png</string>
 		<string>App-72.png</string>
 		<string>App.png</string>
+		<string>App-72.png</string>
+		<string>App@2x.png</string>
 		<string>App-72.png</string>
 	</array>
 	<key>CFBundleIdentifier</key>
