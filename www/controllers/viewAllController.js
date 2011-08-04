@@ -1,4 +1,4 @@
-var ViewAllController = Fidel.extend({
+var ViewAllController = Fidel.ViewController.extend({
   actionEvent: inputEventName, 
   events: {
     //'viewScribble': inputEventName + ' '

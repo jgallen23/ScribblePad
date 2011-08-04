@@ -1,4 +1,4 @@
-var ScribbleController = Fidel.extend({
+var ScribbleController = Fidel.ViewController.extend({
   actionEvent: inputEventName,
   init: function() {  
     var self = this;

@@ -1,7 +1,7 @@
 !function(obj, util) {
   var Fidel = (typeof ender === "undefined")?obj.Fidel:$.Fidel;
   var touchSupport = ("createTouch" in document);
-  var Scribble = Fidel.extend({
+  var Scribble = Fidel.ViewController.extend({
     init: function() {
       var self = this;
       if (!this.strokeWidth)
