@@ -28,7 +28,20 @@ var ScribbleController = Fidel.ViewController.extend({
     });
 
     this.deviceCheck();
+    this.watchOrientation();
     this.load();
+  },
+  watchOrientation: function() {
+    if (isPhoneGap) {
+      var self = this;
+      self.allowLandscape = true;
+      plugins.preferences.boolForKey("allow_landscape", function(key, value) {
+        self.allowLandscape = value;
+      });
+      window.shouldRotateToOrientation = function(deg) {
+        return (self.allowLandscape || (deg == 0 || deg == 180));
+      };
+    }
   },
   show: function() {
       this.el.css("display", "-webkit-box");
