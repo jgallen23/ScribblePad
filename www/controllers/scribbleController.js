@@ -18,7 +18,7 @@ var ScribbleController = Fidel.ViewController.extend({
     window.addEventListener("resize", this.proxy(this.resize));
     this.resize();
 
-    this.scribblePad = new Scribble({ el: this.scribblePadContainer });
+    this.scribblePad = new Scribble({ el: this.scribblePadContainer, strokeWidth: 1.5 });
     this.scribblePad.bind("end", function() {
       if (!self.loadedScribble) {
         self.loadedScribble =  {};
