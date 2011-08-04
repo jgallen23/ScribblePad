@@ -26,7 +26,7 @@
 	NSString* retVal = value ? @"true" : @"false";
 	
 	NSString* jsString = [[NSString alloc] initWithFormat:@"%@('%@', %@);", callback, key, retVal];
-	[webView stringByEvaluatingJavaScriptFromString:jsString];
+	[self writeJavascript:jsString];
 	[jsString release];
 }
 
@@ -44,7 +44,7 @@
 	NSString* retVal = [userDefaults stringForKey:key];
 	
 	NSString* jsString = [[NSString alloc] initWithFormat:@"%@('%@', '%@');", callback, key, retVal];
-	[webView stringByEvaluatingJavaScriptFromString:jsString];
+    [self writeJavascript:jsString];
 	[jsString release];
 }
 

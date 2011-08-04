@@ -30,6 +30,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
+			<string>Confirm on Delete</string>
+			<key>Key</key>
+			<string>confirm_delete</string>
+			<key>DefaultValue</key>
+			<true/>
+		</dict>
 	</array>
 	<key>StringsTable</key>
 	<string>Root</string>

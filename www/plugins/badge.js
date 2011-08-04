@@ -11,32 +11,32 @@
  * @constructor
  */
 if (typeof PhoneGap !== "undefined") {
-	function Badge() {
-	}
+  function Badge() {
+  }
 
-	/**
-	 * Positive integer sets the badge, 0 or negative clears it
-	 */
-	Badge.prototype.set = function(options) {
+  /**
+   * Positive integer sets the badge, 0 or negative clears it
+   */
+  Badge.prototype.set = function(options) {
       console.log("badge");
       console.log(options);
-		PhoneGap.exec("Badge.setBadge", options);
-	};
+    PhoneGap.exec("Badge.setBadge", options);
+  };
 
-	/**
-	 * Shorthand to set the badge to 0
-	 */
-	Badge.prototype.clear = function() {
-		PhoneGap.exec("Badge.setBadge", 0);
-	};
+  /**
+   * Shorthand to set the badge to 0
+   */
+  Badge.prototype.clear = function() {
+    PhoneGap.exec("Badge.setBadge", 0);
+  };
 
-	PhoneGap.addConstructor(function() 
-	{
+  PhoneGap.addConstructor(function() 
+  {
       console.log("add badge");
-		if(!window.plugins)
-		{
-			window.plugins = {};
-		}
-		window.plugins.badge = new Badge();
-	});
+    if(!window.plugins)
+    {
+      window.plugins = {};
+    }
+    window.plugins.badge = new Badge();
+  });
 }

@@ -154,7 +154,12 @@ var ScribbleController = Fidel.ViewController.extend({
     };
     var msg = "Are you sure you want to delete this Scribble?";
     if (isPhoneGap) {
-      navigator.notification.confirm(msg, del);
+      plugins.preferences.boolForKey("confirm_delete", function(key, value) {
+        if (value)
+          navigator.notification.confirm(msg, del);
+        else
+          del(1);
+      });
     } else {
       if (confirm(msg)) {
         del(1);
