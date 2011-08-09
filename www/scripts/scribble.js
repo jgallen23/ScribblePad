@@ -14,6 +14,10 @@
       this._drawEndTimeout = null;
 
       this.clear();
+      window.addEventListener('resize', function() {
+        self.resize();
+        self.redraw();
+      });
 
       if (!this.readonly) {
         this._loop();
@@ -143,12 +147,15 @@
       this._scale = [x, y];
       this.redraw();
     },
-    clear: function() {
-      this._offset = null;
-      this.strokes = [];
+    resize: function() {
       this.context.clearRect(0, 0, this.el[0].clientWidth, this.el[0].clientHeight);
       this.canvas.width = this.el[0].clientWidth;
       this.canvas.height = this.el[0].clientHeight;
+    },
+    clear: function() {
+      this._offset = null;
+      this.strokes = [];
+      this.resize();
       this.trigger("clear");
     }
   });
