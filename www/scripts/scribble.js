@@ -97,9 +97,9 @@
           self._drawEndTimeout = setTimeout(function() {
             console.log("end");
             self.trigger("end");
-          }, 500);
+          }, 600);
         }
-      }, 20);
+      }, 30);
     },
     /* END CANVAS LOOP */
     drawPoints: function(points) {
