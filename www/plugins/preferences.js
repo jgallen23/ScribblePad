@@ -1,11 +1,18 @@
 function PreferencesManager() { } 
 
+PreferencesManager.prototype.callback = function(key, value) {
+  console.log("callback");
+  this.__callback(key, value);
+};
+
 PreferencesManager.prototype.boolForKey = function(key, callback) {
-  PhoneGap.exec("Preferences.boolForKey", key, GetFunctionName(callback));
+  this.__callback = callback;
+  PhoneGap.exec("Preferences.boolForKey", key);
 };
 
 PreferencesManager.prototype.stringForKey = function(key, callback) {
-  PhoneGap.exec("Preferences.stringForKey", key, GetFunctionName(callback));
+  this.__callback = callback;
+  PhoneGap.exec("Preferences.stringForKey", key);
 };
 
 PreferencesManager.prototype.setBoolForKey = function(key, value) {

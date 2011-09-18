@@ -18,8 +18,6 @@ if (typeof PhoneGap !== "undefined") {
    * Positive integer sets the badge, 0 or negative clears it
    */
   Badge.prototype.set = function(options) {
-      console.log("badge");
-      console.log(options);
     PhoneGap.exec("Badge.setBadge", options);
   };
 
@@ -32,7 +30,6 @@ if (typeof PhoneGap !== "undefined") {
 
   PhoneGap.addConstructor(function() 
   {
-      console.log("add badge");
     if(!window.plugins)
     {
       window.plugins = {};

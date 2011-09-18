@@ -73,33 +73,35 @@
       var self = this;
       var done = false;
       var drawIndex = 0;
-      setInterval(function __drawLoop() {
-        if (self._points.length === 0)
-          return;
-        self.context.beginPath(); 
-        while (self._points.length > drawIndex) {
-          var p = self._points[drawIndex];
-          if (!p) {
-            done = true;
-          } else {
-            self.drawPoints([self._lastPoint, p]);
-            self._lastPoint = p;
+      function __drawLoop() {
+        if (self._points.length !== 0) {
+          self.context.beginPath(); 
+          while (self._points.length > drawIndex) {
+            var p = self._points[drawIndex];
+            if (!p) {
+              done = true;
+            } else {
+              self.drawPoints([self._lastPoint, p]);
+              self._lastPoint = p;
+            }
+            drawIndex++;
           }
-          drawIndex++;
+          self.context.stroke();
+          if (done) {
+            self.strokes.push(self._points);
+            self._points = [];
+            drawIndex = 0;
+            done = false;
+            clearTimeout(self._drawEndTimeout);
+            self._drawEndTimeout = setTimeout(function() {
+              console.log("end");
+              self.trigger("end");
+            }, 600);
+          }
         }
-        self.context.stroke();
-        if (done) {
-          self.strokes.push(self._points);
-          self._points = [];
-          drawIndex = 0;
-          done = false;
-          clearTimeout(self._drawEndTimeout);
-          self._drawEndTimeout = setTimeout(function() {
-            console.log("end");
-            self.trigger("end");
-          }, 600);
-        }
-      }, 30);
+        window.requestAnimationFrame(__drawLoop);
+      }
+      __drawLoop();
     },
     /* END CANVAS LOOP */
     drawPoints: function(points) {
@@ -166,3 +168,17 @@
   };
   obj.Scribble = Scribble;
 }(this);
+
+
+
+if ( !window.requestAnimationFrame ) {
+  window.requestAnimationFrame = ( function() {
+    return window.webkitRequestAnimationFrame ||
+    window.mozRequestAnimationFrame ||
+    window.oRequestAnimationFrame ||
+    window.msRequestAnimationFrame ||
+    function( /* function FrameRequestCallback */ callback, /* DOMElement Element */ element ) {
+      window.setTimeout( callback, 1000 / 60 );
+    };
+  } )();
+}

@@ -13,6 +13,8 @@
 	#import "PhoneGapDelegate.h"
 #endif
 
+//#import "WebView+Debug.h"
+
 @interface AppDelegate : PhoneGapDelegate {
 
 	NSString* invokeString;
