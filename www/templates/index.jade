@@ -1,0 +1,70 @@
+!!! 5
+html
+  head
+    title Recurring
+    meta(name="apple-mobile-web-app-status-bar-style",content="black")
+    meta(name="apple-mobile-web-app-capable",content="yes")
+    meta(name="viewport",content="width = device-width, initial-scale = 1.0, user-scalable = no, maximum-scale = 1.0")
+    != smoosher.css("common")
+    - if (config.livejs)
+      script(src="scripts/live.js")
+    script
+      window.isMobile = ("createTouch" in document);
+      window.inputEventName = (isMobile)?'tap':'click';
+  body
+    #Scribble(class="Page Sheet")
+      #draw(class="content",data-element="scribblePadContainer",role="content")
+        canvas
+      footer
+        ul.Toolbar
+          li
+            div.pagination
+              span(data-element="currentIndexNode")
+              span &nbsp;of 
+              span(data-element="totalNode")
+          li
+            button(data-action="viewAllScribbles",data-element="viewAllButton",class="Button ViewAllButton")
+              span View All
+          li
+            button(data-action="deleteScribble",data-element="deleteButton",class="Button DeleteButton")
+              span Delete
+          li
+            button(data-action="newScribble",data-element="newButton",class="Button NewButton")
+              span New
+          li
+            button(data-action="prevScribble",data-element="prevButton",class="Button PreviousButton")
+              span Previous
+          li
+            button(data-action="nextScribble",data-element="nextButton",class="Button NextButton")
+              span Next
+    #ViewAll(class="Sheet Page")
+      div(class="content container",role="content",data-element="container")
+        ul.ImageList
+      footer
+        ul.Toolbar
+          li
+            button(class="Button NewButton",data-action="newScribble")
+          li.right
+            button(data-action="next",data-element="nextButton",class="Button NextButton")
+          li.right
+            button(data-action="prev",data-element="prevButton",class="Button PreviousButton")
+    - if (phonegap)
+      != smoosher.js("phonegap")
+      script
+        window.isPhoneGap = true;
+    - else
+      script
+        window.isPhoneGap = false;
+    != smoosher.js("core")
+    != smoosher.js("app")
+    script
+      var ready = function() {
+        console.log("ready");
+        document.addEventListener("touchmove", function(e) { e.preventDefault(); }, false);
+        window.scribbleData = new ScribbleData();
+        window.controller = new ScribbleController({ el: $("#Scribble") });
+      };
+      if (isPhoneGap)
+        document.addEventListener("deviceready", ready);
+      else
+        ready()

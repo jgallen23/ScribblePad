@@ -1,6 +1,6 @@
 module.exports = {
   settings: {
-    templateEngine: 'ejs',
+    templateEngine: 'jade',
     useStylus: true
   },
   web: {
