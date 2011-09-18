@@ -25,9 +25,12 @@
     },
     /* DRAWING */
     events: {
-      "_start": (touchSupport)?"touchstart":"mousedown",
-      "_move": (touchSupport)?"touchmove":"mousemove",
-      "_end": (touchSupport)?"touchend":"mouseup"
+      "touchstart": "_start",
+      "touchmove": "_move",
+      "touchend": "_end",
+      "mousedown": "_start",
+      "mousemove": "_move",
+      "mouseup": "_end"
     },
     _getPoint: function(ev) {
       var x,y;

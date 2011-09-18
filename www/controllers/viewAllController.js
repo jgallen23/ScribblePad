@@ -33,7 +33,6 @@ var ViewAllController = Fidel.ViewController.extend({
 
     this.itemWidth = Math.floor((w-(itemsWide*paddingX))/itemsWide);
     this.itemHeight = Math.floor((h-(itemsHigh*paddingY))/itemsHigh);
-    console.log(this.itemWidth, this.itemHeight);
 
     this._render();
   },
