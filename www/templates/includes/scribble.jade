@@ -1,0 +1,24 @@
+#draw(class="content",data-element="scribblePadContainer",role="content")
+  canvas
+footer
+  ul.Toolbar
+    li
+      div.pagination
+        span(data-element="currentIndexNode")
+        span &nbsp;of 
+        span(data-element="totalNode")
+    li
+      button(data-action="viewAllScribbles",data-element="viewAllButton",class="Button ViewAllButton")
+        span View All
+    li
+      button(data-action="deleteScribble",data-element="deleteButton",class="Button DeleteButton")
+        span Delete
+    li
+      button(data-action="newScribble",data-element="newButton",class="Button NewButton")
+        span New
+    li
+      button(data-action="prevScribble",data-element="prevButton",class="Button PreviousButton")
+        span Previous
+    li
+      button(data-action="nextScribble",data-element="nextButton",class="Button NextButton")
+        span Next
