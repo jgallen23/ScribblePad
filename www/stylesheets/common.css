@@ -30,7 +30,7 @@ canvas,.Sheets{position:relative}
 .NewButton{background-image:url("../images/icons/normal/plus.png")}
 .PreviousButton{background-image:url("../images/icons/normal/arrowleft.png")}
 .NextButton{background-image:url("../images/icons/normal/arrowright.png")}
-#ViewAll{top:-10000px;}
+#ViewAll{top:10000px;}
 #ViewAll .Toolbar{padding-top:0;}
 #ViewAll .Toolbar li{padding-bottom:5px}
 #ViewAll .Toolbar li.right{float:right}

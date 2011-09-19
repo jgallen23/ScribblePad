@@ -7,7 +7,7 @@ var ViewAllController = Fidel.ViewController.extend({
     var self = this;
     this.currentPage = 0;
     this.itemsPerPage = 0;
-    this.el.css("top","-"+this.el.height()+"px");
+    this.el.css("top",this.el.height()+"px");
     window.addEventListener("resize", function() { self._updateContainerLimits(); });
     this.pagie = new Pagie(this.scribbles, 4);
     /*ui.resize(function() { self._updateContainerLimits(); });*/
@@ -87,13 +87,13 @@ var ViewAllController = Fidel.ViewController.extend({
     var h = this.el.height();
     /*self.view.element.style.top = "-10000px";*/
     //this.view.animate("translateY("+h+"px)");
-    this.el.anim({ translateY: h+"px" }, 1, 250);
+    this.el.anim({ translateY: "-"+h+"px" }, 1, 250);
     //this.el.css("top", "0px");
   },
   hide: function() {
     var h = this.el.height();
     var self = this;
-    this.el.anim({ translateY: "-"+h+"px" }, 1, 500, function() {
+    this.el.anim({ translateY: h+"px" }, 1, 500, function() {
       //self.view.element.style.top = "-10000px";
       //self.destroy();
     });
