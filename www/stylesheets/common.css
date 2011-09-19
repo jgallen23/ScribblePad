@@ -7,7 +7,7 @@ button{-webkit-appearance:none;border:0;background:0}
 .Page [role='content']{-webkit-box-flex:1}
 canvas,.Sheets{position:relative}
 .Sheet{position:absolute;top:0;-webkit-transition:-webkit-transform .5s ease-in-out}
-#ViewAll.Sheet .content{margin-bottom:0}
+#ViewAll.Sheet .content{margin-bottom:0;height:100%}
 .Toolbar{background:url("../images/toolbar.png");height:40px;margin:0;padding:5px 0 0 0;border-top:1px solid #000;}
 .Toolbar li{float:left;margin:0;padding:0 4px;list-style:none;color:#363636}
 .Toolbar .pagination{color:#fff;line-height:40px;font-size:14px;font-family:Verdana}
@@ -15,12 +15,13 @@ canvas,.Sheets{position:relative}
 .Button:active{background-color:rgba(0,0,0,0.4);-webkit-border-radius:10px}
 .Button2:active{-webkit-box-shadow:1px 1px 1px #333;-webkit-border-radius:10px}
 .Button span{display:none}
+.Button{background-size:22px}
 #Scribble .Button{position:absolute}
 #Scribble .ViewAllButton{position:relative;opacity:.7;height:20px;margin:0 auto;background-size:20px;width:60px;bottom:0;background-color:#ccc;border-radius:5px 5px 0 0;}
 #Scribble .ViewAllButton:active{background-color:#999}
 #Scribble .CameraButton{left:85px;bottom:5px}
-#Scribble .DeleteButton{right:85px;bottom:5px}
-#Scribble .NewButton{opacity:.5;right:0;bottom:0}
+#Scribble .DeleteButton{left:-2px;bottom:-2px;opacity:.3}
+#Scribble .NewButton{opacity:.3;right:-2px;bottom:-2px}
 #Scribble .PreviousButton{bottom:5px;left:5px}
 #Scribble .NextButton{bottom:5px;right:5px}
 #Scribble .pagination{width:100%;text-align:center;margin:0 auto;position:absolute}
@@ -34,10 +35,11 @@ canvas,.Sheets{position:relative}
 #ViewAll .Toolbar{padding-top:0;}
 #ViewAll .Toolbar li{padding-bottom:5px}
 #ViewAll .Toolbar li.right{float:right}
+#ViewAll .container{width:100%;height:100%}
 .ImageList{list-style:none;margin:0;padding:0;}
-.ImageList li{display:block;float:left;-webkit-box-sizing:border-box;margin:5px;border:1px solid #ccc;overflow:hidden;padding:5px}
+.ImageList li{display:block;-webkit-box-sizing:border-box;margin:5px;border:1px solid #ccc;padding:5px}
 .ImageList li:active{border:1px solid #000}
-@media only screen and (-webkit-min-device-pixel-ratio: 2)only screen and (min-device-pixel-ratio: 2){.Button{background-size:26px 26px}
+@media only screen and (-webkit-min-device-pixel-ratio: 2)only screen and (min-device-pixel-ratio: 2){.Button{background-size:23px}
 .ViewAllButton{background-image:url("../images/icons/hi-res/arrowup.png")}
 .NewButton{background-image:url("../images/icons/hi-res/plus.png")}
 .DeleteButton{background-image:url("../images/icons/hi-res/trash.png")}

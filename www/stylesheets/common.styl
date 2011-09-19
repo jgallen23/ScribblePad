@@ -43,6 +43,7 @@ canvas
 
 #ViewAll.Sheet .content
   margin-bottom 0
+  height 100%
 
 .Toolbar
   background url(../images/toolbar.png)
@@ -82,6 +83,9 @@ canvas
 .Button span
   display: none
 
+.Button
+  background-size:22px
+
 #Scribble
   .Button
     position: absolute
@@ -105,13 +109,14 @@ canvas
     bottom: 5px
 
   .DeleteButton
-    right: 85px
-    bottom: 5px
+    left: -2px 
+    bottom: -2px
+    opacity: .3
 
   .NewButton
-    opacity: .5
-    right: 0px
-    bottom: 0px
+    opacity: .3
+    right: -2px
+    bottom: -2px
 
   .PreviousButton
     bottom: 5px
@@ -157,6 +162,10 @@ canvas
   .Toolbar li.right
     float: right
 
+  .container
+    width: 100%
+    height: 100%
+
 .ImageList
   list-style none
   margin 0
@@ -164,11 +173,9 @@ canvas
 
   li
     display: block
-    float: left
     -webkit-box-sizing border-box
     margin 5px
     border 1px solid #ccc
-    overflow hidden
     padding 5px
 
   li:active
@@ -176,7 +183,7 @@ canvas
 
 @media only screen and (-webkit-min-device-pixel-ratio: 2)only screen and (min-device-pixel-ratio: 2)
   .Button
-    background-size: 26px 26px
+    background-size: 23px
 
   .ViewAllButton
     background-image: url(../images/icons/hi-res/arrowup.png)

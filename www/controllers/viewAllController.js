@@ -8,8 +8,7 @@ var ViewAllController = Fidel.ViewController.extend({
     this.currentPage = 0;
     this.itemsPerPage = 0;
     this.el.css("top",this.el.height()+"px");
-    window.addEventListener("resize", function() { self._updateContainerLimits(); });
-    this.pagie = new Pagie(this.scribbles, 4);
+    this.scroller = new iScroll(this.container[0]);
     /*ui.resize(function() { self._updateContainerLimits(); });*/
     /*ui.orientationChanged(function() { self._updateContainerLimits(); });*/
     /*
@@ -20,42 +19,29 @@ var ViewAllController = Fidel.ViewController.extend({
     });
     */
     this.show();
-    this._updateContainerLimits();
-    //this._render();
-  },
-  _updateContainerLimits: function() { 
-    var h = parseInt(this.container.height(), 10);
-    var w = parseInt(this.container.width(), 10);
-    var paddingX = 10;
-    var paddingY = 10;
-    var itemsWide = 2;
-    var itemsHigh = 2;
-
-    this.itemWidth = Math.floor((w-(itemsWide*paddingX))/itemsWide);
-    this.itemHeight = Math.floor((h-(itemsHigh*paddingY))/itemsHigh);
-
     this._render();
   },
   _render: function() {
     var self = this;
     var htmlArr = [];
-    var sizeStyle = "style='width:"+this.itemWidth+"px; height:"+this.itemHeight+"px'";
-    var scribbles = this.pagie.getCurrentPageItems();
+    var w = parseInt(this.container.width(), 10);
+    var h = 150;
+    var sizeStyle = "style='height:"+(h+10)+"px'";
     var imgList = this.find("ul.ImageList").html('');
-    for (var i = 0, c = scribbles.length; i < c; i++) {
-      var scribble = scribbles[i];
+    for (var i = 0, c = this.scribbles.length; i < c; i++) {
+      var scribble = this.scribbles[i];
       if (scribble.imageData) {
-        imgList.append("<li data-id='"+i+"'><img "+sizeStyle+" src='"+scribble.imageData+"'/></li>");
+        imgList.append("<li data-index='"+i+"'><img "+sizeStyle+" src='"+scribble.imageData+"'/></li>");
       } else {
-        var elem = $("<li data-id='"+i+"' "+sizeStyle+" ><canvas></canvas></li>");
+        var elem = $("<li data-index='"+i+"' "+sizeStyle+" data-action='viewScribble'><canvas></canvas></li>");
         imgList.append(elem);
 
-        var s = new Scribble({ el: $("[data-id='"+i+"']"), readonly: true });
+        var s = new Scribble({ el: $("[data-index='"+i+"']"), readonly: true });
 
         var scale = 1;
-        var scaleX = self.itemWidth / scribble.width;
+        var scaleX = w / scribble.width;
         scaleX = (scaleX > 1)?1:scaleX;
-        var scaleY = self.itemHeight / scribble.height;
+        var scaleY = h / scribble.height;
         scaleY = (scaleY > 1)?1:scaleY;
 
         s.clear();
@@ -64,12 +50,11 @@ var ViewAllController = Fidel.ViewController.extend({
       }
 
     }
-    this.find("ul.ImageList li").bind(inputEventName, this.proxy(this.viewScribble));
-    this.updatePagination();
+    console.log(this.container[0].clientHeight);
+    this.scroller.refresh();
   },
-  viewScribble: function(e) {
-    var id = e.target.parentNode.getAttribute("data-id");
-    var index = ((this.pagie.currentPageNumber-1)*this.pagie.itemsPerPage)+parseInt(id, 10);
+  viewScribble: function(el) {
+    var index = el.attr("data-index");
     this.hide();
     this.parentController.loadScribbleByIndex(index);
   },
@@ -97,26 +82,6 @@ var ViewAllController = Fidel.ViewController.extend({
       //self.view.element.style.top = "-10000px";
       //self.destroy();
     });
-  },
-  updatePagination: function() {
-    if (this.pagie.isFirstPage()) {
-      this.prevButton.css("visibility", "hidden");
-    } else {
-      this.prevButton.css("visibility", "visible");
-    }
-    if (this.pagie.isLastPage()) {
-      this.nextButton.css("visibility", "hidden");
-    } else {
-      this.nextButton.css("visibility", "visible");
-    }
-  },
-  next: function() {
-    this.pagie.nextPage();
-    this._render();
-  },
-  prev: function() {
-    this.pagie.previousPage();
-    this._render();
   },
   deleteScribbles: function() {
     var self = this;
