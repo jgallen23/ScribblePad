@@ -62,24 +62,6 @@ var ScribbleController = Fidel.ViewController.extend({
       this.find(".jsCameraButton").style.display = "none";
     }
   },
-  updatePagination: function() {
-    var index = this.currentIndex;
-    var count = (this.loadedScribble)?this.scribbles.length:this.scribbles.length+1;
-    if (index === 0) {
-      this.prevButton.hide();
-    } else {
-      this.prevButton.show();
-    }
-    if (count == index + 1) {
-      this.nextButton.hide();
-    } else {
-      this.nextButton.show();
-    }
-
-    this.currentIndexNode.html("<span>"+(parseInt(index, 10) + 1)+"</span>");
-    this.totalNode.html("<span>"+count+"</span>");
-    this.updateNewButton();
-  },
   updateNewButton: function() {
     if (this.loadedScribble) {
       this.newButton.css("visibility", "visible");
@@ -95,7 +77,7 @@ var ScribbleController = Fidel.ViewController.extend({
       /*self.scribbles.push(self.currentScribble);*/
       self.currentIndex = self.scribbles.length;
       setTimeout(function() {
-        self.updatePagination();
+        self.updateNewButton();
       }, 200);
       self.updateBadge();
       //tmp
@@ -123,7 +105,7 @@ var ScribbleController = Fidel.ViewController.extend({
       this.loadedScribble = s;
       this.scribblePad.clear();
       this.scribblePad.load(s.path, null, s.imageData, s.photoData);
-      this.updatePagination();
+      this.updateNewButton();
     }
   },
   newScribble: function() {
@@ -132,7 +114,7 @@ var ScribbleController = Fidel.ViewController.extend({
     if (this.loadedScribble || this.scribblePad.isDirty) {
       this.currentIndex = this.scribbles.length;
       this.loadedScribble = null;
-      this.updatePagination();
+      this.updateNewButton();
     }
   },
   saveScribble: function(scribble) {

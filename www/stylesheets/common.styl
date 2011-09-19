@@ -26,6 +26,7 @@ button
   -webkit-box-orient: vertical
   -webkit-box-align: stretch
   overflow hidden
+  background url(../images/paper.png)
 
 .Page [role='content']
   -webkit-box-flex: 1
@@ -39,9 +40,6 @@ canvas
   position: absolute
   top: 0
   -webkit-transition: -webkit-transform 0.5s ease-in-out
-
-  .content
-    background url(../images/paper.png)
 
 #ViewAll.Sheet .content
   margin-bottom 0
@@ -86,40 +84,51 @@ canvas
 
 #Scribble
   .Button
-     position: absolute
+    position: absolute
 
   .ViewAllButton
-     bottom: 5px
-     left: 45px
+    position relative
+    opacity .7  
+    height 20px
+    margin 0 auto
+    background-size 20px
+    width 60px
+    bottom: 0px
+    background-color #ccc 
+    border-radius 5px 5px 0 0
+    &:active
+      background-color darken(#ccc, 20)
+
 
   .CameraButton
-     left: 85px
-     bottom: 5px
+    left: 85px
+    bottom: 5px
 
   .DeleteButton
-     right: 85px
-     bottom: 5px
+    right: 85px
+    bottom: 5px
 
   .NewButton
-     right: 45px
-     bottom: 5px
+    opacity: .5
+    right: 0px
+    bottom: 0px
 
   .PreviousButton
-     bottom: 5px
-     left: 5px
+    bottom: 5px
+    left: 5px
 
   .NextButton
-     bottom: 5px
-     right: 5px
+    bottom: 5px
+    right: 5px
 
   .pagination
-      width: 100%
-      text-align: center
-      margin: 0 auto
-      position: absolute
+    width: 100%
+    text-align: center
+    margin: 0 auto
+    position: absolute
 
 .ViewAllButton
-  background-image: url(../images/icons/normal/folder.png)
+  background-image: url(../images/icons/normal/arrowup.png)
 
 .CameraButton
   background-image: url(../images/icons/normal/camera.png)
@@ -170,7 +179,7 @@ canvas
     background-size: 26px 26px
 
   .ViewAllButton
-    background-image: url(../images/icons/hi-res/folder.png)
+    background-image: url(../images/icons/hi-res/arrowup.png)
 
   .NewButton
     background-image: url(../images/icons/hi-res/plus.png)
