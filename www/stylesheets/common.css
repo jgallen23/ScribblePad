@@ -16,6 +16,7 @@ canvas,.Sheets{position:relative}
 .Button2:active{-webkit-box-shadow:1px 1px 1px #333;-webkit-border-radius:10px}
 .Button span{display:none}
 .Button{background-size:22px}
+#Scribble canvas{-webkit-transform:scale3d(2,2,0);-webkit-transform-origin:0 0}
 #Scribble .Button{position:absolute}
 #Scribble .ViewAllButton{position:relative;opacity:.7;height:20px;margin:0 auto;background-size:20px;width:60px;bottom:0;background-color:#ccc;border-radius:5px 5px 0 0;}
 #Scribble .ViewAllButton:active{background-color:#999}
