@@ -8,7 +8,7 @@ var ViewAllController = Fidel.ViewController.extend({
     this.currentPage = 0;
     this.itemsPerPage = 0;
     this.el.css("top",this.el.height()+"px");
-    this.scroller = new iScroll(this.container[0]);
+    this.scroller = new iScroll(this.container[0], { checkDOMChanges: false });
     /*ui.resize(function() { self._updateContainerLimits(); });*/
     /*ui.orientationChanged(function() { self._updateContainerLimits(); });*/
     /*
@@ -23,6 +23,12 @@ var ViewAllController = Fidel.ViewController.extend({
   },
   _render: function() {
     var self = this;
+    console.log(this.scribbles.length);
+    if (this.scribbles.length === 0) {
+      this.parentController.newScribble();
+      this.hide();
+      return;
+    }
     var htmlArr = [];
     var w = parseInt(this.container.width(), 10);
     var h = 150;
@@ -33,7 +39,7 @@ var ViewAllController = Fidel.ViewController.extend({
       if (scribble.imageData) {
         imgList.append("<li data-index='"+i+"'><img "+sizeStyle+" src='"+scribble.imageData+"'/></li>");
       } else {
-        var elem = $("<li data-index='"+i+"' "+sizeStyle+" data-action='viewScribble'><canvas></canvas></li>");
+        var elem = $("<li data-index='"+i+"' "+sizeStyle+" data-action='viewScribble'><canvas></canvas><button class='Button DeleteButton' data-action='deleteScribble'></button></li>");
         imgList.append(elem);
 
         var s = new Scribble({ el: $("[data-index='"+i+"']"), readonly: true });
@@ -51,12 +57,38 @@ var ViewAllController = Fidel.ViewController.extend({
 
     }
     console.log(this.container[0].clientHeight);
-    this.scroller.refresh();
+    setTimeout(function() { self.scroller.refresh(); });
   },
   viewScribble: function(el) {
     var index = el.attr("data-index");
     this.hide();
     this.parentController.loadScribbleByIndex(index);
+  },
+  deleteScribble: function(el) {
+    var self = this;
+    var del = function(i) {
+      if (i != 1)
+        return;
+      var index = el.parent().attr('data-index');
+
+      self.scribbles.splice(index, 1);
+      scribbleData.remove(self.scribbles[index]);
+      self._render();
+    };
+
+    var msg = "Are you sure you want to delete this Scribble?";
+    if (isPhoneGap) {
+      plugins.preferences.boolForKey("confirm_delete", function(key, value) {
+        if (value)
+          navigator.notification.confirm(msg, del);
+        else
+          del(1);
+      });
+    } else {
+      if (confirm(msg)) {
+        del(1);
+      }
+    }
   },
   loadScribble: function() {
     var id = this.id.split("_")[1];

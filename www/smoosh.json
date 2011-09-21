@@ -11,7 +11,7 @@
     "core": [
       "scripts/zepto.js",
       "scripts/fidel.js",
-      "scripts/iscroll-lite.js",
+      "scripts/iscroll.js",
       "scripts/lawnchair-0.6.0.js",
       "scripts/webkit-sqlite.js"
     ],
