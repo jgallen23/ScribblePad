@@ -46,7 +46,8 @@
         x = ev.clientX - this._offset[0];
         y = ev.clientY - this._offset[1];
       }
-      return [Math.round(x/2), Math.round(y/2)];
+      //return [Math.round(x/2), Math.round(y/2)];
+      return [x, y];
     },
     _start: function(e) {
       this._drawing = true;
@@ -79,6 +80,10 @@
       function __drawLoop() {
         if (self._points.length !== 0) {
           self.context.beginPath(); 
+          //self.context.strokeStyle = self.pattern;
+          self.context.lineWidth = 4;//self.strokeWidth;
+          self.context.lineCap = 'round';
+          self.context.lineJoin = 'round';
           while (self._points.length > drawIndex) {
             var p = self._points[drawIndex];
             if (!p) {
@@ -108,9 +113,6 @@
     },
     /* END CANVAS LOOP */
     drawPoints: function(points) {
-      this.context.lineWidth = this.strokeWidth;
-      //this.context.lineCap = 'round';
-      //this.context.lineJoin = 'round';
       for (var i = 0, c = points.length; i < c; i++) {
         var point = points[i];
         if (!point)
