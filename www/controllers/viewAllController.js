@@ -69,10 +69,10 @@ var ViewAllController = Fidel.ViewController.extend({
     var del = function(i) {
       if (i != 1)
         return;
-      var index = el.parent().attr('data-index');
+      var index = parseInt(el.parent().attr('data-index'), 10);
 
-      self.scribbles.splice(index, 1);
       scribbleData.remove(self.scribbles[index]);
+      self.scribbles.splice(index, 1);
       self._render();
     };
 
