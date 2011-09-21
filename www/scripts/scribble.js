@@ -81,7 +81,7 @@
         if (self._points.length !== 0) {
           self.context.beginPath(); 
           //self.context.strokeStyle = self.pattern;
-          self.context.lineWidth = 4;//self.strokeWidth;
+          self.context.lineWidth = self.strokeWidth;
           self.context.lineCap = 'round';
           self.context.lineJoin = 'round';
           while (self._points.length > drawIndex) {
@@ -129,6 +129,9 @@
       var self = this;
       
       this.context.beginPath();
+      this.context.lineWidth = this.strokeWidth;
+      this.context.lineCap = 'round';
+      this.context.lineJoin = 'round';
       if (this._scale) {
         this.context.scale(this._scale[0], this._scale[1]);
       }
