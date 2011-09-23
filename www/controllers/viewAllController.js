@@ -113,6 +113,7 @@ var ViewAllController = Fidel.ViewController.extend({
     this.el.anim({ translateY: h+"px" }, 1, 500, function() {
       //self.view.element.style.top = "-10000px";
       //self.destroy();
+      self.scroller.destroy();
     });
   },
   deleteScribbles: function() {
