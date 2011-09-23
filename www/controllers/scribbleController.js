@@ -147,18 +147,22 @@ var ScribbleController = Fidel.ViewController.extend({
       }
       self.loadScribbleByIndex(index);
     };
-    var msg = "Are you sure you want to delete this Scribble?";
-    if (isPhoneGap) {
-      plugins.preferences.boolForKey("confirm_delete", function(key, value) {
-        if (value)
-          navigator.notification.confirm(msg, del);
-        else
+    if (this.scribblePad.strokes.length !== 0) {
+      var msg = "Are you sure you want to delete this Scribble?";
+      if (isPhoneGap) {
+        plugins.preferences.boolForKey("confirm_delete", function(key, value) {
+          if (value)
+            navigator.notification.confirm(msg, del);
+          else
+            del(1);
+        });
+      } else {
+        if (confirm(msg)) {
           del(1);
-      });
-    } else {
-      if (confirm(msg)) {
-        del(1);
+        }
       }
+    } else {
+      del(1);
     }
   },
   viewAllScribbles: function() {
