@@ -72,9 +72,9 @@ canvas
   background-repeat: no-repeat
   background-position: center center
 
-.Button:active
-  background-color: rgba(0,0,0,.4);
-  -webkit-border-radius: 10px;
+  &:active
+    background-color: rgba(0,0,0,.4);
+    -webkit-border-radius: 10px;
 
 .Button2:active
   -webkit-box-shadow: 1px 1px 1px #333
@@ -92,51 +92,30 @@ canvas
     //-webkit-transform-origin: 0 0;
   .Button
     position: absolute
+    opacity: .3
+    &:active
+      opacity .7 
 
   .ViewAllButton
-    position relative
-    opacity .7  
-    height 20px
-    margin 0 auto
-    background-size 20px
-    width 60px
-    bottom: 0px
-    background-color #ccc 
-    border-radius 5px 5px 0 0
+    top: -2px
+    left: -2px
     &:active
-      background-color darken(#ccc, 20)
-
-
-  .CameraButton
-    left: 85px
-    bottom: 5px
+      -webkit-border-radius 0 0 10px 0
 
   .DeleteButton
     left: -2px 
     bottom: -2px
-    opacity: .3
+    &:active
+      -webkit-border-radius 0 10px 0 0
 
   .NewButton
-    opacity: .3
     right: -2px
     bottom: -2px
-
-  .PreviousButton
-    bottom: 5px
-    left: 5px
-
-  .NextButton
-    bottom: 5px
-    right: 5px
-
-  .pagination
-    width: 100%
-    text-align: center
-    margin: 0 auto
-    position: absolute
+    &:active
+      -webkit-border-radius 10px 0 0 0
 
 .ViewAllButton
-  background-image: url(../images/icons/normal/arrowup.png)
+  background-image: url(../images/icons/normal/folder.png)
 
 .CameraButton
   background-image: url(../images/icons/normal/camera.png)

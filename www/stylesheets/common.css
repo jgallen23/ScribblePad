@@ -11,21 +11,20 @@ canvas,.Sheets{position:relative}
 .Toolbar{background:url("../images/toolbar.png");height:40px;margin:0;padding:5px 0 0 0;border-top:1px solid #000;}
 .Toolbar li{float:left;margin:0;padding:0 4px;list-style:none;color:#363636}
 .Toolbar .pagination{color:#fff;line-height:40px;font-size:14px;font-family:Verdana}
-.Button{height:40px;width:40px;display:block;background-repeat:no-repeat;background-position:center center}
+.Button{height:40px;width:40px;display:block;background-repeat:no-repeat;background-position:center center;}
 .Button:active{background-color:rgba(0,0,0,0.4);-webkit-border-radius:10px}
 .Button2:active{-webkit-box-shadow:1px 1px 1px #333;-webkit-border-radius:10px}
 .Button span{display:none}
 .Button{background-size:22px}
-#Scribble .Button{position:absolute}
-#Scribble .ViewAllButton{position:relative;opacity:.7;height:20px;margin:0 auto;background-size:20px;width:60px;bottom:0;background-color:#ccc;border-radius:5px 5px 0 0;}
-#Scribble .ViewAllButton:active{background-color:#999}
-#Scribble .CameraButton{left:85px;bottom:5px}
-#Scribble .DeleteButton{left:-2px;bottom:-2px;opacity:.3}
-#Scribble .NewButton{opacity:.3;right:-2px;bottom:-2px}
-#Scribble .PreviousButton{bottom:5px;left:5px}
-#Scribble .NextButton{bottom:5px;right:5px}
-#Scribble .pagination{width:100%;text-align:center;margin:0 auto;position:absolute}
-.ViewAllButton{background-image:url("../images/icons/normal/arrowup.png")}
+#Scribble .Button{position:absolute;opacity:.3;}
+#Scribble .Button:active{opacity:.7}
+#Scribble .ViewAllButton{top:-2px;left:-2px;}
+#Scribble .ViewAllButton:active{-webkit-border-radius:0 0 10px 0}
+#Scribble .DeleteButton{left:-2px;bottom:-2px;}
+#Scribble .DeleteButton:active{-webkit-border-radius:0 10px 0 0}
+#Scribble .NewButton{right:-2px;bottom:-2px;}
+#Scribble .NewButton:active{-webkit-border-radius:10px 0 0 0}
+.ViewAllButton{background-image:url("../images/icons/normal/folder.png")}
 .CameraButton{background-image:url("../images/icons/normal/camera.png")}
 .DeleteButton{background-image:url("../images/icons/normal/trash.png")}
 .NewButton{background-image:url("../images/icons/normal/plus.png")}
