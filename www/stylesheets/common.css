@@ -18,7 +18,7 @@ canvas,.Sheets{position:relative}
 .Button{background-size:22px}
 #Scribble .Button{position:absolute;opacity:.3;}
 #Scribble .Button:active{opacity:.7}
-#Scribble .ViewAllButton{top:-2px;left:-2px;-webkit-border-radius:0 0 10px 0}
+#Scribble .ViewAllButton{top:-2px;right:-2px;-webkit-border-radius:0 0 0 10px}
 #Scribble .DeleteButton{left:-2px;bottom:-2px;-webkit-border-radius:0 10px 0 0}
 #Scribble .NewButton{right:-2px;bottom:-2px;-webkit-border-radius:10px 0 0 0}
 .ViewAllButton{background-image:url("../images/icons/normal/folder.png")}
