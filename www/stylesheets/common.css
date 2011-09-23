@@ -11,19 +11,16 @@ canvas,.Sheets{position:relative}
 .Toolbar{background:url("../images/toolbar.png");height:40px;margin:0;padding:5px 0 0 0;border-top:1px solid #000;}
 .Toolbar li{float:left;margin:0;padding:0 4px;list-style:none;color:#363636}
 .Toolbar .pagination{color:#fff;line-height:40px;font-size:14px;font-family:Verdana}
-.Button{height:40px;width:40px;display:block;background-repeat:no-repeat;background-position:center center;}
-.Button:active{background-color:rgba(0,0,0,0.4);-webkit-border-radius:10px}
+.Button{height:40px;width:40px;display:block;background-repeat:no-repeat;background-position:center center;background-color:rgba(0,0,0,0.1);}
+.Button:active{background-color:rgba(0,0,0,0.4)}
 .Button2:active{-webkit-box-shadow:1px 1px 1px #333;-webkit-border-radius:10px}
 .Button span{display:none}
 .Button{background-size:22px}
 #Scribble .Button{position:absolute;opacity:.3;}
 #Scribble .Button:active{opacity:.7}
-#Scribble .ViewAllButton{top:-2px;left:-2px;}
-#Scribble .ViewAllButton:active{-webkit-border-radius:0 0 10px 0}
-#Scribble .DeleteButton{left:-2px;bottom:-2px;}
-#Scribble .DeleteButton:active{-webkit-border-radius:0 10px 0 0}
-#Scribble .NewButton{right:-2px;bottom:-2px;}
-#Scribble .NewButton:active{-webkit-border-radius:10px 0 0 0}
+#Scribble .ViewAllButton{top:-2px;left:-2px;-webkit-border-radius:0 0 10px 0}
+#Scribble .DeleteButton{left:-2px;bottom:-2px;-webkit-border-radius:0 10px 0 0}
+#Scribble .NewButton{right:-2px;bottom:-2px;-webkit-border-radius:10px 0 0 0}
 .ViewAllButton{background-image:url("../images/icons/normal/folder.png")}
 .CameraButton{background-image:url("../images/icons/normal/camera.png")}
 .DeleteButton{background-image:url("../images/icons/normal/trash.png")}
