@@ -74,6 +74,7 @@ var ViewAllController = Fidel.ViewController.extend({
       scribbleData.remove(self.scribbles[index]);
       self.scribbles.splice(index, 1);
       self._render();
+      self.parentController.updateBadge();
     };
 
     var msg = "Are you sure you want to delete this Scribble?";
