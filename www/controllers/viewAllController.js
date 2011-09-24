@@ -55,7 +55,8 @@ var ViewAllController = Fidel.ViewController.extend({
         scaleY = (scaleY > 1)?1:scaleY;
 
         s.clear();
-        s.scale(scaleX, scaleY);
+        scale = (scaleX > scaleY)?scaleY:scaleX;
+        s.scale(scale, scale);
         s.load(scribble.path, scribble.bounds[0]);
       }
 
