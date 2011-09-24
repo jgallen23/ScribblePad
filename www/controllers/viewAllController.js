@@ -28,6 +28,10 @@ var ViewAllController = Fidel.ViewController.extend({
       this.parentController.newScribble();
       this.hide();
       return;
+    } else if (this.scribbles.length < 2) {
+      this.parentController.loadScribbleByIndex(0);
+      this.hide();
+      return;
     }
     var htmlArr = [];
     var w = parseInt(this.container.width(), 10);
