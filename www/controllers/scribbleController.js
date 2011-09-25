@@ -68,7 +68,7 @@ var ScribbleController = Fidel.ViewController.extend({
     } else {
       this.newButton.css("visibility", "hidden");
     }
-    if (this.scribbles.length > 1) {
+    if (this.currentIndex > 0) {
       this.viewAllButton.css('visibility', 'visible');
     } else {
       this.viewAllButton.css('visibility', 'hidden');

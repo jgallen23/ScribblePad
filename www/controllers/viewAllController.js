@@ -23,16 +23,11 @@ var ViewAllController = Fidel.ViewController.extend({
   },
   _render: function() {
     var self = this;
-    console.log(this.scribbles.length);
     if (this.scribbles.length === 0) {
       this.parentController.newScribble();
       this.hide();
       return;
-    } else if (this.scribbles.length < 2) {
-      this.parentController.loadScribbleByIndex(0);
-      this.hide();
-      return;
-    }
+    } 
     var htmlArr = [];
     var w = parseInt(this.container.width(), 10);
     var h = 150;
